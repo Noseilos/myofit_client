@@ -8,8 +8,6 @@ export const register = (formData) => async (dispatch) => {
             type: "registerRequest",
         })
 
-        // Axios request
-        console.log(formData._parts[8][1])
         const { data } = await axios.post(`${server}/user/new`, 
 
         formData

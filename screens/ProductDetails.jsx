@@ -38,7 +38,6 @@ const ProductDetails = ({ route: { params } }) => {
   const average = useSelector((state) => state.comment.averageRating); // Fetch comments from Redux store
   const loading = useSelector((state) => state.comment.loading); // Fetch loading state from Redux store
 
-  console.log("current user:",user)
   const {
     product: { name, price, stock, description, images },
   } = useSelector((state) => state.product);

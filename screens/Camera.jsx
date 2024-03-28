@@ -49,8 +49,7 @@ const CameraComponent = ({ navigation, route }) => {
 
   const clickPicture = async () => {
     const data = await camera.takePictureAsync();
-
-    // console.log(data);
+    
 
     if (route.params?.newProduct)
       return navigation.navigate("newproduct", {

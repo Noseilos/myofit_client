@@ -28,7 +28,7 @@ const AdminPanel = ({ navigation }) => {
     dispatch,
     isFocused
   );
-  console.log(chartData, chartData2, chartData3, loading, error);
+  
   const { products } = useAdminProducts(dispatch, isFocused);
 
   const navigationHandler = (text) => {

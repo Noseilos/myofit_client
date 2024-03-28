@@ -27,7 +27,6 @@ const Home = () => {
   const { products } = useSelector((state) => state.product);
    const { user } = useSelector((state) => state.user );
 
-console.log(user)
   const categoryButtonHandler = (id) => {
     setCategory(id);
   };
