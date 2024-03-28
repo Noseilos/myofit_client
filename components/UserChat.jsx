@@ -52,8 +52,6 @@ const UserChat = ({ item, lastMessage, newMessages, setNewMessages }) => {
         setNewMessages((prevNewMessages) => ({
           ...prevNewMessages,
           [item._id]: false,
-        }, ()=>{
-          console.log(newMessages)
         }))
       }
       }

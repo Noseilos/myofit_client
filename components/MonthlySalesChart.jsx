@@ -31,7 +31,6 @@ const MonthlySalesChart = ({ data }) => {
     ? data.ordersSumByMonth.map(item => getMonthName(item._id - 1)) // Subtract 1 because month numbers start from 0 in JavaScript Date
     : [];
   
-  // console.log(data)
   if (!transformedData.length) {
     return <Text>No orders to display</Text>;
   }

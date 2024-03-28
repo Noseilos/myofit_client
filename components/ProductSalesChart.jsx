@@ -29,7 +29,6 @@ const ProductSalesChart = ({ data }) => {
         legendFontColor: colors.color2,
       }));
 
-    // console.log(data);
     
     const chartConfig = {
         backgroundGradientFrom: colors.color1,
