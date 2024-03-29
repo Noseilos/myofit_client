@@ -43,7 +43,7 @@ const ContactsScreen = ({ navigation }) => {
             />
           ))}
       </View>
-      <Footer />
+      <Footer activeRoute="contactscreen"/>
     </>
   );
 };

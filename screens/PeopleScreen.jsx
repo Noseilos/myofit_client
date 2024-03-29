@@ -43,7 +43,7 @@ const PeopleScreen = ({ navigation }) => {
         </ScrollView>
         
       </View>
-      <Footer />
+      <Footer activeRoute="peoplescreen"/>
     </>
   );
 };
