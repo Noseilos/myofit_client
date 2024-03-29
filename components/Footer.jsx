@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../styles/styles";
@@ -8,7 +8,7 @@ import { FontAwesome } from 'react-native-vector-icons';
 
 const Footer = ({ activeRoute = "home" }) => {
   const navigate = useNavigation();
-  
+
   const { loading, isAuthenticated } = useSelector((state) => state.user)
 
   const navigationHandler = (key) => {
@@ -20,9 +20,16 @@ const Footer = ({ activeRoute = "home" }) => {
         navigate.navigate("cart");
         break;
       case 2:
-        // if (isAuthenticated) navigate.navigate("profile");
-        // else navigate.navigate("login");
         navigate.navigate("wishlist");
+        break;
+      case 3:
+        navigate.navigate("chatscreen");
+        break;
+      case 4:
+        navigate.navigate("contactscreen");
+        break;
+      case 5:
+        navigate.navigate("peoplescreen");
         break;
       default:
         navigate.navigate("Home");
@@ -32,7 +39,7 @@ const Footer = ({ activeRoute = "home" }) => {
 
   const avatarOptions = {
     color: colors.color2,
-    size: 50,
+    size: 45,
     style: {
       backgroundColor: colors.color1,
     },
@@ -41,8 +48,8 @@ const Footer = ({ activeRoute = "home" }) => {
     <View
       style={{
         backgroundColor: colors.color1,
-        borderTopRightRadius: 120,
-        borderTopLeftRadius: 120,
+        // borderTopRightRadius: 120,
+        // borderTopLeftRadius: 120,
         position: "absolute",
         width: "100%",
         bottom: 0,
@@ -51,9 +58,29 @@ const Footer = ({ activeRoute = "home" }) => {
       <View
         style={{
           flexDirection: "row",
-          justifyContent: "space-evenly",
+          justifyContent: "space-between",
+          paddingHorizontal: 20,
         }}
       >
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(0)}
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={activeRoute === "home" ? "home" : "home-outline"}
+
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Home</Text>
+        </TouchableOpacity>
+        
+        
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigationHandler(1)}
@@ -62,23 +89,89 @@ const Footer = ({ activeRoute = "home" }) => {
             {...avatarOptions}
             icon={activeRoute === "cart" ? "shopping" : "shopping-outline"}
           />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Cart</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigationHandler(2)}
+
         >
           <Avatar.Icon
             {...avatarOptions}
             icon={
               activeRoute === "wishlist" ? "heart" : "heart-outline"
             }
-          />
-        </TouchableOpacity>
 
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Wishlist</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(3)}
+          style={{ top: 0 }}
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={activeRoute === "chatscreen" ? "message-text" : "message-text-outline"}
+            size={45}
+          
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Chats</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(4)}
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={activeRoute === "contactscreen" ? "account-plus" : "account-plus-outline"}
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Requests</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(5)}
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={activeRoute === "peoplescreen" ? "contacts" : "contacts-outline"}
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>People</Text>
+        </TouchableOpacity>
       </View>
 
-      <View
+      {/* <View
         style={{
           position: "absolute",
           width: 80,
@@ -87,7 +180,7 @@ const Footer = ({ activeRoute = "home" }) => {
           borderRadius: 100,
           justifyContent: "center",
           alignItems: "center",
-          top: -50,
+          top: -40,
           alignSelf: "center",
         }}
       >
@@ -106,9 +199,10 @@ const Footer = ({ activeRoute = "home" }) => {
               {...avatarOptions}
               icon={activeRoute === "home" ? "home" : "home-outline"}
             />
+            
           </TouchableOpacity>
         </View>
-      </View>
+      </View> */}
     </View>
   );
 };
