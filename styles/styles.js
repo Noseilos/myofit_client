@@ -30,7 +30,7 @@ export const formHeading = {
   fontSize: 25,
   fontWeight: "500",
   textAlign: "center",
-  backgroundColor: colors.color3,
+  // backgroundColor: colors.color3,
   color: colors.color2,
   padding: 5,
   borderRadius: 5,
@@ -50,6 +50,7 @@ export const formStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     elevation: 10,
+    marginBottom:20
   },
 
   forget: {
