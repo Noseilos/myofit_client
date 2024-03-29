@@ -109,8 +109,6 @@ export const getAllReviews = (id) => async (dispatch) => {
             payload: data.comment
         });
 
-        console.log(data)
-
     } catch (error) {
         
         dispatch({

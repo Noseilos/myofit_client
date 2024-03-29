@@ -44,8 +44,7 @@ const Categories = ({ navigation, route, navigate }) => {
       type: mime.getType(image),
       name: image.split("/").pop(),
     });
-
-    // console.log("FormData:", myForm);
+    
 
     dispatch(addCategory(myForm));
   };

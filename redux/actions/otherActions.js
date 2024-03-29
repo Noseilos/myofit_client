@@ -214,8 +214,7 @@ export const getCategoryDetails = (id) => async (dispatch) => {
       const { data } = await axios.get(`${server}/category/single/${id}`, {
           withCredentials: true
       })
-
-      console.log("Category details fetched successfully:", data.category);
+      
 
       dispatch({
           type: "getCategoryDetailsSuccess",
@@ -385,9 +384,7 @@ export const addComment = (formData) => async (dispatch) => {
       },
       withCredentials: true,
     });
-
-    // Log the data if the request is successful
-    console.log("Data after comment addition:", data);
+    
 
     dispatch({
       type: "addCommentSuccess",

@@ -75,29 +75,7 @@ const ChatMessagesScreen = () => {
     dispatch(fetchMessages(userId, recepientId));
     dispatch(fetchAllMessages(userId))
   };
-
-  //   try {
-  //     const response = await fetch("http://192.168.100.169:8000/deleteMessages", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({ messages: messageIds }),
-  //     });
-
-  //     if (response.ok) {
-  //       setSelectedMessages((prevSelectedMessages) =>
-  //       prevSelectedMessages.filter((id) => !messageIds.includes(id))
-  //     );
-
-  //       fetchMessages();
-  //     } else {
-  //       console.log("error deleting messages", response.status);
-  //     }
-  //   } catch (error) {
-  //     console.log("error deleting messages", error);
-  //   }
-  // };
+  
 
   const formatTime = (time) => {
     const options = { hour: "numeric", minute: "numeric" };
@@ -112,7 +90,6 @@ const ChatMessagesScreen = () => {
       quality: 1,
     });
 
-    console.log(result);
     if (!result.canceled) {
       handleSend("image", result.uri);
     }

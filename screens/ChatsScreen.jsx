@@ -73,19 +73,10 @@ const ChatsScreen = () => {
   }
   useEffect(() => {
     dispatch(fetchAcceptedContacts());
-    // const timeOutId = setTimeout(() => {
-    //   dispatch(fetchAcceptedContacts());
-    // }, 200)
-    // return () => {
-    //   clearTimeout(timeOutId)
-    // }
+    
 
   }, [dispatch, isFocused]);
-  useEffect(() => {
-    if (lastMessage) {
-      console.log(lastMessage)
-    }
-  }, [lastMessage])
+  
   const getLastMessage = (item, user) => {
 
     const userMessages = allMessages.filter(
