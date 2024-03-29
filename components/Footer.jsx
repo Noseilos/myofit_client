@@ -55,6 +55,7 @@ const Footer = ({ activeRoute = "home" }) => {
         bottom: 0,
       }}
     >
+      {/* Container */}
       <View
         style={{
           flexDirection: "row",
@@ -62,6 +63,7 @@ const Footer = ({ activeRoute = "home" }) => {
           paddingHorizontal: 20,
         }}
       >
+      {/* Home link */}
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigationHandler(0)}
@@ -81,43 +83,7 @@ const Footer = ({ activeRoute = "home" }) => {
         </TouchableOpacity>
         
         
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => navigationHandler(1)}
-        >
-          <Avatar.Icon
-            {...avatarOptions}
-            icon={activeRoute === "cart" ? "shopping" : "shopping-outline"}
-          />
-          <Text style={{
-            fontWeight: "300",
-            color: colors.color2,
-            fontSize: 12,
-            textAlign: "center",
-            top: -5
-          }}>Cart</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={() => navigationHandler(2)}
-
-        >
-          <Avatar.Icon
-            {...avatarOptions}
-            icon={
-              activeRoute === "wishlist" ? "heart" : "heart-outline"
-            }
-
-          />
-          <Text style={{
-            fontWeight: "300",
-            color: colors.color2,
-            fontSize: 12,
-            textAlign: "center",
-            top: -5
-          }}>Wishlist</Text>
-        </TouchableOpacity>
+        {/* Chats Link */}
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigationHandler(3)}
@@ -137,6 +103,26 @@ const Footer = ({ activeRoute = "home" }) => {
             top: -5
           }}>Chats</Text>
         </TouchableOpacity>
+       
+       {/* People link */}
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(5)}
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={activeRoute === "peoplescreen" ? "contacts" : "contacts-outline"}
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>People</Text>
+        </TouchableOpacity>
+
+        {/* Requests Link */}
         <TouchableOpacity
           activeOpacity={0.8}
           onPress={() => navigationHandler(4)}
@@ -153,13 +139,15 @@ const Footer = ({ activeRoute = "home" }) => {
             top: -5
           }}>Requests</Text>
         </TouchableOpacity>
+
+        {/* Cart Link */}
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => navigationHandler(5)}
+          onPress={() => navigationHandler(1)}
         >
           <Avatar.Icon
             {...avatarOptions}
-            icon={activeRoute === "peoplescreen" ? "contacts" : "contacts-outline"}
+            icon={activeRoute === "cart" ? "shopping" : "shopping-outline"}
           />
           <Text style={{
             fontWeight: "300",
@@ -167,7 +155,28 @@ const Footer = ({ activeRoute = "home" }) => {
             fontSize: 12,
             textAlign: "center",
             top: -5
-          }}>People</Text>
+          }}>Cart</Text>
+        </TouchableOpacity>
+
+        {/* Wishlist Link */}
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => navigationHandler(2)}
+
+        >
+          <Avatar.Icon
+            {...avatarOptions}
+            icon={
+              activeRoute === "wishlist" ? "heart" : "heart-outline"
+            }
+          />
+          <Text style={{
+            fontWeight: "300",
+            color: colors.color2,
+            fontSize: 12,
+            textAlign: "center",
+            top: -5
+          }}>Wishlist</Text>
         </TouchableOpacity>
       </View>
 
