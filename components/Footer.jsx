@@ -50,7 +50,7 @@ const Footer = ({ activeRoute = "home" }) => {
         backgroundColor: colors.color1,
         // borderTopRightRadius: 120,
         // borderTopLeftRadius: 120,
-        position: "absolute",
+        position: "relative",
         width: "100%",
         bottom: 0,
       }}

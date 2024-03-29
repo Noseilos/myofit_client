@@ -57,6 +57,7 @@ const SearchModal = ({
           style={{
             marginTop: 20,
           }}
+          autoFocus={true}
         />
 
         <ScrollView>
