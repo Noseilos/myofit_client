@@ -107,7 +107,7 @@ const ChatsScreen = () => {
           </ScrollView>}
       </View>
 
-      <Footer />
+      <Footer activeRoute="chatscreen"/>
     </>
   );
 };
