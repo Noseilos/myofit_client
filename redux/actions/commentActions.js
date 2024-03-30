@@ -14,6 +14,18 @@ export const getAllComments = (id) => async (dispatch) => {
   }
 };
 
+export const getCommentsByRating = (productId, rating) => async(dispatch)=>{
+  dispatch({ type: "getCommentsByRatingRequest" }); // Dispatch loading start action
+  
+  try {
+    const response = await axios.get(`${server}/comment/products/${productId}/comments/${rating}`);
+    const comments = response.data;
+    dispatch({ type: "getCommentsByRatingSuccess", payload: comments }); // Dispatch success action with fetched comments
+  } catch (error) {
+    dispatch({ type: "getCommentsByRatingFail", payload: error }); // Dispatch failure action with error message
+  }
+}
+
 export const addComment = (text, userId, productId, rating) => {
     return async (dispatch) => {
       dispatch({
@@ -73,7 +85,7 @@ export const addComment = (text, userId, productId, rating) => {
         const response = await axios.get(`${server}/comment/products/${productId}/ratings`);
         dispatch({
           type: "getProductRatingsSuccess",
-          payload: response.data.averageRating,
+          payload: response.data,
         });
       } catch (error) {
         console.error("Error fetching product ratings:", error);
