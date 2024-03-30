@@ -12,8 +12,9 @@ export const colors = {
 };
 
 export const defaultStyle = StyleSheet.create({
-  padding: 35,
-  paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+  padding: 20,
+  paddingTop: 10,
+  paddingBottom: 0,
   flex: 1,
   backgroundColor: colors.color2,
 });
@@ -29,7 +30,7 @@ export const formHeading = {
   fontSize: 25,
   fontWeight: "500",
   textAlign: "center",
-  backgroundColor: colors.color3,
+  // backgroundColor: colors.color3,
   color: colors.color2,
   padding: 5,
   borderRadius: 5,
@@ -49,6 +50,7 @@ export const formStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     elevation: 10,
+    marginBottom:20
   },
 
   forget: {

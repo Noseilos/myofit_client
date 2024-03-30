@@ -7,6 +7,7 @@ import {
   inputOptions,
   formStyles as styles,
 } from "../styles/styles";
+import { LinearGradient } from "expo-linear-gradient";
 import {
   GoogleSignin,
   GoogleSigninButton,
@@ -52,7 +53,7 @@ const Login = ({ navigation }) => {
       // showToast("success", "Kindly complete your profile before continue");
     }
   }, [newUser, user, navigation]);
-  
+
   useEffect(() => {
     configureGoogleSignIn();
     GoogleSignin.signOut();
@@ -84,74 +85,90 @@ const Login = ({ navigation }) => {
 
       dispatch(verifyToken(userInfo.idToken));
       setError();
-      
+
     } catch (e) {
       setError(e);
     }
-    
+
   };
 
   return (
     <>
+
       <View style={defaultStyle}>
         {/* Heading */}
         <View style={{ marginBottom: 20 }}>
+        <LinearGradient
+            colors={['#9400D3', '#008000']}
+            start={{x:0,y:0}}
+            end={{x:1,y:1}}
+            style={formHeading}
+          >
           <Text style={formHeading}>Login</Text>
+          </LinearGradient>
         </View>
 
-        <View style={styles.container}>
-          <Text style={styles.or}>Continue with</Text>
-          <GoogleSigninButton
-            style={{ margin: 20, width: "auto" }}
-            size={GoogleSigninButton.Size.Standard}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={signIn}
-          />
-
-          <Text style={styles.or}>OR</Text>
-          <TextInput
-            {...inputOptions}
-            placeholder="Email"
-            keyboardType="email-address"
-            value={email}
-            onChangeText={setEmail}
-          />
-
-          <TextInput
-            {...inputOptions}
-            placeholder="Password"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={setPassword}
-          />
-
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate("forgetpassword")}
+        
+          <LinearGradient
+            colors={['#9400D3', '#008000']}
+            start={{x:0,y:0}}
+            end={{x:1,y:1}}
+            style={styles.container}
           >
-            <Text style={styles.forget}>Forget Password?</Text>
-          </TouchableOpacity>
+            <Text style={styles.or}>Continue with</Text>
+            <GoogleSigninButton
+              style={{ margin: 20, width: "auto" }}
+              size={GoogleSigninButton.Size.Standard}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={signIn}
+            />
 
-          <Button
-            loading={loading}
-            textColor={colors.color2}
-            disabled={email === "" || password === ""}
-            style={styles.btn}
-            onPress={submitHandler}
-          >
-            Log In
-          </Button>
+            <Text style={styles.or}>OR</Text>
+            <TextInput
+              {...inputOptions}
+              placeholder="Email"
+              keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
+            />
 
-          <Text style={styles.or}>OR</Text>
+            <TextInput
+              {...inputOptions}
+              placeholder="Password"
+              secureTextEntry={true}
+              value={password}
+              onChangeText={setPassword}
+            />
 
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigation.navigate("signup")}
-          >
-            <Text style={styles.link}>Sign Up</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("forgetpassword")}
+            >
+              <Text style={styles.forget}>Forget Password?</Text>
+            </TouchableOpacity>
+
+            <Button
+              loading={loading}
+              textColor={colors.color2}
+              disabled={email === "" || password === ""}
+              style={styles.btn}
+              onPress={submitHandler}
+            >
+              Log In
+            </Button>
+
+            <Text style={styles.or}>OR</Text>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => navigation.navigate("signup")}
+            >
+              <Text style={styles.link}>Sign Up</Text>
+            </TouchableOpacity>
+          </LinearGradient>
         </View>
-      </View>
+   
+
 
       <Footer activeRoute="profile" />
     </>

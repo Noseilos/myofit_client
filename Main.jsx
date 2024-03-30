@@ -206,7 +206,7 @@ const Main = () => {
         initialRouteName="Home"
         drawerContent={(props) => <CustomDrawerContent {...props} />}
       >
-        <Drawer.Screen name="Home" component={HomeStack} />
+        <Drawer.Screen name="MyoFit" component={HomeStack} />
       </Drawer.Navigator>
 
       <Toast position="top" bottomOffset={20} />

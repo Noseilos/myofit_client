@@ -1,9 +1,11 @@
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, Dimensions } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Button } from "react-native-paper";
 import { FontAwesome } from 'react-native-vector-icons';
-
+const { width, height } = Dimensions.get('window');
+const cardWidth = width * 0.4; // Adjust this value as needed
+const cardHeight = height * 0.35; // Adjust this value as needed
 const ProductCard = ({
   stock,
   name,
@@ -24,14 +26,15 @@ const ProductCard = ({
     >
       <View
         style={{
-          elevation: 15,
-          width: 250,
-          alignItems: "center",
-          justifyContent: "space-between",
-          margin: 20,
+          borderWidth: 1,
+          borderColor: 'black',
+          width: cardWidth,
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          margin: 10,
           borderRadius: 20,
-          height: 400,
-          backgroundColor: i % 2 === 0 ? colors.color1 : colors.color2,
+          height: cardHeight,
+
         }}
       >
         <Image
@@ -39,30 +42,30 @@ const ProductCard = ({
             uri: image,
           }}
           style={{
-            width: "100%",
-            height: 200,
-            resizeMode: "contain",
-            position: "absolute",
-            left: 50,
-            top: 105,
+            width: '100%',
+            height: '50%',
+            resizeMode: 'cover',
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+
           }}
         />
 
         <View
           style={{
-            flexDirection: "row",
+            flexDirection: "column",
             padding: 20,
             justifyContent: "space-between",
             width: "100%",
           }}
         >
           <Text
-            numberOfLines={2}
+            numberOfLines={1}
             style={{
-              color: i % 2 === 0 ? colors.color2 : colors.color3,
-              fontSize: 25,
+              fontSize: 16,
               fontWeight: "300",
-              width: "60%",
+              width: "100%",
+              
             }}
           >
             {name}
@@ -71,12 +74,13 @@ const ProductCard = ({
           <Text
             numberOfLines={2}
             style={{
-              color: i % 2 === 0 ? colors.color2 : colors.color3,
-              fontSize: 20,
-              fontWeight: "700",
+              fontSize: 14,
+              marginBottom: 5,
+              color: colors.color3,
+              fontWeight: "bold"
             }}
           >
-            ₹{price}
+            ₱{price}
           </Text>
         </View>
 
@@ -85,18 +89,19 @@ const ProductCard = ({
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: i % 2 === 0 ? colors.color2 : colors.color3,
+            backgroundColor: colors.color3,
             borderRadius: 0,
             paddingVertical: 5,
             borderBottomRightRadius: 20,
             borderBottomLeftRadius: 20,
             width: "100%",
+
           }}
         >
           <Button
             onPress={() => addToCardHandler(id, name, price, image, stock)}
-            textColor={i % 2 === 0 ? colors.color1 : colors.color2}
-            style={{ flex: 8 }}
+            textColor={colors.color2}
+            style={{ flex: 4 }}
             disabled={isOutOfStock}
           >
             {isOutOfStock ? "Out Of Stock" : "Add To Cart"}
@@ -107,8 +112,8 @@ const ProductCard = ({
           >
             <FontAwesome
               name="heart"
-              size={24}
-              color={colors.color1}
+              size={20}
+              color={colors.color2}
             />
           </TouchableOpacity>
         </View>

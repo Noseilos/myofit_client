@@ -1,8 +1,8 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { defaultStyle, colors } from "../styles/styles";
 import Header from "../components/Header";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar, Button, Searchbar } from "react-native-paper";
 import SearchModal from "../components/SearchModal";
 import ProductCard from "../components/ProductCard";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
@@ -25,15 +25,21 @@ const Home = () => {
   const isFocused = useIsFocused();
 
   const { products } = useSelector((state) => state.product);
-   const { user } = useSelector((state) => state.user );
+  const { user } = useSelector((state) => state.user);
 
   const categoryButtonHandler = (id) => {
-    setCategory(id);
+    if (id === category) {
+      setCategory("");
+    }
+    else {
+      setCategory(id);
+    }
+
   };
 
   const addToCardHandler = (id, name, price, image, stock) => {
     if (!user) {
-      navigate.navigate("login"); 
+      navigate.navigate("login");
       return;
     }
     if (stock === 0)
@@ -71,13 +77,13 @@ const Home = () => {
       payload: {
         product:
           id,
-          name,
-          price,
-          image,
-          stock,
+        name,
+        price,
+        image,
+        stock,
       }
     })
-    
+
     Toast.show({
       type: "success",
       text1: "Added To Wishlist",
@@ -111,24 +117,32 @@ const Home = () => {
         {/* Heading Row*/}
         <View
           style={{
-            paddingTop: 10,
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
           }}
         >
           {/* Heading */}
-          <Heading text1="Our" text2="Products" />
+          {/* <Heading text1="Our" text2="Products" /> */}
 
           {/* Search bar */}
 
-          <View>
+          <View style={{width: "100%"}}>
             <TouchableOpacity onPress={() => setActiveSearch((prev) => !prev)}>
-              <Avatar.Icon
+              {/* <Avatar.Icon
                 icon={"magnify"}
                 size={50}
                 color={"gray"}
                 style={{ backgroundColor: colors.color2, elevation: 12 }}
+              /> */}
+              <Searchbar
+                placeholder="Search..."
+                
+                onFocus={()=>setActiveSearch((prev) => !prev)}
+                style={{
+                  marginTop: 20,
+                  
+                }}
               />
             </TouchableOpacity>
           </View>
@@ -174,9 +188,14 @@ const Home = () => {
 
         {/* Products */}
 
-        <View style={{ flex: 1 }}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {products.map((item, index) => (
+        <View style={{
+          flex: 1,
+
+          paddingTop: 10,
+        }}>
+          <FlatList
+            data={products}
+            renderItem={({ item, index }) => (
               <ProductCard
                 stock={item.stock}
                 name={item.name}
@@ -189,8 +208,11 @@ const Home = () => {
                 i={index}
                 navigate={navigate}
               />
-            ))}
-          </ScrollView>
+            )}
+            keyExtractor={item => item._id}
+            numColumns={2} // Change this to the number of columns you want
+            contentContainerStyle={{ alignItems: 'center', }}
+          />
         </View>
       </View>
 
