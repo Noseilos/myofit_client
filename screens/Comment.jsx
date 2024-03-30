@@ -9,16 +9,16 @@ import {
 } from "react-native";
 import StarRating from "react-native-star-rating"; // Import the star rating component
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../redux/actions/otherActions";
+import { addComment } from "../redux/actions/commentActions";
 import enforcerImage from "../images/enforcer_stop.jpg";
 import { inputOptions } from "../styles/styles";
 
-const Comment = () => {
+const Comment = ({route}) => {
   const [toastVisible, setToastVisible] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [starCount, setStarCount] = useState(0); // State for star rating
   const dispatch = useDispatch();
-
+  const {orderItems} = route.params
   // Assuming you have user and product data available from redux state
   const { user } = useSelector((state) => state.user); // Update with actual selector
   const { product } = useSelector((state) => state.product); // Update with actual selector
@@ -32,7 +32,7 @@ const Comment = () => {
     formData.append("text", commentText);
     formData.append("rating", starCount); // Append the star rating to the form data
 
-    dispatch(addComment(formData));
+    dispatch(addComment(commentText, user._id, orderItems[0].product, starCount));
 
     // Show the toast
     setToastVisible(true);
@@ -49,7 +49,7 @@ const Comment = () => {
       {/* Product Details */}
       <View style={styles.productDetails}>
         {/* <Text style={styles.productName}>{productName}</Text> */}
-        <Text style={styles.productId}>Product ID: {product.id}</Text>
+        <Text style={styles.productId}>Product ID: {orderItems.map((item)=>item.product)}</Text>
       </View>
 
       {/* Star Rating */}

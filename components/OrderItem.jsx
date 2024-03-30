@@ -10,6 +10,7 @@ const OrderItem = ({
   address,
   orderedOn,
   status,
+  orderItems,
   paymentMethod,
   updateHandler,
   admin = false,
@@ -17,7 +18,7 @@ const OrderItem = ({
   i = 0,
 }) => {
   const navigation = useNavigation("Comment");
-
+  // const {orderItems} = useSelector((state) => state.orderItems);
   const getProductIds = () => {
     return orderItems.map((item) => item.product);
   };
@@ -26,13 +27,13 @@ const OrderItem = ({
     <View
       style={{
         ...styles.container,
-        backgroundColor: i % 2 === 0 ? colors.color2 : colors.color3,
+        backgroundColor:colors.color2,
       }}
     >
       <Text
         style={{
           ...styles.text,
-          backgroundColor: i % 2 === 0 ? colors.color3 : colors.color1,
+          backgroundColor:colors.color1,
         }}
       >
         ID - #{id}
@@ -52,7 +53,7 @@ const OrderItem = ({
             margin: 20,
             padding: 6,
           }}
-          onPress={() => navigation.navigate("comment", { orderItems: getProductIds })}
+          onPress={() => navigation.navigate("comment", { orderItems: orderItems })}
         >
           Write a Review
         </Button>
@@ -84,11 +85,11 @@ const TextBox = ({ title, value, i }) => (
   <Text
     style={{
       marginVertical: 6,
-      color: i % 2 === 0 ? colors.color3 : colors.color2,
+      color:colors.color3 
     }}
   >
     <Text style={{ fontWeight: "900" }}>{title} - </Text>
-    {title === "Price" ? "₹" : ""}
+    {title === "Price" ? "₱" : ""}
     {value}
   </Text>
 );

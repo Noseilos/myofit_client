@@ -95,13 +95,13 @@ const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
         {emptyWishlist ? (
           <Avatar.Icon
             icon="delete-outline"
-            color={colors.color3}
+            color={route.name=== "productdetails" ? colors.color2 : colors.color3}
             style={{ backgroundColor: colors.color4 }}
           />
         ) : (
           <Avatar.Icon
             icon="heart-outline"
-            color={colors.color3}
+            color={route.name=== "productdetails" ? colors.color2 : colors.color3}
             style={{ backgroundColor: colors.color4 }}
           />
         )}

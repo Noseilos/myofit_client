@@ -31,7 +31,7 @@ export const formHeading = {
   fontWeight: "500",
   textAlign: "center",
   // backgroundColor: colors.color3,
-  color: colors.color2,
+  color: colors.color3,
   padding: 5,
   borderRadius: 5,
 };
