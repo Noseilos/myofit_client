@@ -14,14 +14,16 @@ import { defaultStyle, colors, defaultImg } from "../styles/styles";
 import Header from "../components/Header";
 import Comment from "../components/Comment";
 import Carousel from "react-native-snap-carousel";
-import { Avatar, Button } from "react-native-paper";
+import { Avatar, Button, Menu, IconButton } from "react-native-paper";
 import Toast from "react-native-toast-message";
 import { useDispatch, useSelector } from "react-redux";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { getProductDetails } from "../redux/actions/productActions";
 import { server } from "../redux/store";
 import { AirbnbRating } from "react-native-ratings";
-import { Table, Row, Rows, Cell } from "react-native-table-component";
+
+
+import DropDownPicker from 'react-native-dropdown-picker'
 import { deleteComment, addComment, getAllComments, getProductRatings, getCommentsByRating } from "../redux/actions/commentActions";
 import { FontAwesome } from 'react-native-vector-icons';
 
@@ -47,9 +49,11 @@ const ProductDetails = ({ route: { params } }) => {
 
   const [quantity, setQuantity] = useState(1);
   const isOutOfStock = stock === 0;
-
+  const [visible, setVisible] = useState(false);
+  const openMenu = () => setVisible(true);
+  const closeMenu = () => setVisible(false);
   const filterComments = (value) => {
-    if (value === ratings) {
+    if (value === 0) {
       dispatch(getProductRatings(params.id))
       dispatch(getAllComments(params.id));
       setRatings(Math.floor(average));
@@ -60,24 +64,24 @@ const ProductDetails = ({ route: { params } }) => {
       dispatch(getCommentsByRating(params.id, value));
 
     }
-
+    setVisible(false);
     setRatings(value);
   }
   useEffect(() => {
-    dispatch({type: "resetRatingsAndComments"})
+    dispatch({ type: "resetRatingsAndComments" })
     dispatch(getAllComments(params.id)); // Fetch comments when component mounts
     dispatch(getProductDetails(params.id));
     dispatch(getProductRatings(params.id));
-    
+
   }, [dispatch, params.id, isFocused]);
-  useEffect(()=>{
-    if (average !== 0){
+  useEffect(() => {
+    if (average !== 0) {
       setRatings(Math.floor(average))
     }
-    else{
+    else {
       setRatings(1);
     }
-  },[average])
+  }, [average])
   const incrementQty = () => {
     if (stock <= quantity) {
       return Toast.show({
@@ -207,7 +211,7 @@ const ProductDetails = ({ route: { params } }) => {
                   paddingHorizontal: 5,
                 }}
               >
-                <Text style={{ color: colors.color3, fontWeight: "100" }}>
+                <Text style={{ color: colors.color3, fontWeight: "400" }}>
                   Quantity
                 </Text>
                 <View
@@ -279,7 +283,7 @@ const ProductDetails = ({ route: { params } }) => {
                   justifyContent: "center",
                   alignItems: "center",
                 }}>
-                  <Text style={{ fontSize: average !== 0 ?  30:25, fontWeight: "900", color: "#E8C007" }}>
+                  <Text style={{ fontSize: average !== 0 ? 30 : 25, fontWeight: "900", color: "#E8C007" }}>
                     {average !== 0 ? average : "No Ratings"}
                   </Text>
                   <Text style={{ fontSize: 20, fontWeight: "500" }}>
@@ -287,16 +291,17 @@ const ProductDetails = ({ route: { params } }) => {
                   </Text>
                 </View>
 
-               
+                <View>
 
-                <AirbnbRating
-                  count={5}
-                  reviews={[`Poor`, `Fair`, `Good`, `Very Good`, `Excellent`]}
-                  defaultRating={ratings}
-                  size={25}
-                  onFinishRating={(value) => filterComments(value)}
-                  
-                />
+                  <AirbnbRating
+                    count={5}
+                    reviews={[`Poor`, `Fair`, `Good`, `Very Good`, `Excellent`]}
+                    defaultRating={average === 0 ? 1:Math.floor(average)}
+                    size={25}
+                    onFinishRating={(value) => filterComments(value)}
+                    isDisabled={true}
+                  />
+                </View>
               </View>
 
 
@@ -305,11 +310,30 @@ const ProductDetails = ({ route: { params } }) => {
                   flexDirection: "row",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  paddingBottom: 10,
+                  paddingBottom: 20,
                   marginTop: 20,
                 }}
               >
                 <Text style={{ fontSize: 20, fontWeight: "bold" }}>Comments ({count})</Text>
+                <Menu
+                  visible={visible}
+                  onDismiss={closeMenu}
+                  style={{ marginTop: 50, width: 200, backgroundColor: colors.color2 }}
+                  anchor={
+                    <IconButton
+                      icon="filter"
+                      size={30}
+                      onPress={openMenu}
+                      color="blue"
+                    />
+                  }>
+                  <Menu.Item onPress={() => filterComments(0)} title="All" />
+                  <Menu.Item onPress={() => filterComments(1)} title="1-Star" />
+                  <Menu.Item onPress={() => filterComments(2)} title="2-Star" />
+                  <Menu.Item onPress={() => filterComments(3)} title="3-Star" />
+                  <Menu.Item onPress={() => filterComments(4)} title="4-Star" />
+                  <Menu.Item onPress={() => filterComments(5)} title="5-Star" />
+                </Menu>
               </View>
 
             </View>
