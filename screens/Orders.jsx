@@ -43,6 +43,7 @@ const Orders = () => {
                                     key={item._id}
                                     id={item._id}
                                     i={index}
+                                    orderItems={item.orderItems}
                                     price={item.totalAmount}
                                     status={item.orderStatus}
                                     paymentMethod={item.paymentMethod}
