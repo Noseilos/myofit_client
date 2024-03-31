@@ -23,7 +23,7 @@ import { server } from "../redux/store";
 import { AirbnbRating } from "react-native-ratings";
 
 
-import DropDownPicker from 'react-native-dropdown-picker'
+
 import { deleteComment, addComment, getAllComments, getProductRatings, getCommentsByRating } from "../redux/actions/commentActions";
 import { FontAwesome } from 'react-native-vector-icons';
 
