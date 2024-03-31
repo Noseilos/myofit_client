@@ -13,6 +13,7 @@ import Toast from "react-native-toast-message";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../redux/actions/productActions";
 import { useSetCategories } from "../utils/hooks";
+import Banner from "../components/Banner";
 
 const Home = () => {
   const [category, setCategory] = useState("");
@@ -103,6 +104,7 @@ const Home = () => {
 
   return (
     <>
+
       {activeSearch && (
         <SearchModal
           searchQuery={searchQuery}
@@ -111,10 +113,11 @@ const Home = () => {
           products={products}
         />
       )}
-      <View style={defaultStyle}>
-        {/* <Header /> */}
 
-        {/* Heading Row*/}
+      <View style={defaultStyle}>
+        <View style={{height: "25"}}>
+          <Banner />
+        </View>
         <View
           style={{
             flexDirection: "row",
@@ -122,26 +125,17 @@ const Home = () => {
             alignItems: "center",
           }}
         >
-          {/* Heading */}
-          {/* <Heading text1="Our" text2="Products" /> */}
 
           {/* Search bar */}
 
-          <View style={{width: "100%"}}>
+          <View style={{ width: "100%" }}>
+
             <TouchableOpacity onPress={() => setActiveSearch((prev) => !prev)}>
-              {/* <Avatar.Icon
-                icon={"magnify"}
-                size={50}
-                color={"gray"}
-                style={{ backgroundColor: colors.color2, elevation: 12 }}
-              /> */}
               <Searchbar
                 placeholder="Search..."
-                
-                onFocus={()=>setActiveSearch((prev) => !prev)}
+                onFocus={() => setActiveSearch((prev) => !prev)}
                 style={{
                   marginTop: 20,
-                  
                 }}
               />
             </TouchableOpacity>
@@ -162,6 +156,7 @@ const Home = () => {
             }}
             showsHorizontalScrollIndicator={false}
           >
+
             {categories.map((item, index) => (
               <Button
                 key={item._id}
@@ -184,6 +179,7 @@ const Home = () => {
               </Button>
             ))}
           </ScrollView>
+
         </View>
 
         {/* Products */}
@@ -193,8 +189,10 @@ const Home = () => {
 
           paddingTop: 10,
         }}>
+
           <FlatList
             data={products}
+            
             renderItem={({ item, index }) => (
               <ProductCard
                 stock={item.stock}
@@ -215,7 +213,7 @@ const Home = () => {
           />
         </View>
       </View>
-
+      
       <Footer activeRoute={"home"} />
     </>
   );
