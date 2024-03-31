@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   message: null, // Adding message field for success message
   averageRating: null,
+  count: 0
 };
 
 export const commentReducer = createReducer(initialState, (builder) => {
@@ -52,12 +53,34 @@ export const commentReducer = createReducer(initialState, (builder) => {
     })
     .addCase("getProductRatingsSuccess", (state, action) => {
       state.loading = false;
-      state.averageRating = action.payload;
+      state.averageRating = action.payload.average;
+      state.count = action.payload.count;
     })
     .addCase("getProductRatingsFail", (state, action) => {
       state.loading = false;
       state.error = action.payload;
     });
+  builder
+    .addCase("getCommentsByRatingRequest", (state) => {
+      state.loading = true;
+      state.error = null;
+    })
+    .addCase("getCommentsByRatingSuccess", (state, action) => {
+      state.loading = false;
+      state.comments = action.payload.comments;
+      state.count = action.payload.count;
+    })
+    .addCase("getCommentsByRatingFail", (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    .addCase("resetRatingsAndComments", (state)=>{
+      state.loading =false;
+      state.comments = [];
+      state.averageRating = 0;
+      state.count= 0;
+    })
+
 });
 
 export default commentReducer;

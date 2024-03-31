@@ -152,7 +152,7 @@ const Profile = ({ navigation, route }) => {
                                 <Button
                                     disabled={loadingPic}
                                     loading={loadingPic}
-                                    textColor={colors.color1}
+                                    textColor={colors.color2}
                                 >
                                     Change Photo
                                 </Button>

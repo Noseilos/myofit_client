@@ -2,7 +2,7 @@ import Main from "./Main";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { StripeProvider } from "@stripe/stripe-react-native";
-
+import { Provider as PaperProvider } from 'react-native-paper';
 
 
 const stripeKey =
@@ -19,11 +19,9 @@ export default function App() {
       publishableKey={stripeKey}
     >
       <Provider store={store}>
-        
-        
-          
-        <Main />
-        
+        <PaperProvider>
+          <Main />
+        </PaperProvider>
       </Provider>
     </StripeProvider>
   );
