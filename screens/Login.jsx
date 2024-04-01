@@ -82,7 +82,7 @@ const Login = ({ navigation }) => {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-
+      
       dispatch(verifyToken(userInfo.idToken));
       setError();
 
