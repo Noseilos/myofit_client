@@ -32,7 +32,7 @@ const Comment = ({route}) => {
     formData.append("text", commentText);
     formData.append("rating", starCount); // Append the star rating to the form data
 
-    dispatch(addComment(commentText, user._id, orderItems[0].product, starCount));
+    dispatch(addComment(commentText, user._id, orderItems, starCount));
 
     // Show the toast
     setToastVisible(true);
@@ -49,7 +49,7 @@ const Comment = ({route}) => {
       {/* Product Details */}
       <View style={styles.productDetails}>
         {/* <Text style={styles.productName}>{productName}</Text> */}
-        <Text style={styles.productId}>Product ID: {orderItems.map((item)=>item.product)}</Text>
+        <Text style={styles.productId}>Product ID: {orderItems}</Text>
       </View>
 
       {/* Star Rating */}

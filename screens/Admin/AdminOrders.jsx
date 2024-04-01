@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { colors, defaultStyle, formHeading } from "../../styles/styles";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -12,7 +12,8 @@ import { useDispatch } from "react-redux";
 import { processOrder } from "../../redux/actions/otherActions";
 
 const AdminOrders = ({ navigation }) => {
-  const isFocused = useIsFocused();
+  
+  const isFocused = useIsFocused() ;
   const dispatch = useDispatch();
 
   const { loading, orders } = useGetOrders(isFocused, true);
@@ -20,10 +21,10 @@ const AdminOrders = ({ navigation }) => {
   const processOrderLoading = useMessageAndErrorOther(
     dispatch,
     navigation,
-    "profile",
+    "adminorders",
   );
 
-
+ 
   const updateHandler = (id) => {
     dispatch(processOrder(id));
   };
@@ -54,6 +55,7 @@ const AdminOrders = ({ navigation }) => {
             {orders.length > 0 ? (
               orders.map((item, index) => (
                 <OrderItem
+                  name={item.user.name}
                   key={item._id}
                   id={item._id}
                   i={index}

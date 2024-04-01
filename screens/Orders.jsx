@@ -39,7 +39,9 @@ const Orders = () => {
                     <ScrollView showsVerticalScrollIndicator={false}>
                         {orders.length > 0 ? (
                             orders.map((item, index) => (
+                                
                                 <OrderItem
+                                    name={item.user.name}
                                     key={item._id}
                                     id={item._id}
                                     i={index}
