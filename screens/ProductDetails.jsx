@@ -37,7 +37,7 @@ const ProductDetails = ({ route: { params } }) => {
   const isFocused = useIsFocused();
   const { user } = useSelector((state) => state.user);
 
-  const product = useSelector(state => state.product);
+  
   const [ratings, setRatings] = useState(average);
   const { comments, count } = useSelector((state) => state.comment); // Fetch comments from Redux store
   const average = useSelector((state) => state.comment.averageRating); // Fetch comments from Redux store

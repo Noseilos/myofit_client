@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   View,
   Text,
@@ -6,33 +6,33 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView
 } from "react-native";
 import StarRating from "react-native-star-rating"; // Import the star rating component
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../redux/actions/commentActions";
-import enforcerImage from "../images/enforcer_stop.jpg";
 import { inputOptions } from "../styles/styles";
 
-const Comment = ({route}) => {
+
+
+
+const Comment = ({ route }) => {
   const [toastVisible, setToastVisible] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [starCount, setStarCount] = useState(0); // State for star rating
   const dispatch = useDispatch();
-  const {orderItems} = route.params
+  const { orderItems } = route.params
   // Assuming you have user and product data available from redux state
   const { user } = useSelector((state) => state.user); // Update with actual selector
-  const { product } = useSelector((state) => state.product); // Update with actual selector
 
   const disableBtnCondition = !commentText;
 
   const handlePostComment = () => {
-    const formData = new FormData();
-    formData.append("userId", user._id); // Assuming user ID is available
-    formData.append("productId", product._id); // Assuming product ID is available
-    formData.append("text", commentText);
-    formData.append("rating", starCount); // Append the star rating to the form data
+ 
 
-    dispatch(addComment(commentText, user._id, orderItems, starCount));
+    dispatch(addComment(commentText, user._id, orderItems.product, starCount));
 
     // Show the toast
     setToastVisible(true);
@@ -43,24 +43,42 @@ const Comment = ({route}) => {
 
   return (
     <View style={styles.container}>
-      {/* Product Image */}
-      {/* <Image source={enforcerImage} style={styles.image} /> */}
-
+      <Text style={styles.header}>Write a Review</Text>
       {/* Product Details */}
       <View style={styles.productDetails}>
-        {/* <Text style={styles.productName}>{productName}</Text> */}
-        <Text style={styles.productId}>Product ID: {orderItems}</Text>
+        <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+          <Text style={styles.productName}>{orderItems.name}</Text>
+          {/* Product Image */}
+          <Image source={{ uri: orderItems.image }} style={styles.image} />
+        </View>
+
+        <View style={{ flexDirection: "column", justifyContent: "center", alignItems: "start" }}>
+          <Text style={styles.productId}>Quantity: {orderItems.quantity}</Text>
+          <Text style={styles.productId}>Price: ₱{orderItems.price}</Text>
+        </View>
+
       </View>
 
-      {/* Star Rating */}
-      <StarRating
-        disabled={false}
-        maxStars={5}
-        rating={starCount}
-        selectedStar={(rating) => setStarCount(rating)}
-        fullStarColor={"gold"}
-        emptyStarColor={"gold"}
-      />
+
+
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={{ flex: 1, flexDirection: "column", alignItems: "center"}}
+
+      >
+        <StarRating
+          disabled={false}
+          maxStars={5}
+          rating={starCount}
+          selectedStar={(rating) => setStarCount(rating)}
+          fullStarColor={"gold"}
+          emptyStarColor={"gold"}
+          
+        />
+        <Text>Rate us!</Text>
+        {/* Your TextInput component goes here */}
+
+      </KeyboardAvoidingView>
 
       {/* Comment Input and Button Container */}
       <View style={styles.commentInputContainer}>
@@ -93,28 +111,41 @@ const Comment = ({route}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingVertical: 20,
+    height: "100%",
+    flexDirection: "column",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-around",
+
   },
   image: {
     width: 200,
     height: 200,
     resizeMode: "cover",
     marginBottom: 10,
+    backgroundColor: "gainsboro"
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
   productDetails: {
+    width: "80%",
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
     marginBottom: 10,
   },
   productName: {
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: "bold",
     marginBottom: 5,
   },
   productId: {
     fontSize: 16,
-    color: "grey",
+    color: "black",
+    fontWeight: "bold"
   },
   commentInputContainer: {
     flexDirection: "row", // Arrange children horizontally
