@@ -67,7 +67,7 @@ const OrderItem = ({
       <Avatar.Icon {...avatarOptions} icon={status === "Preparing" ? "package-variant" : status === "Shipped" ? "truck" : "truck-check-outline"}/>
       </View>
      
-      <Button onPress={openMenu}>See order details</Button>
+      <Button onPress={openMenu}>{visible ? "Hide" : "Show"} order details</Button>
       {visible && (<>
       <TextBox title={"Name"} value={name} status={status}/>
         <TextBox title={"Address"} value={address} status={status} />
@@ -83,13 +83,14 @@ const OrderItem = ({
           <TextBox key={index} title={item.name} value={item.quantity} status={status} />
           {!admin && status === "Delivered" && (
             <Button
+            key={item._id}
               textColor={colors.color2}
               style={{
                 backgroundColor: colors.color1,
                 margin: 20,
                 padding: 6,
               }}
-              onPress={() => navigation.navigate("comment", { orderItems: item.product })}
+              onPress={() => navigation.navigate("comment", { orderItems: item })}
             >
               Write a Review
             </Button>
