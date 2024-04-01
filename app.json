@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Myofit",
+    "slug": "myofit",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/myofit_logo.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/myofit_splash.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -20,12 +20,12 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.emmanyouwell.frontend",
+      "bundleIdentifier": "com.emmanyouwell.myofit",
       "infoPlist": {
         "CFBundleURLTypes": [
           {
             "CFBundleURLSchemes": [
-              "com.googleusercontent.apps.590437113234-ar5qn3pjgurfqvk7tj42sh5g31nkatk0"
+              "com.googleusercontent.apps.61586830295-3nlrap6boc1pgqokvid8o54dhscd3m5e"
             ]
           }
         ]
@@ -33,19 +33,24 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/myofit_logo.jpg",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.emmanyouwell.frontend"
+      "package": "com.emmanyouwell.myofit"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "f50b6e41-3df5-434c-9976-b2a169603a91"
+        "projectId": "16b0a498-f92e-41f2-bca3-56e9f3be1ef3"
       }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/16b0a498-f92e-41f2-bca3-56e9f3be1ef3"
     }
-    
   }
 }

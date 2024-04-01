@@ -42,7 +42,8 @@
     "react-native-swiper": "^1.6.0",
     "react-native-table-component": "^1.2.2",
     "react-native-toast-message": "^2.2.0",
-    "react-redux": "^9.1.0"
+    "react-redux": "^9.1.0",
+    "expo-updates": "~0.24.12"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
