@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
     color: colors.color2,
     fontSize: 16,
     fontWeight: "900",
-    marginHorizontal: -20,
+    marginHorizontal: -25,
     marginTop: 0,
  
     
