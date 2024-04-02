@@ -15,22 +15,24 @@ import { getAllProducts } from "../redux/actions/productActions";
 import { useSetCategories } from "../utils/hooks";
 import Banner from "../components/Banner";
 
-const Home = () => {
+const Home = ({ route }) => {
   const [category, setCategory] = useState("");
+  
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
-
+  const categoryID = route.params?.categoryId;
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
-
-  const { products } = useSelector((state) => state.product);
+  
+  const { products, loading } = useSelector((state) => state.product);
   const { user } = useSelector((state) => state.user);
 
   const categoryButtonHandler = (id) => {
     if (id === category) {
       setCategory("");
+      
     }
     else {
       setCategory(id);
@@ -93,9 +95,19 @@ const Home = () => {
 
   useSetCategories(setCategories, isFocused);
 
+
+  useEffect(() => {
+    if (isFocused) {
+      // Perform your action here, for example:
+      categoryButtonHandler(categoryID)
+    }
+  }, [isFocused]);
+ 
+  
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       dispatch(getAllProducts(searchQuery, category));
+    
     }, 200);
     return () => {
       clearTimeout(timeOutId);
@@ -115,7 +127,7 @@ const Home = () => {
       )}
 
       <View style={defaultStyle}>
-        <View style={{height: "25"}}>
+        <View style={{ height: "25" }}>
           <Banner />
         </View>
         <View
@@ -183,37 +195,39 @@ const Home = () => {
         </View>
 
         {/* Products */}
+        {!loading && (<>
+          <View style={{
+            flex: 1,
 
-        <View style={{
-          flex: 1,
+            paddingTop: 10,
+          }}>
 
-          paddingTop: 10,
-        }}>
+            <FlatList
+              data={products}
 
-          <FlatList
-            data={products}
-            
-            renderItem={({ item, index }) => (
-              <ProductCard
-                stock={item.stock}
-                name={item.name}
-                price={item.price}
-                image={item.images[0]?.url}
-                addToCardHandler={addToCardHandler}
-                addToWishlistHandler={addToWishlistHandler}
-                id={item._id}
-                key={item._id}
-                i={index}
-                navigate={navigate}
-              />
-            )}
-            keyExtractor={item => item._id}
-            numColumns={2} // Change this to the number of columns you want
-            contentContainerStyle={{ alignItems: 'center', }}
-          />
-        </View>
+              renderItem={({ item, index }) => (
+                <ProductCard
+                  stock={item.stock}
+                  name={item.name}
+                  price={item.price}
+                  image={item.images[0]?.url}
+                  addToCardHandler={addToCardHandler}
+                  addToWishlistHandler={addToWishlistHandler}
+                  id={item._id}
+                  key={item._id}
+                  i={index}
+                  navigate={navigate}
+                />
+              )}
+              keyExtractor={item => item._id}
+              numColumns={2} // Change this to the number of columns you want
+              contentContainerStyle={{ alignItems: 'center', }}
+            />
+          </View>
+        </>)}
+
       </View>
-      
+
       <Footer activeRoute={"home"} />
     </>
   );

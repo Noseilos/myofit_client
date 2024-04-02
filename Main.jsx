@@ -61,6 +61,7 @@ import {
 import { useMessageAndErrorUser } from "./utils/hooks";
 import UserLists from "./screens/Admin/UserLists";
 import { LinearGradient } from "expo-linear-gradient";
+import CategoryScreen from "./screens/CategoryScreen";
 const CustomDrawerContent = (props) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -88,7 +89,7 @@ const CustomDrawerContent = (props) => {
       signOut();
     }
     dispatch(logout());
-    dispatch({type: "resetContacts"})
+    dispatch({ type: "resetContacts" })
   };
   const signOut = async () => {
     try {
@@ -155,7 +156,7 @@ const CustomDrawerContent = (props) => {
           />
         </>
       ) : null}
-
+      <DrawerItem label="Categories" onPress={() => navigation.navigate("category")} />
       {/* <DrawerItemList {...props} /> */}
       {user && !loadingSignOut && (
         <DrawerItem 
@@ -196,7 +197,7 @@ const HomeStack = () => {
         <Stack.Screen name="orders" component={Orders} />
         <Stack.Screen name="camera" component={Camera} />
         <Stack.Screen name="comment" component={Comment} />
-
+        <Stack.Screen name="category" component={CategoryScreen} />
         <Stack.Screen name="peoplescreen" component={PeopleScreen} />
         <Stack.Screen name="contactscreen" component={ContactsScreen} />
         <Stack.Screen name="chatscreen" component={ChatsScreen} />
