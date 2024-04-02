@@ -3,6 +3,7 @@ import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
 
+
 const ButtonBox = ({
     icon,
     text,
@@ -14,7 +15,7 @@ const ButtonBox = ({
         <TouchableOpacity
             activeOpacity={1}
             style={{
-                backgroundColor: reverse ? colors.color2 : colors.color2,
+                backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen,
                 height: 80,
                 width: 80,
                 borderRadius: 20,
@@ -27,8 +28,8 @@ const ButtonBox = ({
         >
             <Avatar.Icon
                 size={50}
-                color={colors.color7_black}
-                style={{ backgroundColor: reverse ? colors.color2 : colors.color2 }}
+                color={colors.color81_dgreen2}
+                style={{ backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen }}
                 icon={icon}
             />
             <Text
