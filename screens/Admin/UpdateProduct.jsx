@@ -99,7 +99,7 @@ const UpdateProduct = ({ navigation, route }) => {
                     images: product.images,
                   })
                 }
-                textColor={colors.color1}
+                textColor={colors.color5}
               >
                 Manage Images
               </Button>
