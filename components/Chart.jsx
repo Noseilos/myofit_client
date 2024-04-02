@@ -10,14 +10,14 @@ const Chart = ({ inStock = 0, outOfStock = 0 }) => {
         {
             name: "Out of Stock",
             population: outOfStock,
-            color: colors.color1_light,
-            legendFontColor: colors.color2,
+            color: colors.color12_dpurple,
+            legendFontColor: colors.color7_black,
         },
         {
             name: "In Stock",
             population: inStock,
-            color: colors.color1_light2,
-            legendFontColor: colors.color2,
+            color: colors.color1_dark,
+            legendFontColor: colors.color7_black,
         },
     ];
 
@@ -37,6 +37,8 @@ const Chart = ({ inStock = 0, outOfStock = 0 }) => {
                 backgroundColor={"transparent"}
                 paddingLeft={"15"}
                 absolute
+                hasLegend={true} // Show legends for each section
+                legendFontSize={14} // Customize legend font size
             />
         </View>
     );

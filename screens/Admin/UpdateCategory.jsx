@@ -195,8 +195,11 @@ const UpdateCategory = ({ navigation, route }) => {
                   marginTop: 20,
                   marginHorizontal: 20,
                   padding: 6,
-                  backgroundColor: "#BC430B",
+                  backgroundColor: colors.color9_lpgreen,
+                  borderWidth: 3,
+                  borderColor: colors.color8_dgreen
                 }}
+                textColor={colors.color8_dgreen}
               >
                 Select Images
               </Button>

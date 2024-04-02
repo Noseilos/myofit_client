@@ -57,7 +57,7 @@ const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
             }}
             icon={"arrow-left"}
             color={
-              route.name === "productdetails" ? colors.color2 : colors.color3
+              route.name === "productdetails" ? colors.color2 : colors.color81_dgreen2
             }
           />
         </TouchableOpacity>
@@ -78,7 +78,7 @@ const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
           }}
           icon={emptyCart ? "delete-outline" : "cart-outline"}
           color={
-            route.name === "productdetails" ? colors.color2 : colors.color3
+            route.name === "productdetails" ? colors.color2 : colors.color81_dgreen2
           }
         />
       </TouchableOpacity>
@@ -95,13 +95,13 @@ const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
         {emptyWishlist ? (
           <Avatar.Icon
             icon="delete-outline"
-            color={route.name=== "productdetails" ? colors.color2 : colors.color3}
+            color={route.name=== "productdetails" ? colors.color2 : colors.color81_dgreen2}
             style={{ backgroundColor: colors.color4 }}
           />
         ) : (
           <Avatar.Icon
             icon="heart-outline"
-            color={route.name=== "productdetails" ? colors.color2 : colors.color3}
+            color={route.name=== "productdetails" ? colors.color2 : colors.color81_dgreen2}
             style={{ backgroundColor: colors.color4 }}
           />
         )}

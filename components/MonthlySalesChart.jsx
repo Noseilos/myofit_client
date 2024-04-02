@@ -13,8 +13,8 @@ const getMonthName = (monthNumber) => {
 
 const MonthlySalesChart = ({ data }) => {
   const chartConfig = {
-    backgroundGradientFrom: "rgb(45,45,45)",
-    backgroundGradientTo: "rgb(45,45,45)",
+    backgroundGradientFrom: "rgb(8, 36, 14)",
+    backgroundGradientTo: "rgb(8, 36, 14)",
     decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(208, 0, 141, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,

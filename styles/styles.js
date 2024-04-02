@@ -3,6 +3,7 @@ import { StyleSheet, Platform, StatusBar } from "react-native";
 export const colors = {
   color1: "#2ecc71",
   color1_light: "#5bc0de",
+  color1_dark: "#014780",
   color1_light2: "#89c4f4",
   color2: "white",
   color3: "#69d697",
@@ -13,7 +14,9 @@ export const colors = {
   color8_dgreen: "#2a783f",
   color81_dgreen2: "#197832",
   color9_lpgreen: "#e0ffe9",
-  color10_lpred: "#faccc5"
+  color10_lpred: "#faccc5",
+  color11_lpcyan: "#125c58",
+  color12_dpurple: "#b932fc"
 };
 
 export const defaultStyle = StyleSheet.create({
@@ -44,7 +47,7 @@ export const formHeading = {
   fontWeight: "500",
   textAlign: "center",
   // backgroundColor: colors.color3,
-  color: colors.color3,
+  color: colors.color81_dgreen2,
   padding: 5,
   borderRadius: 5,
 };

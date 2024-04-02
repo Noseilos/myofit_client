@@ -27,7 +27,7 @@ const UserList = ({
       <Text
         style={{
           ...styles.text,
-          backgroundColor: i % 2 === 0 ? colors.color3 : colors.color1,
+          backgroundColor: i % 2 === 0 ? colors.color8_dgreen : colors.color11_lpcyan,
         }}
       >
         ID - #{id}
@@ -43,7 +43,7 @@ const UserList = ({
         <Button
           icon={"delete"}
           mode={"contained"}
-          textColor={i % 2 === 0 ? colors.color2 : colors.color3}
+          textColor={i % 2 === 0 ? colors.color7_black : colors.color7_black}
           style={{
             width: 120,
             alignSelf: "center",
@@ -65,7 +65,7 @@ const TextBox = ({ title, value, i }) => (
   <Text
     style={{
       marginVertical: 6,
-      color: i % 2 === 0 ? colors.color3 : colors.color2,
+      color: i % 2 === 0 ? colors.color7_black : colors.color7_black,
     }}
   >
     <Text style={{ fontWeight: "900" }}>{title} - </Text>
@@ -80,6 +80,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginVertical: 10,
     elevation: 5,
+    borderWidth: 3,
+    borderColor: colors.color8_dgreen
   },
   text: {
     color: colors.color2,
@@ -90,8 +92,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingVertical: 10,
     paddingHorizontal: 20,
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
   },
 });
 

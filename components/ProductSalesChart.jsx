@@ -16,9 +16,9 @@ const ProductSalesChart = ({ data }) => {
       }
     
       function getRandomColorComplimentaryToRedAndBlack() {
-        const red = Math.floor(Math.random() * (256 - 200) + 200); // High red value
-        const green = Math.floor(Math.random() * 100); // Low green value
-        const blue = Math.floor(Math.random() * 100); // Low blue value
+        const red = Math.floor(Math.random() * (256 - 200) + 100); // High red value
+        const green = Math.floor(Math.random() * 150); // Low green value
+        const blue = Math.floor(Math.random() * 200); // Low blue value
         return `rgb(${red}, ${green}, ${blue})`;
       }
       
@@ -26,7 +26,7 @@ const ProductSalesChart = ({ data }) => {
         name: item._id,
         population: item.count,
         color: getRandomColorComplimentaryToRedAndBlack(),
-        legendFontColor: colors.color2,
+        legendFontColor: colors.color7_black,
       }));
 
     
@@ -50,6 +50,8 @@ const ProductSalesChart = ({ data }) => {
                 backgroundColor={"transparent"}
                 paddingLeft={"15"}
                 absolute
+                hasLegend={true} // Show legends for each section
+                legendFontSize={14} // Customize legend font size
                 
             />
         </View>

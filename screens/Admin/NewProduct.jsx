@@ -153,6 +153,8 @@ const NewProduct = ({ navigation, route }) => {
             elevation: 10,
             borderRadius: 10,
             backgroundColor: colors.color3,
+            borderWidth: 3,
+            borderColor: colors.color8_dgreen
           }}
         >
           <View
@@ -174,46 +176,14 @@ const NewProduct = ({ navigation, route }) => {
             <Button
               mode="contained"
               onPress={openImagePicker}
-              style={{ backgroundColor: "#BC430B", marginHorizontal: 80 }}
+              style={{ backgroundColor: colors.color9_lpgreen, marginHorizontal: 80,
+                borderWidth: 3,
+                borderColor: colors.color8_dgreen }}
+              textColor={colors.color8_dgreen}
               icon="camera"
             >
               Add Images
             </Button>
-            {/* <View
-              style={{
-                width: 80,
-                height: 80,
-                alignSelf: "center",
-                marginBottom: 20,
-              }}
-            >
-              <Avatar.Image
-                size={80}
-                style={{
-                  backgroundColor: colors.color1,
-                }}
-                source={{
-                  uri: image ? image : null,
-                }}
-              />
-              <TouchableOpacity
-                onPress={() =>
-                  navigation.navigate("camera", { newProduct: true })
-                }
-              >
-                <Avatar.Icon
-                  icon={"camera"}
-                  size={30}
-                  color={colors.color3}
-                  style={{
-                    backgroundColor: colors.color2,
-                    position: "absolute",
-                    bottom: 0,
-                    right: -5,
-                  }}
-                />
-              </TouchableOpacity>
-            </View> */}
 
             <TextInput
               {...inputOptions}
@@ -261,6 +231,8 @@ const NewProduct = ({ navigation, route }) => {
                 backgroundColor: colors.color1,
                 margin: 20,
                 padding: 6,
+                borderWidth: 3,
+                borderColor: colors.color8_dgreen
               }}
               onPress={submitHandler}
               loading={loading}

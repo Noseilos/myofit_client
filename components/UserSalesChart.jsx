@@ -15,8 +15,8 @@ const UserSalesChart = ({ data }) => {
 
     const chartConfig = {
         // backgroundColor: "#e26a00",
-        backgroundGradientFrom: "rgb(45,45,45)",
-        backgroundGradientTo: "rgb(45,45,45)",
+        backgroundGradientFrom: "rgb(8, 36, 14)",
+        backgroundGradientTo: "rgb(8, 36, 14)",
         decimalPlaces: 0, // optional, defaults to 2dp
         color: (opacity = 1, index) => randomColor(),
         labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
