@@ -22,10 +22,14 @@ import { getProductDetails } from "../redux/actions/productActions";
 import { server } from "../redux/store";
 import { AirbnbRating } from "react-native-ratings";
 
-
-
-import { deleteComment, addComment, getAllComments, getProductRatings, getCommentsByRating } from "../redux/actions/commentActions";
-import { FontAwesome } from 'react-native-vector-icons';
+import {
+  deleteComment,
+  addComment,
+  getAllComments,
+  getProductRatings,
+  getCommentsByRating,
+} from "../redux/actions/commentActions";
+import { FontAwesome } from "react-native-vector-icons";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = SLIDER_WIDTH;
@@ -37,7 +41,6 @@ const ProductDetails = ({ route: { params } }) => {
   const isFocused = useIsFocused();
   const { user } = useSelector((state) => state.user);
 
-  
   const [ratings, setRatings] = useState(average);
   const { comments, count } = useSelector((state) => state.comment); // Fetch comments from Redux store
   const average = useSelector((state) => state.comment.averageRating); // Fetch comments from Redux store
@@ -54,34 +57,29 @@ const ProductDetails = ({ route: { params } }) => {
   const closeMenu = () => setVisible(false);
   const filterComments = (value) => {
     if (value === 0) {
-      dispatch(getProductRatings(params.id))
+      dispatch(getProductRatings(params.id));
       dispatch(getAllComments(params.id));
       setRatings(Math.floor(average));
       value = Math.floor(average);
-    }
-    else {
-
+    } else {
       dispatch(getCommentsByRating(params.id, value));
-
     }
     setVisible(false);
     setRatings(value);
-  }
+  };
   useEffect(() => {
-    dispatch({ type: "resetRatingsAndComments" })
+    dispatch({ type: "resetRatingsAndComments" });
     dispatch(getAllComments(params.id)); // Fetch comments when component mounts
     dispatch(getProductDetails(params.id));
     dispatch(getProductRatings(params.id));
-
   }, [dispatch, params.id, isFocused]);
   useEffect(() => {
     if (average !== 0) {
-      setRatings(Math.floor(average))
-    }
-    else {
+      setRatings(Math.floor(average));
+    } else {
       setRatings(1);
     }
-  }, [average])
+  }, [average]);
   const incrementQty = () => {
     if (stock <= quantity) {
       return Toast.show({
@@ -140,8 +138,8 @@ const ProductDetails = ({ route: { params } }) => {
         price,
         image,
         stock,
-      }
-    })
+      },
+    });
 
     Toast.show({
       type: "success",
@@ -165,11 +163,11 @@ const ProductDetails = ({ route: { params } }) => {
     }
   };
   return (
-
-    <View style={{ ...defaultStyle, padding: 10, backgroundColor: colors.color1 }}>
+    <View
+      style={{ ...defaultStyle, padding: 10, backgroundColor: colors.color1 }}
+    >
       <FlatList
         data={comments}
-
         ListHeaderComponent={
           <>
             <Header back={true} />
@@ -179,7 +177,9 @@ const ProductDetails = ({ route: { params } }) => {
               itemWidth={ITEM_WIDTH}
               ref={isCarousel}
               data={images}
-              renderItem={({ item, index }, ref) => <CarouselCardItem item={item} index={index} ref={ref} />}
+              renderItem={({ item, index }, ref) => (
+                <CarouselCardItem item={item} index={index} ref={ref} />
+              )}
             />
             <View
               style={{
@@ -255,7 +255,8 @@ const ProductDetails = ({ route: { params } }) => {
                   activeOpacity={0.9}
                   onPress={addToCardHandler}
                   style={{ flex: 8 }}
-                  disabled={isOutOfStock}>
+                  disabled={isOutOfStock}
+                >
                   <Button
                     icon={"cart"}
                     style={style.btn}
@@ -264,27 +265,53 @@ const ProductDetails = ({ route: { params } }) => {
                     {isOutOfStock ? "Out Of Stock" : "Add To Cart"}
                   </Button>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => addToWishlistHandler(params.id, name, price, images[0]?.url, stock)} style={{ flex: 2, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
+                <TouchableOpacity
+                  onPress={() =>
+                    addToWishlistHandler(
+                      params.id,
+                      name,
+                      price,
+                      images[0]?.url,
+                      stock
+                    )
+                  }
+                  style={{
+                    flex: 2,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: 10,
+                  }}
+                >
                   <FontAwesome name="heart" size={24} color={colors.color1} />
                 </TouchableOpacity>
               </View>
 
               {/* Rating */}
-              <View style={{
-                flex: 1,
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                width: "100%"
-              }}>
-                <View style={{
+              <View
+                style={{
                   flex: 1,
-                  flexDirection: "column",
-                  justifyContent: "center",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                   alignItems: "center",
-                }}>
-                  <Text style={{ fontSize: average !== 0 ? 30 : 25, fontWeight: "900", color: "#E8C007" }}>
-                    {average !== 0 ? `${Math.floor(average)}/5`: "No Ratings"}
+                  width: "100%",
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: average !== 0 ? 30 : 25,
+                      fontWeight: "900",
+                      color: "#E8C007",
+                    }}
+                  >
+                    {average !== 0 ? `${Math.floor(average)}/5` : "No Ratings"}
                   </Text>
                   <Text style={{ fontSize: 20, fontWeight: "500" }}>
                     {average !== 0 && "Ave. Rating"}
@@ -292,18 +319,16 @@ const ProductDetails = ({ route: { params } }) => {
                 </View>
 
                 <View>
-
                   <AirbnbRating
                     count={5}
                     reviews={[`Poor`, `Fair`, `Good`, `Very Good`, `Excellent`]}
-                    defaultRating={average === 0 ? 1:Math.floor(average)}
+                    defaultRating={average === 0 ? 1 : Math.floor(average)}
                     size={25}
                     onFinishRating={(value) => filterComments(value)}
                     isDisabled={true}
                   />
                 </View>
               </View>
-
 
               <View
                 style={{
@@ -314,11 +339,17 @@ const ProductDetails = ({ route: { params } }) => {
                   marginTop: 20,
                 }}
               >
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Comments ({count})</Text>
+                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                  Comments ({count})
+                </Text>
                 <Menu
                   visible={visible}
                   onDismiss={closeMenu}
-                  style={{ marginTop: 50, width: 200, backgroundColor: colors.color2 }}
+                  style={{
+                    marginTop: 50,
+                    width: 200,
+                    backgroundColor: colors.color2,
+                  }}
                   anchor={
                     <IconButton
                       icon="filter"
@@ -326,7 +357,8 @@ const ProductDetails = ({ route: { params } }) => {
                       onPress={openMenu}
                       color="blue"
                     />
-                  }>
+                  }
+                >
                   <Menu.Item onPress={() => filterComments(0)} title="All" />
                   <Menu.Item onPress={() => filterComments(1)} title="1-Star" />
                   <Menu.Item onPress={() => filterComments(2)} title="2-Star" />
@@ -335,40 +367,52 @@ const ProductDetails = ({ route: { params } }) => {
                   <Menu.Item onPress={() => filterComments(5)} title="5-Star" />
                 </Menu>
               </View>
-
             </View>
           </>
         }
-        renderItem={({ item }) => (<View style={{ flexDirection: "row", paddingHorizontal: 30, paddingVertical: 30, backgroundColor: "white" }}>
-          <Image
-            style={{ width: 50, height: 50, borderRadius: 25, marginRight: 10, resizeMode: "cover" }}
-            source={{ uri: item.user.avatar ? item.user.avatar.url : defaultImg }}
-          />
-          <View>
-            <Text style={{ fontWeight: "bold" }}>{item.user.name}</Text>
-            <Text>Rating: {item.rating} stars</Text>
-            <Text>Comment: {item.text}</Text>
-            {user &&
-              user.user &&
-              (user.user.role === "admin" ||
-                item.user === user.user._id ||
-                user.user.role === "Guest") && (
-                <TouchableOpacity
-                  onPress={() => handleDeleteComment(item._id)}
-                >
-                  <Text style={{ color: "red" }}>Delete</Text>
-                </TouchableOpacity>
-              )}
+        renderItem={({ item }) => (
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 30,
+              paddingVertical: 30,
+              backgroundColor: "white",
+            }}
+          >
+            <Image
+              style={{
+                width: 50,
+                height: 50,
+                borderRadius: 25,
+                marginRight: 10,
+                resizeMode: "cover",
+              }}
+              source={{
+                uri: item.user.avatar ? item.user.avatar.url : defaultImg,
+              }}
+            />
+            <View>
+              <Text style={{ fontWeight: "bold" }}>{item.user.name}</Text>
+              <Text>Rating: {item.rating} stars</Text>
+              <Text>Comment: {item.text}</Text>
+              {user &&
+                user.user &&
+                (user.user.role === "admin" ||
+                  item.user === user.user._id ||
+                  user.user.role === "Guest") && (
+                  <TouchableOpacity
+                    onPress={() => handleDeleteComment(item._id)}
+                  >
+                    <Text style={{ color: "red" }}>Delete</Text>
+                  </TouchableOpacity>
+                )}
+            </View>
           </View>
-        </View>)}
+        )}
         keyExtractor={(item, index) => index.toString()}
-
-
-
       />
       {/* <Comment ratings={ratings} setRatings={setRatings} /> */}
     </View>
-
   );
 };
 
@@ -408,15 +452,15 @@ const style = StyleSheet.create({
     marginVertical: 35,
   },
   button: {
-    backgroundColor: '#007BFF', // Change this to your desired color
+    backgroundColor: "#007BFF", // Change this to your desired color
     padding: 10,
     borderRadius: 5,
     marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   buttonText: {
-    color: '#FFFFFF', // Change this to your desired color
+    color: "#FFFFFF", // Change this to your desired color
     fontSize: 16,
   },
   commentContainer: {
@@ -436,8 +480,8 @@ const style = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 10,
     height: 40,
-    width: '100%',
-    backgroundColor: 'white',
+    width: "100%",
+    backgroundColor: "white",
   },
 });
 

@@ -18,10 +18,11 @@ const ImageCard = ({ src, id, deleteHandler }) => {
             />
             <TouchableOpacity onPress={() => deleteHandler(id)}>
                 <Avatar.Icon
-                    size={30}
+                    size={40}
                     icon={"delete"}
                     style={{
                         backgroundColor: colors.color1,
+                        marginLeft: -40,
                     }}
                 />
             </TouchableOpacity>
@@ -33,12 +34,14 @@ export default ImageCard;
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row', // Add this line
+        justifyContent: 'space-between',
         backgroundColor: colors.color2,
         elevation: 5,
         margin: 10,
         padding: 15,
         alignItems: "center",
         borderRadius: 10,
-        height: 300,
+        height: 150,
     },
 });

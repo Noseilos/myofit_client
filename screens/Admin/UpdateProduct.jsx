@@ -23,13 +23,14 @@ import {
 import Carousel from "react-native-snap-carousel";
 import * as ImagePicker from "expo-image-picker";
 import ImageCard from "../../components/ImageCard";
+import mime from "mime";
 
 const UpdateProduct = ({ navigation, route }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
-  const { product} = useSelector((state) => state.product);
+  const { product } = useSelector((state) => state.product);
 
   const [id] = useState(route.params.id);
   const [name, setName] = useState("");
@@ -58,8 +59,9 @@ const UpdateProduct = ({ navigation, route }) => {
           description,
           price,
           stock,
-          categoryID
+          categoryID,
         )
+
       );
       if (selectedImages.length > 0) {
         const myForm = new FormData();
@@ -73,7 +75,7 @@ const UpdateProduct = ({ navigation, route }) => {
         await dispatch(updateProductImage(route.params.id, myForm));
         setSelectedImages([]);
       }
-      navigation.navigate("products");
+      navigation.navigate("adminpanel");
     } catch (error) {
       console.error("Error updating product:", error);
     } finally {
@@ -169,7 +171,7 @@ const UpdateProduct = ({ navigation, route }) => {
     const imageUrl = item.url || item.uri;
 
     return (
-      <View >
+      <View>
         <ImageCard
           src={imageUrl}
           id={imageId}

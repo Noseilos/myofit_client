@@ -22,6 +22,7 @@ import {
 } from "../../redux/actions/otherActions";
 import Carousel from "react-native-snap-carousel";
 import ImageCard from "../../components/ImageCard";
+import mime from "mime";
 
 const UpdateCategory = ({ navigation, route }) => {
   const isFocused = useIsFocused();
