@@ -14,7 +14,13 @@ import {
   defaultStyle,
   formHeading,
 } from "../styles/styles";
-import React, { useState, useContext, useLayoutEffect, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useContext,
+  useLayoutEffect,
+  useEffect,
+  useRef,
+} from "react";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
@@ -25,13 +31,19 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import * as ImagePicker from "expo-image-picker";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllMessages, fetchMessages, fetchRecepientData, sendMessage } from "../redux/actions/chatActions";
+import {
+  fetchAllMessages,
+  fetchMessages,
+  fetchRecepientData,
+  sendMessage,
+} from "../redux/actions/chatActions";
+// import Voice from "@react-native-voice/voice";
 
 const ChatMessagesScreen = () => {
   const { user } = useSelector((state) => state.user);
-  const { recepientData } = useSelector((state) => state.chat)
-  const { messages, loading } = useSelector((state) => state.chat)
-  const userId = user._id
+  const { recepientData } = useSelector((state) => state.chat);
+  const { messages, loading } = useSelector((state) => state.chat);
+  const userId = user._id;
 
   const [showEmojiSelector, setShowEmojiSelector] = useState(false);
   const [selectedMessages, setSelectedMessages] = useState([]);
@@ -43,26 +55,65 @@ const ChatMessagesScreen = () => {
   const dispatch = useDispatch();
   const scrollViewRef = useRef(null);
 
+  /// Voice codes
+  // let [started, setStarted] = useState(false);
+  // let [results, setResults] = useState([]);
+
+  // useEffect(() => {
+  //   Voice.onSpeechError = onSpeechError;
+  //   Voice.onSpeechResults = onSpeechResults;
+
+  //   return () => {
+  //     Voice.destroy().then(Voice.removeAllListeners);
+  //   };
+  // }, []);
+
+  // const startSpeechToText = async () => {
+  //   if (Voice) {
+  //     await Voice.start("en-US");
+  //     setStarted(true);
+  //   } else {
+  //     console.error("Voice object is null");
+  //   }
+  // };
+
+  // const stopSpeechToText = async () => {
+  //   if (Voice) {
+  //     await Voice.stop();
+  //     setStarted(false);
+  //   } else {
+  //     console.error("Voice object is null");
+  //   }
+  // };
+
+  // const onSpeechResults = (result) => {
+  //   setResults(result.value);
+  // };
+
+  // const onSpeechError = (error) => {
+  //   console.log(error);
+  // };
+
   useEffect(() => {
-    scrollToBottom()
-  },[messages]);
+    scrollToBottom();
+  }, [messages]);
 
   const scrollToBottom = () => {
-      if(scrollViewRef.current){
-          scrollViewRef.current.scrollToEnd({animated:false})
-      }
-  }
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: false });
+    }
+  };
 
   const handleContentSizeChange = () => {
-      scrollToBottom();
-  }
+    scrollToBottom();
+  };
 
   const handleEmojiPress = () => {
     setShowEmojiSelector(!showEmojiSelector);
   };
 
   useEffect(() => {
-    dispatch({type: "resetMessages"})
+    dispatch({ type: "resetMessages" });
     dispatch(fetchRecepientData(recepientId));
     dispatch(fetchMessages(userId, recepientId));
   }, [dispatch, recepientId]);
@@ -73,9 +124,8 @@ const ChatMessagesScreen = () => {
     setSelectedImage("");
     dispatch(fetchRecepientData(recepientId));
     dispatch(fetchMessages(userId, recepientId));
-    dispatch(fetchAllMessages(userId))
+    dispatch(fetchAllMessages(userId));
   };
-  
 
   const formatTime = (time) => {
     const options = { hour: "numeric", minute: "numeric" };
@@ -113,13 +163,14 @@ const ChatMessagesScreen = () => {
 
   return (
     <>
-      <KeyboardAvoidingView style={{ flex: 1, backgroundColor: "#F0F0F0", marginTop: 100 }}>
-        <ScrollView 
-          ref={scrollViewRef} 
-          contentContainerStyle={{flexGrow:1}} 
+      <KeyboardAvoidingView
+        style={{ flex: 1, backgroundColor: "#F0F0F0", marginTop: 100 }}
+      >
+        <ScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={{ flexGrow: 1 }}
           onContentSizeChange={handleContentSizeChange}
-
-          >
+        >
           {messages.map((item, index) => {
             if (item.messageType === "text") {
               const isSelected = selectedMessages.includes(item._id);
@@ -238,7 +289,7 @@ const ChatMessagesScreen = () => {
         >
           <Entypo
             onPress={handleEmojiPress}
-            style={{ marginRight: 5}}
+            style={{ marginRight: 5 }}
             name="emoji-happy"
             size={24}
             color="gray"
@@ -266,12 +317,32 @@ const ChatMessagesScreen = () => {
               marginHorizontal: 8,
             }}
           >
-            <Entypo 
-              // onPress={pickImage} 
-              name="camera" 
-              size={24} 
-              color="gray" />
+            <Entypo
+              // onPress={pickImage}
+              name="camera"
+              size={24}
+              color="gray"
+            />
 
+            {/* {!started ? (
+              <Feather
+                onPress={startSpeechToText}
+                name="mic"
+                size={24}
+                color="gray"
+              />
+            ) : undefined}
+            {started ? (
+              <Feather
+                onPress={stopSpeechToText}
+                name="mic"
+                size={24}
+                color="gray"
+              />
+            ) : undefined}
+            {results.map((result, index) => (
+              <Text key={index}>{result}</Text>
+            ))} */}
             <Feather name="mic" size={24} color="gray" />
           </View>
 
@@ -305,3 +376,12 @@ const ChatMessagesScreen = () => {
 export default ChatMessagesScreen;
 
 const styles = StyleSheet.create({});
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
