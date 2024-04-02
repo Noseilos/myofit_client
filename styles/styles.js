@@ -11,7 +11,8 @@ export const colors = {
   color6: "#f7f7f7",
   color7_black: "#000000",
   color8_dgreen: "#2a783f",
-  color9_lpgreen: "#c5facf",
+  color81_dgreen2: "#197832",
+  color9_lpgreen: "#e0ffe9",
   color10_lpred: "#faccc5"
 };
 
