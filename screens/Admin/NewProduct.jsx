@@ -15,6 +15,8 @@ import { useIsFocused } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import mime from "mime";
 import { createProduct } from "../../redux/actions/otherActions";
+import * as ImagePicker from "expo-image-picker";
+import Carousel from "react-native-snap-carousel";
 
 const NewProduct = ({ navigation, route }) => {
   const isFocused = useIsFocused();
@@ -32,31 +34,99 @@ const NewProduct = ({ navigation, route }) => {
 
   useSetCategories(setCategories, isFocused);
 
+  const fetchProducts = async () => {
+    try {
+      await dispatch(getAdminProducts());
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    }
+  };
+
   const disableBtnCondition =
     !name || !description || !price || !stock || !image;
 
-  const submitHandler = () => {
-    const myForm = new FormData();
-    myForm.append("name", name);
-    myForm.append("description", description);
-    myForm.append("price", price);
-    myForm.append("stock", stock);
-    myForm.append("file", {
-      uri: image,
-      type: mime.getType(image),
-      name: image.split("/").pop(),
-    });
+  const openImagePicker = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+        multiple: true,
+      });
 
-    if (categoryID) myForm.append("category", categoryID);
-
-    dispatch(createProduct(myForm));
+      if (!result.cancelled && result.assets.length > 0) {
+        const newImages = result.assets.map((asset) => asset.uri);
+        setImage([...image, ...newImages]);
+      }
+    } catch (error) {
+      console.log("Error picking images:", error);
+    }
   };
+
+  const submitHandler = async () => {
+    try {
+        const myForm = new FormData();
+        myForm.append("name", name);
+        myForm.append("description", description);
+        myForm.append("price", price);
+        myForm.append("stock", stock);
+        image.forEach((imageUri) => {
+            myForm.append(`files`, {
+                uri: imageUri,
+                type: mime.getType(imageUri),
+                name: imageUri.split("/").pop(),
+            });
+        });
+        if (categoryID) {
+            myForm.append("category", categoryID);
+        }
+        fetchProducts();
+        navigation.navigate("products");
+    } catch (error) {
+        console.error("Error submitting form:", error);
+    }
+};
 
   const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel");
 
   useEffect(() => {
     if (route.params?.image) setImage(route.params.image);
   }, [route.params]);
+
+  useEffect(() => {
+    if (route.params?.image) {
+        setImage(prevImages => [...prevImages, ...route.params.image]);
+    } else if (route.params?.imageSingle) {
+        setImage(prevImages => [...prevImages, route.params.imageSingle]);
+    }
+}, [route.params]);
+
+const deleteImage = (index) => {
+  const updatedImages = [...image];
+  updatedImages.splice(index, 1); // Remove the image at the specified index
+  setImage(updatedImages); // Update the state with the new array of images
+};
+
+const renderCarouselItem = ({ item, index }) => (
+  <View key={index}>
+      {item && (
+          <View style={{ marginBottom: 5 }}>
+              <Image
+                  style={{ width: 300, height: 150, resizeMode: 'contain' }}
+                  source={{ uri: item }}
+              />
+              <IconButton
+                  icon="delete"
+                  color="#f44336"
+                  size={20}
+                  onPress={() => deleteImage(index)}
+                  style={{ alignSelf: 'center' }}
+              />
+          </View>
+      )}
+  </View>
+);
 
   return (
     <>
@@ -87,6 +157,23 @@ const NewProduct = ({ navigation, route }) => {
               height: 650,
             }}
           >
+            <View style={{ marginTop:20, alignItems: "center" }}>
+                    <Carousel
+                        layout="default"
+                        data={image}
+                        renderItem={renderCarouselItem}
+                        sliderWidth={300}
+                        itemWidth={300}
+                        // loop={true}
+                    />
+                </View>
+                <Button
+                    mode="contained"
+                    onPress={openImagePicker}
+                    style={{ backgroundColor: "#BC430B", marginHorizontal: 80 }}
+                >
+                     Add Images
+                </Button>
             <View
               style={{
                 width: 80,
@@ -172,7 +259,7 @@ const NewProduct = ({ navigation, route }) => {
               }}
               onPress={submitHandler}
               loading={loading}
-              disabled={disableBtnCondition || loading}
+              disabled={disableBtnCondition}
             >
               Create
             </Button>

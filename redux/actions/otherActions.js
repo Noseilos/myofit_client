@@ -184,26 +184,26 @@ export const processOrder = (id, navigation) => async (dispatch) => {
 //Category==================================================================
 export const addCategory = (formData) => async (dispatch) => {
   try {
-    dispatch({
-      type: "addCategoryRequest",
-    });
-
-    const { data } = await axios.post(`${server}/category/new`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    });
-
-    dispatch({
-      type: "addCategorySuccess",
-      payload: data.message,
-    });
-  } catch (error) {
-    dispatch({
-      type: "addCategoryFail",
-      payload: error.response.data.message,
-    });
+      dispatch({
+          type: "addCategoryRequest",
+      });
+  
+      const { data } = await axios.post(`${server}/category/new`, formData, {
+          headers: {
+          "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+      });
+  
+      dispatch({
+          type: "addCategorySuccess",
+          payload: data.message,
+      });
+      } catch (error) {
+      dispatch({
+          type: "addCategoryFail",
+          payload: error.response.data.message,
+      });
   }
 };
 
@@ -353,28 +353,29 @@ export const deleteCategoryImage = (categoryId, imageId) => async (dispatch) => 
 
 export const createProduct = (formData) => async (dispatch) => {
   try {
-    dispatch({
-      type: "addProductRequest",
-    });
-
-    const { data } = await axios.post(`${server}/product/new`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      withCredentials: true,
-    });
-
-    dispatch({
-      type: "addProductSuccess",
-      payload: data.message,
-    });
-  } catch (error) {
-    dispatch({
-      type: "addProductFail",
-      payload: error.response.data.message,
-    });
+      dispatch({
+          type: "addProductRequest",
+      });
+  
+      const { data } = await axios.post(`${server}/product/new`, formData, {
+          headers: {
+          "Content-Type": "multipart/form-data",
+          },
+          withCredentials: true,
+      });
+  
+      dispatch({
+          type: "addProductSuccess",
+          payload: data.message,
+      });
+      } catch (error) {
+      dispatch({
+          type: "addProductFail",
+          payload: error.response.data.message,
+      });
   }
 };
+
 
 export const addComment = (formData) => async (dispatch) => {
   try {
