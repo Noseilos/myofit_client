@@ -32,7 +32,7 @@ const ProductListItem = ({
                 >
                     <Image
                         source={{
-                            uri: imgSrc,
+                            uri: imgSrc
                         }}
                         style={{
                             width: 40,

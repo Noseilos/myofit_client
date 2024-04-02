@@ -208,7 +208,7 @@ const ChatMessagesScreen = () => {
       >
 
         <View style={{ margin: 10,padding: 10, paddingLeft: 20, backgroundColor: "#386641", flexDirection: "row",  borderBottomRightRadius:20, borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
-          <Avatar.Image source={{ uri: recepientData.avatar.url }} size={40}/>
+          <Avatar.Image source={{ uri: recepientData?.avatar?.url }} size={40}/>
           <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center"}}>
             <Text style={{ fontSize: 18, fontWeight: 'bold', color: "white" }}>{recepientData.name}</Text>
             

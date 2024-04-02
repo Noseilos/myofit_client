@@ -156,7 +156,15 @@ const CustomDrawerContent = (props) => {
           />
         </>
       ) : null}
-      <DrawerItem label="Categories" onPress={() => navigation.navigate("category")} />
+      <DrawerItem 
+        label="Categories" 
+        onPress={() => navigation.navigate("category")} 
+        style={{ borderBottomWidth: 2, borderColor: "black" }}
+        icon={({ color, size }) => (
+          <Ionicons name="list-circle-outline" color={colors.color7_black} size={30} />
+        )}
+              
+      />
       {/* <DrawerItemList {...props} /> */}
       {user && !loadingSignOut && (
         <DrawerItem 
