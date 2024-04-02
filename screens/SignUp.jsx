@@ -108,7 +108,7 @@ const SignUp = ({ navigation, route }) => {
                             }}
                         />
                         <TouchableOpacity onPress={() => navigation.navigate("camera")}>
-                            <Button textColor={colors.color1}>Change Photo</Button>
+                            <Button textColor={colors.color5}>Change Photo</Button>
                         </TouchableOpacity>
 
                         <TextInput
