@@ -69,7 +69,7 @@ const AdminPanel = ({ navigation }) => {
     <View style={defaultStyle}>
       <Header back={true} />
       {/* Heading */}
-      <View style={{ paddingTop: 70, marginBottom: 20 }}>
+      <View style={{ paddingTop: 60, marginBottom: 30 }}>
         <Text style={adminFormHeading}>Admin Panel</Text>
       </View>
 
@@ -77,69 +77,40 @@ const AdminPanel = ({ navigation }) => {
         <Loader />
       ) : (
         <>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <AdminButtonBox
+              icon={"plus"}
+              text={"Product"}
+              handler={navigationHandler}
+            />
 
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                // padding: 10,
-                justifyContent: "space-evenly",
-              }}
-            >
-              <AdminButtonBox
-                icon={"plus"}
-                text={"Product"}
-                handler={navigationHandler}
-              />
+            <AdminButtonBox
+              icon={"format-list-bulleted-square"}
+              text={"All Orders"}
+              handler={navigationHandler}
+              reverse={true}
+            />
 
-              <AdminButtonBox
-                icon={"format-list-bulleted-square"}
-                text={"All Orders"}
-                handler={navigationHandler}
-                reverse={true}
-              />
-            </View>
-          </View>
+            <AdminButtonBox
+              icon={"graph-outline"}
+              text={"Analytics"}
+              handler={navigationHandler}
+              reverse={true}
+            />
 
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                margin: 0.5,
-                justifyContent: "space-evenly",
-              }}
-            >
-              <AdminButtonBox
-                icon={"graph-outline"}
-                text={"Analytics"}
-                handler={navigationHandler}
-                reverse={true}
-              />
-            </View>
+            <AdminButtonBox
+              icon={"account-outline"}
+              text={"All Users"}
+              handler={navigationHandler}
+              reverse={true}
+            />
 
-          </View>
-          <View>
-            <View
-              style={{
-                flexDirection: "row",
-                margin: 10,
-                justifyContent: "space-evenly",
-              }}
-            >
-              <AdminButtonBox
-                icon={"account-outline"}
-                text={"All Users"}
-                handler={navigationHandler}
-                reverse={true}
-              />
-
-              <AdminButtonBox
-                icon={"plus"}
-                text={"Category"}
-                handler={navigationHandler}
-              />
-            </View>
-          </View>
+            <AdminButtonBox
+              icon={"plus"}
+              text={"Category"}
+              handler={navigationHandler}
+            />
+          </ScrollView>
 
           <ProductListHeading />
 

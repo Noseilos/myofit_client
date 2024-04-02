@@ -17,18 +17,19 @@ const AdminButtonBox = ({
             style={{
                 backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen,
                 height: 90,
-                width: 110,
-                borderRadius: 100,
+                width: 100,
+                borderRadius: 30,
                 alignItems: "center",
                 padding: 5,
                 borderWidth: 3,
                 borderColor: colors.color8_dgreen,
+                marginHorizontal: 2,
             }}
             onPress={() => handler(text)}
             disabled={loading}
         >
             <Avatar.Icon
-                size={50}
+                size={40}
                 color={colors.color8_dgreen}
                 style={{ backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen }}
                 icon={icon}

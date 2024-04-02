@@ -21,7 +21,7 @@ const Home = ({ route }) => {
   const [activeSearch, setActiveSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [categories, setCategories] = useState([]);
-  const categoryID = route.params?.categoryId;
+  const categoryID = route.params?.categoryId || "";
   const navigate = useNavigation();
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
