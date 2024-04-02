@@ -79,7 +79,7 @@ const ChatMessagesScreen = () => {
       console.error("Voice object is null");
     }
   };
-  
+
   const stopSpeechToText = async () => {
     if (Voice) {
       await Voice.stop();
@@ -341,7 +341,12 @@ const ChatMessagesScreen = () => {
                 color="gray"
               />
             ) : isListening ? (
-              <Text>...</Text>
+              <Feather
+                onPress={stopSpeechToText}
+                name="mic"
+                size={30} // Increase the size when it's listening
+                color="red" // Change the color to red when it's listening
+              />
             ) : (
               <Feather
                 onPress={stopSpeechToText}
