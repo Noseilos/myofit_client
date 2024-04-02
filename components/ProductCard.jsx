@@ -43,7 +43,7 @@ const ProductCard = ({
           }}
           style={{
             width: '100%',
-            height: '80%',
+            height: '50%',
             resizeMode: 'cover',
             borderTopLeftRadius: 20,
             borderTopRightRadius: 20,
