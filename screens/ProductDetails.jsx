@@ -284,7 +284,7 @@ const ProductDetails = ({ route: { params } }) => {
                   alignItems: "center",
                 }}>
                   <Text style={{ fontSize: average !== 0 ? 30 : 25, fontWeight: "900", color: "#E8C007" }}>
-                    {average !== 0 ? average : "No Ratings"}
+                    {average !== 0 ? `${Math.floor(average)}/5`: "No Ratings"}
                   </Text>
                   <Text style={{ fontSize: 20, fontWeight: "500" }}>
                     {average !== 0 && "Ave. Rating"}
@@ -387,6 +387,7 @@ const style = StyleSheet.create({
   },
   image: {
     width: ITEM_WIDTH,
+    backgroundColor: "gainsboro",
     resizeMode: "contain",
     height: 250,
   },
