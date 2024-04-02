@@ -70,7 +70,7 @@ const Login = ({ navigation }) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [loading2, setLoading2] = useState(false);
   const dispatch = useDispatch();
   const loading = useMessageAndErrorUser(navigation, dispatch, "profile");
 
@@ -80,14 +80,15 @@ const Login = ({ navigation }) => {
 
   const signIn = async () => {
     try {
+      setLoading2(true);
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
-      
       dispatch(verifyToken(userInfo.idToken));
       setError();
-
     } catch (e) {
       setError(e);
+    } finally {
+      setLoading2(false);
     }
 
   };
@@ -121,6 +122,7 @@ const Login = ({ navigation }) => {
               size={GoogleSigninButton.Size.Standard}
               color={GoogleSigninButton.Color.Dark}
               onPress={signIn}
+              disabled={loading2}
             />
 
             <Text style={styles.or}>OR</Text>
