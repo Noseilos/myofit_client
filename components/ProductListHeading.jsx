@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.color9_lpgreen,
         flexDirection: "row",
-        justifyContent: "space-between",
-        height: 40,
+        justifyContent: "space-around",
+        height: 50,
         alignItems: "center",
-        borderRadius: 100,
+        borderRadius: 15,
         padding: 10,
         borderTopWidth: 3,
         borderBottomWidth: 3,
