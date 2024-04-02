@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, ImageBackground } from "react-native";
 import React, { useState, useEffect } from "react";
 import {
   colors,
@@ -97,84 +97,101 @@ const Login = ({ navigation }) => {
     <>
 
       <View style={defaultStyle}>
-        {/* Heading */}
-        <View style={{ marginBottom: 20 }}>
-        <LinearGradient
-            colors={['#9400D3', '#008000']}
-            start={{x:0,y:0}}
-            end={{x:1,y:1}}
-            style={formHeading}
+
+
+
+        <ImageBackground
+          source={{ uri: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }}
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            padding: 20,
+            borderRadius: 10,
+            backgroundColor: colors.color3,
+          }}>
+          <View style={style.overlay} />
+          {/* Heading */}
+          <View style={{ marginBottom: 20 }}>
+
+            <Text style={{
+              ...formHeading,
+              color: colors.color2,
+              fontSize: 30,
+              textShadowColor: '#000',
+              textShadowOffset: { width: -1, height: 1 },
+              textShadowRadius: 10,
+            }}>Login</Text>
+
+          </View>
+          <Text style={styles.or}>Continue with</Text>
+          <GoogleSigninButton
+            style={{ margin: 20, width: "auto" }}
+            size={GoogleSigninButton.Size.Standard}
+            color={GoogleSigninButton.Color.Dark}
+            onPress={signIn}
+            disabled={loading2}
+          />
+
+          <Text style={styles.or}>OR</Text>
+          <TextInput
+            {...inputOptions}
+            placeholder="Email"
+            keyboardType="email-address"
+            value={email}
+            onChangeText={setEmail}
+          />
+
+          <TextInput
+            {...inputOptions}
+            placeholder="Password"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("forgetpassword")}
           >
-          <Text style={formHeading}>Login</Text>
-          </LinearGradient>
-        </View>
+            <Text style={styles.forget}>Forget Password?</Text>
+          </TouchableOpacity>
 
-        
-          <LinearGradient
-            colors={['#9400D3', '#008000']}
-            start={{x:0,y:0}}
-            end={{x:1,y:1}}
-            style={styles.container}
+          <Button
+            loading={loading}
+            textColor={colors.color2}
+            disabled={email === "" || password === ""}
+            style={styles.btn}
+            onPress={submitHandler}
           >
-            <Text style={styles.or}>Continue with</Text>
-            <GoogleSigninButton
-              style={{ margin: 20, width: "auto" }}
-              size={GoogleSigninButton.Size.Standard}
-              color={GoogleSigninButton.Color.Dark}
-              onPress={signIn}
-              disabled={loading2}
-            />
+            Log In
+          </Button>
 
-            <Text style={styles.or}>OR</Text>
-            <TextInput
-              {...inputOptions}
-              placeholder="Email"
-              keyboardType="email-address"
-              value={email}
-              onChangeText={setEmail}
-            />
+          <Text style={styles.or}>OR</Text>
 
-            <TextInput
-              {...inputOptions}
-              placeholder="Password"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={setPassword}
-            />
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate("signup")}
+          >
+            <Text style={styles.link}>Sign Up</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate("forgetpassword")}
-            >
-              <Text style={styles.forget}>Forget Password?</Text>
-            </TouchableOpacity>
+        </ImageBackground>
 
-            <Button
-              loading={loading}
-              textColor={colors.color2}
-              disabled={email === "" || password === ""}
-              style={styles.btn}
-              onPress={submitHandler}
-            >
-              Log In
-            </Button>
+      </View>
 
-            <Text style={styles.or}>OR</Text>
-
-            <TouchableOpacity
-              activeOpacity={0.8}
-              onPress={() => navigation.navigate("signup")}
-            >
-              <Text style={styles.link}>Sign Up</Text>
-            </TouchableOpacity>
-          </LinearGradient>
-        </View>
-   
 
 
       <Footer activeRoute="profile" />
     </>
   );
 };
+const style = StyleSheet.create({
 
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    borderRadius: 10,
+  },
+
+});
 export default Login;
