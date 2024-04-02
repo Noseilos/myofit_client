@@ -22,6 +22,7 @@ import mime from "mime";
 import { updatePic } from "../redux/actions/otherActions";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { CLIENT_ID_ANDROID, CLIENT_ID_IOS, CLIENT_ID_WEB } from "@env";
+
 const Profile = ({ navigation, route }) => {
     const { user } = useSelector((state) => state.user);
     const [avatar, setAvatar] = useState(user?.avatar ? user.avatar.url : defaultImg);
@@ -228,8 +229,6 @@ const Profile = ({ navigation, route }) => {
                                     />
                                 </View>
                             </View>
-
-                           
                         </View>
                     </>
                 )}
@@ -242,8 +241,8 @@ const Profile = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        // elevation: 7,
-        backgroundColor: colors.white,
+        backgroundColor: colors.color9_lpgreen,
+        overflow: 'hidden', 
         padding: 30,
         borderRadius: 10,
         alignItems: "center",
