@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { colors, defaultStyle, formHeading } from "../../styles/styles";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -30,7 +30,9 @@ const AdminPanel = ({ navigation }) => {
   );
   
   const { products } = useAdminProducts(dispatch, isFocused);
-
+  useEffect(() => {
+    dispatch({type: "resetProducts"})
+  }, [dispatch])
   const navigationHandler = (text) => {
     switch (text) {
       case "Category":

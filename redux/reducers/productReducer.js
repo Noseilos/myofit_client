@@ -55,6 +55,14 @@ export const productReducer = createReducer({
             state.loading = false;
             state.error = action.payload;
         })
+
+    builder.addCase("resetProduct", (state) => {
+        state.loading = false;
+        state.products = [];
+        state.inStock = null;
+        state.outOfStock = null;
+        
+    })
     
     builder.addCase("clearError", (state) => {
         state.error = null;
