@@ -8,6 +8,8 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons"
+
 import Home from "./screens/Home";
 import ProductDetails from "./screens/ProductDetails";
 import Cart from "./screens/Cart";
@@ -38,6 +40,7 @@ import ChatsScreen from "./screens/ChatsScreen";
 import ChatMessagesScreen from "./screens/ChatMessagesScreen";
 
 import Comment from "./screens/Comment";
+
 import { useDispatch, useSelector } from "react-redux";
 import { loadUser, logout } from "./redux/actions/userActions";
 import { View, Text, TouchableOpacity } from "react-native";
@@ -57,6 +60,7 @@ import {
 } from "./styles/styles";
 import { useMessageAndErrorUser } from "./utils/hooks";
 import UserLists from "./screens/Admin/UserLists";
+import { LinearGradient } from "expo-linear-gradient";
 const CustomDrawerContent = (props) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -95,6 +99,12 @@ const CustomDrawerContent = (props) => {
   };
   return (
     <DrawerContentScrollView {...props}>
+      <LinearGradient
+            colors={['#008000', 'white']}
+            start={{x:1,y:0}}
+            end={{x:1,y:1}}
+            style={formHeading}
+      >
       <View style={{ alignItems: "center", padding: 20 }}>
         {!loading && (
           <TouchableOpacity
@@ -125,20 +135,40 @@ const CustomDrawerContent = (props) => {
         )}
       </View>
 
-      <DrawerItem label="Home" onPress={navigateTohome} />
+      <DrawerItem 
+        label="Home" 
+        onPress={navigateTohome}     
+        style={{ borderBottomWidth: 2, borderColor: "black" }}
+        icon={({ color, size }) => (
+          <Ionicons name="home-outline" color={colors.color7_black} size={30} />
+        )}
+      />
       {user ? (
         <>
           <DrawerItem
             label="Orders"
             onPress={() => navigation.navigate("orders")}
+            style={{ borderBottomWidth: 2, borderColor: "black" }}
+            icon={({ color, size }) => (
+              <Ionicons name="receipt-outline" color={colors.color7_black} size={30} />
+            )}
           />
         </>
       ) : null}
 
       {/* <DrawerItemList {...props} /> */}
       {user && !loadingSignOut && (
-        <DrawerItem label="Sign Out" onPress={logoutHandler} />
+        <DrawerItem 
+          label="Sign Out" 
+          onPress={logoutHandler} 
+          
+      icon={({ color, size }) => (
+        <Ionicons name="log-out-outline" color={colors.color7_black} size={30} />
+      )}  
+        />
       )}
+
+      </LinearGradient>
     </DrawerContentScrollView>
   );
 };

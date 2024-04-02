@@ -14,27 +14,30 @@ const AdminButtonBox = ({
         <TouchableOpacity
             activeOpacity={1}
             style={{
-                backgroundColor: reverse ? colors.color1 : colors.color3,
-                height: 100,
-                width: 140,
-                borderRadius: 20,
+                backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen,
+                height: 90,
+                width: 110,
+                borderRadius: 100,
                 alignItems: "center",
-                padding: 10,
+                padding: 5,
+                borderWidth: 3,
+                borderColor: colors.color8_dgreen,
             }}
             onPress={() => handler(text)}
             disabled={loading}
         >
             <Avatar.Icon
                 size={50}
-                color={colors.color2}
-                style={{ backgroundColor: reverse ? colors.color1 : colors.color3 }}
+                color={colors.color8_dgreen}
+                style={{ backgroundColor: reverse ? colors.color9_lpgreen : colors.color9_lpgreen }}
                 icon={icon}
             />
             <Text
                 style={{
-                    color: colors.color2,
+                    color: colors.color8_dgreen,
                     textAlign: "center",
-                    fontSize: 16,
+                    fontSize: 15,
+                    fontWeight: 600
                 }}
             >
                 {text}
