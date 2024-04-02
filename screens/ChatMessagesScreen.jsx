@@ -58,10 +58,12 @@ const ChatMessagesScreen = () => {
   /// Voice codes
   let [started, setStarted] = useState(false);
   let [results, setResults] = useState([]);
+  const [isListening, setIsListening] = useState(false);
 
   useEffect(() => {
     Voice.onSpeechError = onSpeechError;
     Voice.onSpeechResults = onSpeechResults;
+    Voice.onSpeechEnd = stopSpeechToText;
 
     return () => {
       Voice.destroy().then(Voice.removeAllListeners);
@@ -72,22 +74,26 @@ const ChatMessagesScreen = () => {
     if (Voice) {
       await Voice.start("en-US");
       setStarted(true);
+      setIsListening(true);
     } else {
       console.error("Voice object is null");
     }
   };
-
+  
   const stopSpeechToText = async () => {
     if (Voice) {
       await Voice.stop();
       setStarted(false);
+      setIsListening(false);
     } else {
       console.error("Voice object is null");
     }
   };
 
   const onSpeechResults = (result) => {
-    setResults(result.value);
+    let resultText = result.value.join(" ");
+    setMessage((prevMessage) => prevMessage + " " + resultText);
+    handleSend("text", null, resultText);
   };
 
   const onSpeechError = (error) => {
@@ -118,8 +124,11 @@ const ChatMessagesScreen = () => {
     dispatch(fetchMessages(userId, recepientId));
   }, [dispatch, recepientId]);
 
-  const handleSend = (messageType, imageUri) => {
-    dispatch(sendMessage(message, messageType, imageUri, userId, recepientId));
+  const handleSend = (messageType, imageUri, messageToSend) => {
+    const finalMessage = messageToSend || message;
+    dispatch(
+      sendMessage(finalMessage, messageType, imageUri, userId, recepientId)
+    );
     setMessage("");
     setSelectedImage("");
     dispatch(fetchRecepientData(recepientId));
@@ -331,18 +340,19 @@ const ChatMessagesScreen = () => {
                 size={24}
                 color="gray"
               />
-            ) : undefined}
-            {started ? (
+            ) : isListening ? (
+              <Text>...</Text>
+            ) : (
               <Feather
                 onPress={stopSpeechToText}
                 name="mic"
                 size={24}
-                color="gray"
+                color="red"
               />
-            ) : undefined}
-            {results.map((result, index) => (
-              <Text key={index}>{result}</Text>
-            ))}
+            )}
+            {/* {results.map((result, index) => (
+              setMessage((prevMessage) => prevMessage + ' ' +  result);
+            ))} */}
             {/* <Feather name="mic" size={24} color="gray" /> */}
           </View>
 

@@ -79,7 +79,7 @@ const OrderItem = ({
       
 
       {!admin && orderItems.map((item, index) => (
-        <>
+        <View key={index}>
           <TextBox key={index} title={item.name} value={item.quantity} status={status} />
           {!admin && status === "Delivered" && (
             <Button
@@ -95,7 +95,7 @@ const OrderItem = ({
               Write a Review
             </Button>
           )}
-        </>
+        </View>
 
       ))}
 
