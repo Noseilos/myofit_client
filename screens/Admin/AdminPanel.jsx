@@ -114,7 +114,7 @@ const AdminPanel = ({ navigation }) => {
 
           <ProductListHeading />
 
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: 400 }}>
             <View>
               {!loadingDelete &&
                 products.map((item, index) => (

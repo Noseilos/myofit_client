@@ -160,7 +160,7 @@ const NewProduct = ({ navigation, route }) => {
           <View
             style={{
               justifyContent: "center",
-              height: 650,
+              height: 850,
             }}
           >
             <View style={{ marginTop: 20, alignItems: "center" }}>
