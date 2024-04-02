@@ -207,6 +207,37 @@ export const addCategory = (formData) => async (dispatch) => {
   }
 };
 
+export const getAllCategories = () => async (dispatch) => {
+  try {
+      dispatch({
+          type: "getAllCategoriesRequest",
+      });
+  
+    // Axios request
+  
+      const { data } = await axios.get(
+          `${server}/category/all`,
+  
+          {
+          withCredentials: true,
+          }
+      );
+  
+      dispatch({
+          type: "getAllCategoriesSuccess",
+          payload: data.categories,
+      });
+      console.log(data)
+      } catch (error) {
+      console.log("chat action error", error);
+  
+      dispatch({
+          type: "getAllCategoriesFail",
+          payload: error.response.data.message,
+      });
+  }
+};
+
 export const getCategoryDetails = (id) => async (dispatch) => {
     
   try {

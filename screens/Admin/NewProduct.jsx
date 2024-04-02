@@ -175,6 +175,7 @@ const NewProduct = ({ navigation, route }) => {
               mode="contained"
               onPress={openImagePicker}
               style={{ backgroundColor: "#BC430B", marginHorizontal: 80 }}
+              icon="camera"
             >
               Add Images
             </Button>

@@ -27,7 +27,7 @@ import Animated, {
   withRepeat,
   useAnimatedStyle,
   Easing,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 import { Avatar } from "react-native-paper";
 import { Feather } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
@@ -70,11 +70,14 @@ const ChatMessagesScreen = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   const translateY = useSharedValue(0);
 
-
   const toggleAnimation = () => {
-    setIsAnimating(prevIsAnimating => {
+    setIsAnimating((prevIsAnimating) => {
       if (!prevIsAnimating) {
-        translateY.value = withRepeat(withTiming(-5, { duration: 500 }), -1, true);
+        translateY.value = withRepeat(
+          withTiming(-5, { duration: 500 }),
+          -1,
+          true
+        );
       } else {
         translateY.value = 0;
       }
@@ -113,7 +116,6 @@ const ChatMessagesScreen = () => {
       setStarted(false);
       setIsListening(false);
       toggleAnimation();
-      
     } else {
       console.error("Voice object is null");
     }
@@ -122,7 +124,7 @@ const ChatMessagesScreen = () => {
   const onSpeechResults = (result) => {
     console.log(result);
     let resultText = result.value[0];
-    console.log(resultText)
+    console.log(resultText);
     setMessage((prevMessage) => prevMessage + " " + resultText);
     handleSend("text", null, resultText);
   };
@@ -204,16 +206,41 @@ const ChatMessagesScreen = () => {
   return (
     <>
       <KeyboardAvoidingView
-        style={{ flex: 1, backgroundColor: "#F0F0F0", padding: 10, borderBottomLeftRadius:20, borderBottomRightRadius: 20 }}
+        style={{
+          flex: 1,
+          backgroundColor: "#F0F0F0",
+          padding: 10,
+          borderBottomLeftRadius: 20,
+          borderBottomRightRadius: 20,
+        }}
       >
-
-        <View style={{ margin: 10,padding: 10, paddingLeft: 20, backgroundColor: "#386641", flexDirection: "row",  borderBottomRightRadius:20, borderTopRightRadius: 20, borderTopLeftRadius: 20 }}>
-          <Avatar.Image source={{ uri: recepientData?.avatar?.url }} size={40}/>
-          <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center"}}>
-            <Text style={{ fontSize: 18, fontWeight: 'bold', color: "white" }}>{recepientData.name}</Text>
-            
+        <View
+          style={{
+            margin: 10,
+            padding: 10,
+            paddingLeft: 20,
+            backgroundColor: "#386641",
+            flexDirection: "row",
+            borderBottomRightRadius: 20,
+            borderTopRightRadius: 20,
+            borderTopLeftRadius: 20,
+          }}
+        >
+          <Avatar.Image
+            source={{ uri: recepientData?.avatar?.url }}
+            size={40}
+          />
+          <View
+            style={{
+              marginLeft: 10,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text style={{ fontSize: 18, fontWeight: "bold", color: "white" }}>
+              {recepientData.name}
+            </Text>
           </View>
-
         </View>
         <ScrollView
           ref={scrollViewRef}
@@ -230,21 +257,21 @@ const ChatMessagesScreen = () => {
                   style={[
                     item?.senderId?._id === userId
                       ? {
-                        alignSelf: "flex-end",
-                        backgroundColor: "#DCF8C6",
-                        padding: 8,
-                        maxWidth: "60%",
-                        borderRadius: 7,
-                        margin: 10,
-                      }
+                          alignSelf: "flex-end",
+                          backgroundColor: "#DCF8C6",
+                          padding: 8,
+                          maxWidth: "60%",
+                          borderRadius: 7,
+                          margin: 10,
+                        }
                       : {
-                        alignSelf: "flex-start",
-                        backgroundColor: "white",
-                        padding: 8,
-                        margin: 10,
-                        borderRadius: 7,
-                        maxWidth: "60%",
-                      },
+                          alignSelf: "flex-start",
+                          backgroundColor: "white",
+                          padding: 8,
+                          margin: 10,
+                          borderRadius: 7,
+                          maxWidth: "60%",
+                        },
 
                     isSelected && { backgroundColor: "#F0FFFF" },
                   ]}
@@ -283,21 +310,21 @@ const ChatMessagesScreen = () => {
                   style={[
                     item?.senderId?._id === userId
                       ? {
-                        alignSelf: "flex-end",
-                        backgroundColor: "#DCF8C6",
-                        padding: 8,
-                        maxWidth: "60%",
-                        borderRadius: 7,
-                        margin: 10,
-                      }
+                          alignSelf: "flex-end",
+                          backgroundColor: "#DCF8C6",
+                          padding: 8,
+                          maxWidth: "60%",
+                          borderRadius: 7,
+                          margin: 10,
+                        }
                       : {
-                        alignSelf: "flex-start",
-                        backgroundColor: "white",
-                        padding: 8,
-                        margin: 10,
-                        borderRadius: 7,
-                        maxWidth: "60%",
-                      },
+                          alignSelf: "flex-start",
+                          backgroundColor: "white",
+                          padding: 8,
+                          margin: 10,
+                          borderRadius: 7,
+                          maxWidth: "60%",
+                        },
                   ]}
                 >
                   <View>
@@ -374,7 +401,6 @@ const ChatMessagesScreen = () => {
             />
 
             {!started ? (
-
               <FontAwesome
                 name="microphone"
                 size={24}
@@ -382,7 +408,6 @@ const ChatMessagesScreen = () => {
                 onPress={startSpeechToText}
               />
             ) : isListening ? (
-
               <Animated.View style={[styles.box, style]}>
                 <FontAwesome
                   name="microphone"
@@ -399,9 +424,6 @@ const ChatMessagesScreen = () => {
                 onPress={stopSpeechToText}
               />
             )}
-
-
-
           </View>
 
           <Pressable
@@ -433,9 +455,7 @@ const ChatMessagesScreen = () => {
 
 export default ChatMessagesScreen;
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
 
 // const styles = StyleSheet.create({
 //   container: {

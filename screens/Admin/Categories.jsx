@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   TouchableOpacity,
+  Image,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
@@ -18,11 +19,18 @@ import { useMessageAndErrorOther, useSetCategories } from "../../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import mime from "mime";
-import { addCategory, deleteCategory } from "../../redux/actions/otherActions";
+import {
+  addCategory,
+  deleteCategory,
+  getAllCategories,
+} from "../../redux/actions/otherActions";
+import Carousel from "react-native-snap-carousel";
+import * as ImagePicker from "expo-image-picker";
 
 const Categories = ({ navigation, route, navigate }) => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const isFocused = useIsFocused();
@@ -32,22 +40,85 @@ const Categories = ({ navigation, route, navigate }) => {
 
   const loading = useMessageAndErrorOther(dispatch, navigation, "adminpanel");
 
-  const deleteHandler = (id) => {
-    dispatch(deleteCategory(id));
+  useEffect(() => {
+    fetchCategories();
+  }, [isFocused]);
+
+  const fetchCategories = async () => {
+    try {
+      await dispatch(getAllCategories());
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   };
 
-  const submitHandler = () => {
-    const myForm = new FormData();
-    myForm.append("category", category);
-    myForm.append("file", {
-      uri: image,
-      type: mime.getType(image),
-      name: image.split("/").pop(),
-    });
-    
-
-    dispatch(addCategory(myForm));
+  const deleteHandler = async (id) => {
+    try {
+      await dispatch(deleteCategory(id));
+      fetchCategories();
+    } catch (error) {
+      console.error("Error deleting category:", error);
+    }
   };
+
+  const submitHandler = async () => {
+    try {
+      console.log("Submitting form data:", category, image);
+      const myForm = new FormData();
+      myForm.append("category", category);
+      image.forEach((imageUri) => {
+        myForm.append(`files`, {
+          uri: imageUri,
+          type: mime.getType(imageUri),
+          name: imageUri.split("/").pop(),
+        });
+      });
+      await dispatch(addCategory(myForm));
+      exitAddForm();
+      fetchCategories();
+      navigation.navigate("categories");
+    } catch (error) {
+      console.log("Error adding category:", error);
+    }
+  };
+
+  // Handler for selecting images
+  const openImagePicker = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [4, 3],
+        quality: 1,
+        multiple: true,
+      });
+
+      if (!result.cancelled && result.assets.length > 0) {
+        const newImages = result.assets.map((asset) => asset.uri);
+        setImage([...image, ...newImages]);
+      }
+    } catch (error) {
+      console.log("Error picking images:", error);
+    }
+  };
+
+  const exitAddForm = () => {
+    setShowAddForm(false);
+    setCategory("");
+    setImage([]);
+  };
+
+  // Render function for carousel items
+  const renderCarouselItem = ({ item, index }) => (
+    <View key={index}>
+      {item && (
+        <Image
+          style={{ width: 300, height: 150, resizeMode: "contain" }}
+          source={{ uri: item }}
+        />
+      )}
+    </View>
+  );
 
   useEffect(() => {
     if (route.params?.image) setImage(route.params.image);
@@ -74,51 +145,51 @@ const Categories = ({ navigation, route, navigate }) => {
             minHeight: 400,
           }}
         >
-          {categories.map((i) => (
-            <CategoryCard
-              name={i.category}
-              id={i._id}
-              key={i._id}
-              deleteHandler={deleteHandler}
-              navigation={navigation}
-            />
-          ))}
+          {categories &&
+            categories.map((i) => (
+              <CategoryCard
+                name={i.category}
+                id={i._id}
+                key={i._id}
+                deleteHandler={deleteHandler}
+                navigation={navigation}
+              />
+            ))}
         </View>
       </ScrollView>
-      {/* add category form */}
       <View style={styles.container}>
         <View
           style={{
-            width: 80,
+            width: 150,
             height: 80,
             alignSelf: "center",
             marginBottom: 20,
           }}
         >
-          <Avatar.Image
-            size={80}
+          {/* Button to open multi-image picker */}
+          <Button
+            mode="contained"
+            onPress={openImagePicker}
             style={{
-              backgroundColor: colors.color1,
+              marginBottom: 20,
+              marginTop: 10,
+              backgroundColor: "#BC430B",
             }}
-            source={{
-              uri: image ? image : null,
-            }}
-          />
-          <TouchableOpacity
-            onPress={() => navigation.navigate("camera", { newCategory: true })}
+            icon="camera"
           >
-            <Avatar.Icon
-              icon={"camera"}
-              size={30}
-              color={colors.color3}
-              style={{
-                backgroundColor: colors.color2,
-                position: "absolute",
-                bottom: 0,
-                right: -5,
-              }}
+            Add Images
+          </Button>
+
+          {/* Display selected images */}
+          <View style={{ marginBottom: 20, alignItems: "center" }}>
+            <Carousel
+              layout="default"
+              data={image}
+              renderItem={renderCarouselItem }
+              sliderWidth={300}
+              itemWidth={300}
             />
-          </TouchableOpacity>
+          </View>
         </View>
 
         <TextInput
@@ -128,26 +199,28 @@ const Categories = ({ navigation, route, navigate }) => {
           onChangeText={setCategory}
         />
 
-        <Button
-          textColor={colors.color2}
-          style={{
-            backgroundColor: colors.color1,
-            margin: 20,
-            padding: 6,
-          }}
-          loading={loading}
-          disabled={!category}
-          onPress={submitHandler}
-        >
-          Add
-        </Button>
+        {!showAddForm && (
+          <Button
+            textColor={colors.color2}
+            style={{
+              backgroundColor: colors.color1,
+              margin: 20,
+              padding: 6,
+            }}
+            loading={loading}
+            disabled={!category}
+            onPress={submitHandler}
+          >
+            Add
+          </Button>
+        )}
       </View>
       {/* add category form */}
     </View>
   );
 };
 
-const CategoryCard = ({ name, id, deleteHandler, navigate, navigation }) => (
+const CategoryCard = ({ name, id, image, deleteHandler, navigate, navigation }) => (
   <View style={styles.cardContainer}>
     <Text style={styles.cardText}>{name}</Text>
     <TouchableOpacity onPress={() => deleteHandler(id)}>
@@ -160,9 +233,10 @@ const CategoryCard = ({ name, id, deleteHandler, navigate, navigation }) => (
       />
     </TouchableOpacity>
     <TouchableOpacity
-  onPress={() => navigation && navigation.navigate("updatecategory", { id })}
->
-
+      onPress={() =>
+        navigation && navigation.navigate("updatecategory", { id })
+      }
+    >
       <Avatar.Icon
         icon={"pen"}
         size={30}
@@ -171,9 +245,27 @@ const CategoryCard = ({ name, id, deleteHandler, navigate, navigation }) => (
         }}
       />
     </TouchableOpacity>
+
+    {/* {Array.isArray(image) && image.length > 0 ? (
+      <Carousel
+        layout="stack"
+        data={image}
+        renderItem={CarouselCardItem}
+        sliderWidth={300}
+        itemWidth={300}
+        loop={true}
+      />
+    ) : (
+      <Text>No images available</Text>
+    )} */}
   </View>
 );
 
+const CarouselCardItem = ({ item, index }) => (
+  <View key={index}>
+      <Image source={{ uri: item.url }} style={styles.categoryImage} />
+  </View>
+);
 
 export default Categories;
 
