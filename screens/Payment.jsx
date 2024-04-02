@@ -131,11 +131,11 @@ const Payment = ({ navigation, route }) => {
         >
           <View style={styles.radioStyle}>
             <Text style={styles.radioStyleText}>Cash On Delivery</Text>
-            <RadioButton color={colors.color1} value={"COD"} />
+            <RadioButton color={colors.color5} value={"COD"} />
           </View>
           <View style={styles.radioStyle}>
             <Text style={styles.radioStyleText}>ONLINE</Text>
-            <RadioButton color={colors.color1} value={"ONLINE"} />
+            <RadioButton color={colors.color5} value={"ONLINE"} />
           </View>
         </RadioButton.Group>
       </View>
