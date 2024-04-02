@@ -22,7 +22,7 @@ export const store = configureStore({
 // export const server = "https://mbackend-p19q.onrender.com/api/v1"
 
 //Home IP
-export const server = "http://192.168.5.234:5000/api/v1"
+// export const server = "http://192.168.5.234:5000/api/v1"
 
 //Kapehan IP
 // export const server = "http://192.168.0.192:5000/api/v1"
@@ -40,4 +40,4 @@ export const server = "http://192.168.5.234:5000/api/v1"
 // export const server = "http://192.168.100.193:5000/api/v1"
 
 //Jonas
-// export const server = "http://192.168.100.51:5000/api/v1"
+export const server = "http://192.168.100.51:5000/api/v1"
