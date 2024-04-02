@@ -37,7 +37,7 @@ import {
   fetchRecepientData,
   sendMessage,
 } from "../redux/actions/chatActions";
-// import Voice from "@react-native-voice/voice";
+import Voice from "@react-native-voice/voice";
 
 const ChatMessagesScreen = () => {
   const { user } = useSelector((state) => state.user);
@@ -56,43 +56,43 @@ const ChatMessagesScreen = () => {
   const scrollViewRef = useRef(null);
 
   /// Voice codes
-  // let [started, setStarted] = useState(false);
-  // let [results, setResults] = useState([]);
+  let [started, setStarted] = useState(false);
+  let [results, setResults] = useState([]);
 
-  // useEffect(() => {
-  //   Voice.onSpeechError = onSpeechError;
-  //   Voice.onSpeechResults = onSpeechResults;
+  useEffect(() => {
+    Voice.onSpeechError = onSpeechError;
+    Voice.onSpeechResults = onSpeechResults;
 
-  //   return () => {
-  //     Voice.destroy().then(Voice.removeAllListeners);
-  //   };
-  // }, []);
+    return () => {
+      Voice.destroy().then(Voice.removeAllListeners);
+    };
+  }, []);
 
-  // const startSpeechToText = async () => {
-  //   if (Voice) {
-  //     await Voice.start("en-US");
-  //     setStarted(true);
-  //   } else {
-  //     console.error("Voice object is null");
-  //   }
-  // };
+  const startSpeechToText = async () => {
+    if (Voice) {
+      await Voice.start("en-US");
+      setStarted(true);
+    } else {
+      console.error("Voice object is null");
+    }
+  };
 
-  // const stopSpeechToText = async () => {
-  //   if (Voice) {
-  //     await Voice.stop();
-  //     setStarted(false);
-  //   } else {
-  //     console.error("Voice object is null");
-  //   }
-  // };
+  const stopSpeechToText = async () => {
+    if (Voice) {
+      await Voice.stop();
+      setStarted(false);
+    } else {
+      console.error("Voice object is null");
+    }
+  };
 
-  // const onSpeechResults = (result) => {
-  //   setResults(result.value);
-  // };
+  const onSpeechResults = (result) => {
+    setResults(result.value);
+  };
 
-  // const onSpeechError = (error) => {
-  //   console.log(error);
-  // };
+  const onSpeechError = (error) => {
+    console.log(error);
+  };
 
   useEffect(() => {
     scrollToBottom();
@@ -324,7 +324,7 @@ const ChatMessagesScreen = () => {
               color="gray"
             />
 
-            {/* {!started ? (
+            {!started ? (
               <Feather
                 onPress={startSpeechToText}
                 name="mic"
@@ -342,8 +342,8 @@ const ChatMessagesScreen = () => {
             ) : undefined}
             {results.map((result, index) => (
               <Text key={index}>{result}</Text>
-            ))} */}
-            <Feather name="mic" size={24} color="gray" />
+            ))}
+            {/* <Feather name="mic" size={24} color="gray" /> */}
           </View>
 
           <Pressable
