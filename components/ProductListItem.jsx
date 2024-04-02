@@ -27,7 +27,7 @@ const ProductListItem = ({
                 <View
                     style={{
                         ...styles.container,
-                        backgroundColor: i % 2 === 0 ? colors.color1 : colors.color3,
+                        backgroundColor: i % 2 === 0 ? colors.color9_lpgreen : colors.color9_lpgreen,
                     }}
                 >
                     <Image
@@ -44,7 +44,7 @@ const ProductListItem = ({
                     <Text
                         style={{
                             width: 60,
-                            color: colors.color2,
+                            color: colors.color8_dgreen,
                         }}
                         numberOfLines={1}
                     >
@@ -54,7 +54,7 @@ const ProductListItem = ({
                     <Text
                         style={{
                             maxWidth: 120,
-                            color: colors.color2,
+                            color: colors.color8_dgreen,
                         }}
                         numberOfLines={1}
                     >
@@ -64,7 +64,7 @@ const ProductListItem = ({
                     <Text
                         style={{
                             width: 60,
-                            color: colors.color2,
+                            color: colors.color8_dgreen,
                         }}
                         numberOfLines={1}
                     >
@@ -74,7 +74,7 @@ const ProductListItem = ({
                     <Text
                         style={{
                             width: 40,
-                            color: colors.color2,
+                            color: colors.color8_dgreen,
                         }}
                         numberOfLines={1}
                     >
@@ -102,8 +102,10 @@ const styles = StyleSheet.create({
         height: 70,
         alignItems: "center",
         padding: 10,
-        borderRadius: 10,
+        borderRadius: 100,
         marginVertical: 10,
+        borderWidth: 3,
+        borderColor: colors.color8_dgreen,
     },
 });
 

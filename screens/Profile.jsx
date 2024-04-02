@@ -194,7 +194,7 @@ const Profile = ({ navigation, route }) => {
                                 <ButtonBox
                                     handler={navigateHandler}
                                     text={"Password"}
-                                    icon={"pencil"}
+                                    icon={"lock"}
                                 />
                                 <ButtonBox
                                     handler={navigateHandler}
@@ -214,7 +214,7 @@ const Profile = ({ navigation, route }) => {
                                     <ButtonBox
                                         handler={navigateHandler}
                                         text={"People"}
-                                        icon={"human"}
+                                        icon={"account-group"}
                                     />
                                     <ButtonBox
                                         handler={navigateHandler}
@@ -247,8 +247,8 @@ const styles = StyleSheet.create({
         padding: 30,
         borderRadius: 10,
         alignItems: "center",
-        borderWidth: 1,
-        borderColor: 'black',
+        borderWidth: 3,
+        borderColor: colors.color8_dgreen,
     },
     name: {
         fontSize: 20,

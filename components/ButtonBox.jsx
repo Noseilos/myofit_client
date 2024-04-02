@@ -19,8 +19,8 @@ const ButtonBox = ({
                 width: 80,
                 borderRadius: 20,
                 alignItems: "center",
-                borderWidth: 1,
-                borderColor: 'black',
+                borderWidth: 3,
+                borderColor: colors.color8_dgreen,
             }}
             onPress={() => handler(text)}
             disabled={loading}

@@ -5,11 +5,14 @@ export const colors = {
   color1_light: "#5bc0de",
   color1_light2: "#89c4f4",
   color2: "white",
-  color3: "#2ecc71",
+  color3: "#69d697",
   color4: "transparent",
   color5: "white",
   color6: "#f7f7f7",
-  color7_black: "#000000"
+  color7_black: "#000000",
+  color8_dgreen: "#2a783f",
+  color9_lpgreen: "#c5facf",
+  color10_lpred: "#faccc5"
 };
 
 export const defaultStyle = StyleSheet.create({
@@ -50,7 +53,7 @@ export const adminFormHeading = {
   fontWeight: "500",
   textAlign: "center",
   // backgroundColor: colors.color3,
-  color: colors.color7_black,
+  color: colors.color8_dgreen,
   padding: 5,
   borderRadius: 5,
 };

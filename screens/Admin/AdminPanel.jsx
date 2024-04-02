@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useEffect } from "react";
-import { colors, defaultStyle, formHeading } from "../../styles/styles";
+import { colors, defaultStyle, formHeading, adminFormHeading } from "../../styles/styles";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import AdminButtonBox from "../../components/AdminButtonBox";
@@ -70,64 +70,13 @@ const AdminPanel = ({ navigation }) => {
       <Header back={true} />
       {/* Heading */}
       <View style={{ paddingTop: 70, marginBottom: 20 }}>
-        <Text style={formHeading}>Admin Panel</Text>
+        <Text style={adminFormHeading}>Admin Panel</Text>
       </View>
 
       {loading ? (
         <Loader />
       ) : (
         <>
-          {/* <ScrollView
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-          >
-            <View
-              style={{
-                backgroundColor: colors.color3,
-                borderRadius: 20,
-                alignItems: "center",
-                marginBottom: 600,
-                marginRight: 10,
-              }}
-            >
-              <Chart inStock={inStock} outOfStock={outOfStock} />
-            </View>
-
-            <View
-              style={{
-                backgroundColor: colors.color3,
-                borderRadius: 20,
-                alignItems: "center",
-                marginBottom: 600,
-                marginRight: 10,
-              }}
-            >
-              <ProductSalesChart data={chartData} />
-            </View>
-
-            <View
-              style={{
-                backgroundColor: colors.color3,
-                borderRadius: 20,
-                alignItems: "center",
-                marginBottom: 600,
-                marginRight: 10,
-              }}
-            >
-              <UserSalesChart data={chartData2} />
-            </View>
-
-            <View
-              style={{
-                backgroundColor: colors.color3,
-                borderRadius: 20,
-                alignItems: "center",
-                marginBottom: 600,
-              }}
-            >
-              <MonthlySalesChart data={chartData3} />
-            </View>
-          </ScrollView> */}
 
           <View>
             <View
@@ -156,7 +105,7 @@ const AdminPanel = ({ navigation }) => {
             <View
               style={{
                 flexDirection: "row",
-                margin: 10,
+                margin: 0.5,
                 justifyContent: "space-evenly",
               }}
             >

@@ -16,18 +16,21 @@ const ProductListHeading = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.color3,
+        backgroundColor: colors.color9_lpgreen,
         flexDirection: "row",
         justifyContent: "space-between",
         height: 40,
         alignItems: "center",
-        borderRadius: 5,
+        borderRadius: 100,
         padding: 10,
+        borderTopWidth: 3,
+        borderBottomWidth: 3,
+        borderColor: colors.color8_dgreen
     },
 
     text: {
         width: 40,
-        color: colors.color2,
+        color: "black",
         fontWeight: "900",
     },
 });
