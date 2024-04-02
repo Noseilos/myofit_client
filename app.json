@@ -41,16 +41,17 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "16b0a498-f92e-41f2-bca3-56e9f3be1ef3"
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
     },
     "updates": {
       "url": "https://u.expo.dev/16b0a498-f92e-41f2-bca3-56e9f3be1ef3"
+    },
+    "owner": "myofit",
+    "extra": {
+      "eas": {
+        "projectId": "16b0a498-f92e-41f2-bca3-56e9f3be1ef3"
+      }
     }
   }
 }
