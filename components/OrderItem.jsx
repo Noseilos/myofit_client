@@ -70,7 +70,7 @@ const OrderItem = ({
       <Button onPress={openMenu}>{visible ? "Hide" : "Show"} order details</Button>
       {visible && (<>
       <TextBox title={"Name"} value={name} status={status}/>
-        <TextBox title={"Address"} value={address} status={status} />
+      <TextBox title={"Address"} value={address} status={status} />
       <TextBox title={"Ordered On"} value={orderedOn} status={status} />
       <TextBox title={"Price"} value={price} status={status} />
       <TextBox title={"Status"} value={status} status={status} />
@@ -98,9 +98,6 @@ const OrderItem = ({
         </>
 
       ))}
-
-
-
 
       {admin && (
         <Button

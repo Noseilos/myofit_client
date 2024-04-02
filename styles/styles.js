@@ -9,6 +9,7 @@ export const colors = {
   color4: "transparent",
   color5: "#f2f2f2",
   color6: "#f7f7f7",
+  color7_black: "#000000"
 };
 
 export const defaultStyle = StyleSheet.create({
@@ -17,6 +18,14 @@ export const defaultStyle = StyleSheet.create({
   paddingBottom: 0,
   flex: 1,
   backgroundColor: colors.color2,
+});
+
+export const adminStyle = StyleSheet.create({
+  padding: 20,
+  paddingTop: 10,
+  paddingBottom: 0,
+  flex: 1,
+  backgroundColor: colors.color7_black,
 });
 
 export const inputStyling = StyleSheet.create({
@@ -32,6 +41,16 @@ export const formHeading = {
   textAlign: "center",
   // backgroundColor: colors.color3,
   color: colors.color3,
+  padding: 5,
+  borderRadius: 5,
+};
+
+export const adminFormHeading = {
+  fontSize: 25,
+  fontWeight: "500",
+  textAlign: "center",
+  // backgroundColor: colors.color3,
+  color: colors.color7_black,
   padding: 5,
   borderRadius: 5,
 };

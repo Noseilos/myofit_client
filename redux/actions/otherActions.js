@@ -151,7 +151,7 @@ export const placeOrder =
     }
   };
 
-export const processOrder = (id) => async (dispatch) => {
+export const processOrder = (id, navigation) => async (dispatch) => {
   try {
     dispatch({
       type: "processOrderRequest",
@@ -169,6 +169,10 @@ export const processOrder = (id) => async (dispatch) => {
       type: "processOrderSuccess",
       payload: data.message,
     });
+
+    
+    navigation.navigate("adminpanel");
+    
   } catch (error) {
     dispatch({
       type: "processOrderFail",

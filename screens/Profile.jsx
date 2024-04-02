@@ -5,6 +5,7 @@ import {
     defaultImg,
     defaultStyle,
     formHeading,
+    adminFormHeading
 } from "../styles/styles";
 import { Avatar, Button } from "react-native-paper";
 import ButtonBox from "../components/ButtonBox";
@@ -126,7 +127,7 @@ const Profile = ({ navigation, route }) => {
             <View style={defaultStyle}>
                 {/* Heading */}
                 <View style={{ marginBottom: 20 }}>
-                    <Text style={formHeading}>Profile</Text>
+                    <Text style={adminFormHeading}>Profile</Text>
                 </View>
 
                 {/* Loading */}
@@ -140,7 +141,7 @@ const Profile = ({ navigation, route }) => {
                                     uri: avatar,
                                 }}
                                 size={100}
-                                style={{ backgroundColor: colors.color1 }}
+                                style={{ backgroundColor: colors.color2 }}
                             />
 
                             <TouchableOpacity
@@ -152,7 +153,7 @@ const Profile = ({ navigation, route }) => {
                                 <Button
                                     disabled={loadingPic}
                                     loading={loadingPic}
-                                    textColor={colors.color2}
+                                    textColor={colors.color7_black}
                                 >
                                     Change Photo
                                 </Button>
@@ -161,8 +162,8 @@ const Profile = ({ navigation, route }) => {
                             <Text style={styles.name}>{user?.name}</Text>
                             <Text
                                 style={{
-                                    fontWeight: "300",
-                                    color: colors.color2,
+                                    fontWeight: "500",
+                                    color: colors.color7_black,
                                 }}
                             >
                                 {user?.email}
@@ -241,17 +242,19 @@ const Profile = ({ navigation, route }) => {
 
 const styles = StyleSheet.create({
     container: {
-        elevation: 7,
-        backgroundColor: colors.color3,
+        // elevation: 7,
+        backgroundColor: colors.white,
         padding: 30,
         borderRadius: 10,
         alignItems: "center",
+        borderWidth: 1,
+        borderColor: 'black',
     },
     name: {
         fontSize: 20,
         fontWeight: "500",
         marginTop: 10,
-        color: colors.color2,
+        color: colors.color7_black,
     },
 });
 
