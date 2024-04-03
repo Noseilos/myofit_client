@@ -26,7 +26,7 @@ export const getCommentsByRating = (productId, rating) => async(dispatch)=>{
   }
 }
 
-export const addComment = (text, userId, productId, rating) => {
+export const addComment = (text, userId, productId, rating, navigation) => {
     return async (dispatch) => {
       dispatch({
         type: "addCommentRequest",
@@ -48,6 +48,8 @@ export const addComment = (text, userId, productId, rating) => {
         dispatch({
           type: "addCommentSuccess",
         });
+
+        navigation.navigate('profile')
         return response.data; // Return the new comment data if needed
       } catch (error) {
         dispatch({

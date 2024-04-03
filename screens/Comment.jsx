@@ -13,8 +13,8 @@ import {
 import StarRating from "react-native-star-rating"; // Import the star rating component
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../redux/actions/commentActions";
-import { inputOptions } from "../styles/styles";
-
+import { colors, inputOptions } from "../styles/styles";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 
 
 
@@ -24,6 +24,7 @@ const Comment = ({ route }) => {
   const [starCount, setStarCount] = useState(0); // State for star rating
   const dispatch = useDispatch();
   const { orderItems } = route.params
+  const navigation = useNavigation();
   // Assuming you have user and product data available from redux state
   const { user } = useSelector((state) => state.user); // Update with actual selector
 
@@ -31,8 +32,7 @@ const Comment = ({ route }) => {
 
   const handlePostComment = () => {
  
-
-    dispatch(addComment(commentText, user._id, orderItems.product, starCount));
+    dispatch(addComment(commentText, user._id, orderItems.product, starCount, navigation));
 
     // Show the toast
     setToastVisible(true);
@@ -91,7 +91,9 @@ const Comment = ({ route }) => {
           style={styles.commentInput} // Added style
         />
         <TouchableOpacity
-          style={[styles.postButton, { marginLeft: 10 }]} // Added marginLeft to separate button from input
+          style={[styles.postButton, { marginLeft: 10,
+            borderWidth: 3,
+            borderColor: colors.color8_dgreen }]}
           onPress={handlePostComment}
           disabled={disableBtnCondition}
         >
@@ -162,13 +164,13 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   postButton: {
-    backgroundColor: "blue",
+    backgroundColor: colors.color9_lpgreen,
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 5,
   },
   postButtonText: {
-    color: "white",
+    color: colors.color8_dgreen,
     fontWeight: "bold",
     fontSize: 16,
   },
