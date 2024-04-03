@@ -80,7 +80,6 @@ const Comment = ({ route }) => {
 
       </KeyboardAvoidingView>
 
-      {/* Comment Input and Button Container */}
       <View style={styles.commentInputContainer}>
         <TextInput
           {...inputOptions}
