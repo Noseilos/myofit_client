@@ -69,7 +69,7 @@ const Analytics = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Units Sold</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Sales by Category</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
@@ -89,7 +89,7 @@ const Analytics = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Customer Transactions</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Units Sold</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
