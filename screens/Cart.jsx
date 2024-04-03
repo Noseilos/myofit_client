@@ -131,7 +131,7 @@ const Cart = () => {
       >
         <Text>{cartItems.length} Items</Text>
         <Text>
-          ₹
+          ₱
           {cartItems.reduce(
             (prev, curr) => prev + curr.quantity * curr.price,
             0

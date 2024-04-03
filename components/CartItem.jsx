@@ -65,7 +65,7 @@ const CartItem = ({
             fontWeight: "900",
           }}
         >
-          ₹{amount}
+          ₱{amount}
         </Text>
         <TouchableOpacity
           style={styles.addToWishlistButton}
