@@ -50,7 +50,7 @@ const Analytics = ({ navigation }) => {
                 <>
                     <ScrollView showsVerticalScrollIndicator={false}>
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Stocks Chart</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Inventory</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
@@ -69,7 +69,7 @@ const Analytics = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Product Sales</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Units Sold</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
@@ -89,7 +89,7 @@ const Analytics = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Customer Sales</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Customer Transactions</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
@@ -110,7 +110,7 @@ const Analytics = ({ navigation }) => {
                         </View>
 
                         <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Monthly Sales</Text>
+                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Monthly Revenue</Text>
                             <View
                                 style={{
                                     backgroundColor: colors.color3,
