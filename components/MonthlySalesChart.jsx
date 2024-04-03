@@ -13,16 +13,15 @@ const getMonthName = (monthNumber) => {
 
 const MonthlySalesChart = ({ data }) => {
   const chartConfig = {
-    backgroundGradientFrom: "rgb(8, 36, 14)",
-    backgroundGradientTo: "rgb(8, 36, 14)",
-    decimalPlaces: 0, // optional, defaults to 2dp
-    color: (opacity = 1) => `rgba(208, 0, 141, ${opacity})`,
-    labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    propsForDots: {
-      r: "6",
-      strokeWidth: "2",
-      stroke: colors.primary
-    }
+    backgroundGradientFrom: "#1E2923",
+        backgroundGradientTo: "#08130D",
+        color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+        propsForDots: {
+            r: "6",
+            strokeWidth: "2",
+            stroke: "#ffa726"
+        }
   };
 
   // Check if data and data.ordersCountByProduct are defined and an array before trying to map over it
@@ -30,7 +29,8 @@ const MonthlySalesChart = ({ data }) => {
   const labels = data && Array.isArray(data.ordersSumByMonth)
     ? data.ordersSumByMonth.map(item => getMonthName(item._id - 1)) // Subtract 1 because month numbers start from 0 in JavaScript Date
     : [];
-  
+    const barWidth = 100; // Width of each bar
+    const chartWidth = labels.length * barWidth; 
   if (!transformedData.length) {
     return <Text>No orders to display</Text>;
   }
@@ -44,7 +44,7 @@ const MonthlySalesChart = ({ data }) => {
             {data: transformedData}
           ]
         }}
-        width={screenWidth}
+        width={chartWidth}
         height={220}
         chartConfig={chartConfig}
         style={{
