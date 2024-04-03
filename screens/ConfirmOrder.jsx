@@ -93,7 +93,7 @@ const PriceTag = ({ heading, value }) => (
     }}
   >
     <Text style={{ fontWeight: "800" }}>{heading}</Text>
-    <Text>₹{value}</Text>
+    <Text>₱{value}</Text>
   </View>
 );
 

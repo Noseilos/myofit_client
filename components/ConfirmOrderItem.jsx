@@ -30,7 +30,7 @@ const ConfirmOrderItem = ({ price, quantity, image, name }) => {
       >
         <Text>{quantity}</Text>
         <Text style={{ marginHorizontal: 10 }}>x</Text>
-        <Text>₹{price}</Text>
+        <Text>₱{price}</Text>
       </View>
     </View>
   );
