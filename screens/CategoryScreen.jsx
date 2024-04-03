@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View, Image, ScrollView, FlatList, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, FlatList, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useSetCategories } from "../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
 import { defaultStyle, colors, defaultImg } from "../styles/styles";
+import Swiper from "react-native-swiper";
+var { width, height } = Dimensions.get("window");
 
 const CategoryScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
@@ -19,10 +21,10 @@ const CategoryScreen = ({ navigation }) => {
                 keyExtractor={(item) => item._id}
                 renderItem={({ item: category }) => (
                     <TouchableOpacity style={styles.card} onPress={() => {
-                       
+
                         navigation.navigate('home', { categoryId: category._id });
                     }}>
-                        <ImageBackground
+                        {/* <ImageBackground
                             source={{ uri: category.images[0].url }}
                             style={styles.imageBg}
                             imageStyle={styles.image}
@@ -30,7 +32,39 @@ const CategoryScreen = ({ navigation }) => {
                         >
                             <View style={styles.overlay} />
                             <Text style={styles.text}>{category.category}</Text>
-                        </ImageBackground>
+                        </ImageBackground> */}
+                        <View style={styles.imageBg}>
+                            <Swiper
+                                activeDotColor="white"
+                                // paginationStyle={{
+                                //     bottom: 10,
+                                //     justifyContent: "center",
+                                //     alignItems: "center",
+                                // }}
+                                // pagingEnabled={false}
+                                showsPagination={false}
+                                showButtons={false}
+                                autoplay={true}
+                                autoplayTimeout={2}
+                            >
+                                {category.images.map((item) => {
+                                    return (
+                                        <Image
+                                            key={item.url}
+                                            style={styles.imageBanner}
+                                            resizeMode="cover"
+                                            source={{ uri: item.url }}
+                                        />
+                                    );
+                                })}
+
+                            </Swiper>
+
+                        </View><View style={styles.overlay} />
+                        <View style={{position: "absolute",justifyContent: "center", alignItems: "center"}}>
+                        
+                        <Text style={styles.text}>{category.category}</Text>
+                        </View>
                     </TouchableOpacity>
                 )}
                 contentContainerStyle={styles.container}
@@ -50,7 +84,7 @@ const styles = StyleSheet.create({
     },
     overlay: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0,0,0,0.1)',
         borderRadius: 10,
     },
     card: {
@@ -90,6 +124,22 @@ const styles = StyleSheet.create({
         textShadowColor: '#000',
         textShadowOffset: { width: -1, height: 1 },
         textShadowRadius: 10,
+    },
+    swiperContainer: {
+
+        backgroundColor: "gainsboro",
+        borderRadius: 10,
+    },
+    swiper: {
+        width: width,
+        height: width / 3,
+
+
+    },
+    imageBanner: {
+        height: "100%",
+        borderRadius: 10,
+
     },
 });
 export default CategoryScreen;
