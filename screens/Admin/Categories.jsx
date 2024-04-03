@@ -161,7 +161,7 @@ const Categories = ({ navigation, route, navigate }) => {
         <View
           style={{
             width: 150,
-            height: 80,
+            height: 200,
             alignSelf: "center",
             marginBottom: 20,
           }}
@@ -193,8 +193,8 @@ const Categories = ({ navigation, route, navigate }) => {
               itemWidth={300}
             />
           </View>
+          
         </View>
-
         <TextInput
           {...inputOptions}
           placeholder="Category"
@@ -219,6 +219,7 @@ const Categories = ({ navigation, route, navigate }) => {
             Add
           </Button>
         )}
+       
       </View>
       {/* add category form */}
     </View>
