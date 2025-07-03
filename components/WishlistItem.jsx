@@ -2,7 +2,9 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
-import { iconOptions } from "../screens/ProductDetails";
+import PropTypes from "prop-types";
+
+
 
 const WishlistItem = ({
     name,
@@ -90,7 +92,18 @@ const WishlistItem = ({
         </View>
     );
 };
-
+WishlistItem.propTypes = {
+    name: PropTypes.string.isRequired,
+    amount: PropTypes.number.isRequired,
+    stock: PropTypes.number.isRequired,
+    index: PropTypes.number.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    removeWishlistHandler: PropTypes.func.isRequired,
+    addToCartHandler: PropTypes.func.isRequired,
+    id: PropTypes.string.isRequired,
+    navigate: PropTypes.object.isRequired,
+}
 const styles = StyleSheet.create({
     img: {
         width: 200,

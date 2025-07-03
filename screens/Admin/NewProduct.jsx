@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, TouchableOpacity, Image } from "react-native";
+import { View, Text, ScrollView, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import {
@@ -8,7 +8,7 @@ import {
   inputOptions,
   inputStyling,
 } from "../../styles/styles";
-import { Avatar, Button, TextInput } from "react-native-paper";
+import { Button, TextInput } from "react-native-paper";
 import SelectComponent from "../../components/SelectComponent";
 import { useSetCategories, useMessageAndErrorOther } from "../../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
@@ -16,11 +16,10 @@ import { useDispatch } from "react-redux";
 import mime from "mime";
 import { getAdminProducts } from "../../redux/actions/productActions";
 import { createProduct } from "../../redux/actions/otherActions";
-// import * as Icons from "react-native-heroicons/solid";
 import * as ImagePicker from "expo-image-picker";
 import Carousel from "react-native-snap-carousel";
 import { IconButton } from "react-native-paper";
-
+import PropTypes from "prop-types";
 const NewProduct = ({ navigation, route }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
@@ -255,4 +254,8 @@ const NewProduct = ({ navigation, route }) => {
   );
 };
 
+NewProduct.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+}
 export default NewProduct;

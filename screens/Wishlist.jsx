@@ -1,9 +1,8 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
-import { colors, defaultStyle } from "../styles/styles";
+import { defaultStyle } from "../styles/styles";
 import Header from "../components/Header";
 import Heading from "../components/Heading";
-import { Button } from "react-native-paper";
 import WishlistItem from "../components/WishlistItem";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";

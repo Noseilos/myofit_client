@@ -14,7 +14,7 @@ import { updateProfile } from "../redux/actions/otherActions";
 import { useMessageAndErrorOther } from "../utils/hooks";
 import { loadUser } from "../redux/actions/userActions";
 import { useIsFocused } from "@react-navigation/native";
-
+import PropTypes from "prop-types";
 const UpdateProfile = ({ navigation }) => {
     const { user } = useSelector(state => state.user);
 
@@ -111,5 +111,7 @@ const UpdateProfile = ({ navigation }) => {
         </View>
     );
 };
-
+UpdateProfile.propTypes ={
+    navigation: PropTypes.object.isRequired,
+}
 export default UpdateProfile;

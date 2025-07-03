@@ -12,7 +12,7 @@ import { Toast } from "react-native-toast-message/lib/src/Toast";
 import axios from "axios";
 import { server } from "../redux/store";
 import Loader from "../components/Loader";
-
+import PropTypes from "prop-types";
 const Payment = ({ navigation, route }) => {
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [loaderLoading, setLoaderLoading] = useState(false);
@@ -146,8 +146,8 @@ const Payment = ({ navigation, route }) => {
           !isAuthenticated
             ? redirectToLogin
             : paymentMethod === "COD"
-            ? () => codHandler()
-            : () => onlineHandler()
+              ? () => codHandler()
+              : () => onlineHandler()
         }
       >
         <Button
@@ -165,7 +165,10 @@ const Payment = ({ navigation, route }) => {
     </View>
   );
 };
-
+Payment.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.color3,

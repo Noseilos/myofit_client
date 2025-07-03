@@ -1,8 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React, { useEffect, useState } from "react";
 import {
-  colors,
-  defaultImg,
   defaultStyle,
   formHeading,
 } from "../styles/styles";
@@ -11,8 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchContactRequest } from "../redux/actions/chatActions";
 import ContactRequest from "../components/ContactRequest";
 
-const ContactsScreen = ({ navigation }) => {
-  
+const ContactsScreen = () => {
+
   const [contactRequest, setContactRequests] = useState([]);
   const dispatch = useDispatch();
 
@@ -32,22 +30,20 @@ const ContactsScreen = ({ navigation }) => {
     <>
       <View style={defaultStyle}>
         <View style={{ marginBottom: 20 }}>
-            <Text style={formHeading}>Requests</Text>
+          <Text style={formHeading}>Requests</Text>
         </View>
-          {contactRequest.map((item, index) => (
-            <ContactRequest
-              key={index}
-              item={item}
-              contactRequest={contactRequest}
-              setContactRequests={setContactRequests}
-            />
-          ))}
+        {contactRequest.map((item, index) => (
+          <ContactRequest
+            key={index}
+            item={item}
+            contactRequest={contactRequest}
+            setContactRequests={setContactRequests}
+          />
+        ))}
       </View>
-      <Footer activeRoute="contactscreen"/>
+      <Footer activeRoute="contactscreen" />
     </>
   );
 };
 
 export default ContactsScreen;
-
-const styles = StyleSheet.create({});

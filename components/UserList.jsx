@@ -2,8 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Button } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
-
+import PropTypes from "prop-types";
 const UserList = ({
   id,
   name,
@@ -60,7 +59,18 @@ const UserList = ({
     </View>
   );
 };
-
+UserList.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  address: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  deleteHandler: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
+  admin: PropTypes.bool,
+  i: PropTypes.number,
+}
 const TextBox = ({ title, value, i }) => (
   <Text
     style={{
@@ -73,7 +83,11 @@ const TextBox = ({ title, value, i }) => (
     {value}
   </Text>
 );
-
+TextBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  i: PropTypes.number.isRequired,
+};
 const styles = StyleSheet.create({
   container: {
     padding: 20,

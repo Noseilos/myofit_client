@@ -2,7 +2,7 @@ import { Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
-
+import PropTypes from "prop-types";
 const AdminButtonBox = ({
   icon,
   text,
@@ -53,4 +53,11 @@ const AdminButtonBox = ({
   );
 };
 
+AdminButtonBox.propTypes = {
+  icon: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  handler: PropTypes.func.isRequired,
+  reverse: PropTypes.bool,
+  loading: PropTypes.bool,
+}
 export default AdminButtonBox;

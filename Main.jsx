@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 
 import {
   DrawerContentScrollView,
-  DrawerItemList,
   DrawerItem,
 } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
@@ -54,14 +53,13 @@ const Drawer = createDrawerNavigator();
 import {
   colors,
   defaultImg,
-  defaultStyle,
   formHeading,
-  formStyles as styles,
 } from "./styles/styles";
 import { useMessageAndErrorUser } from "./utils/hooks";
 import UserLists from "./screens/Admin/UserLists";
 import { LinearGradient } from "expo-linear-gradient";
 import CategoryScreen from "./screens/CategoryScreen";
+import PropTypes from 'prop-types';
 const CustomDrawerContent = (props) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -140,7 +138,7 @@ const CustomDrawerContent = (props) => {
         label="Home" 
         onPress={navigateTohome}     
         style={{ borderBottomWidth: 2, borderColor: "black" }}
-        icon={({ color, size }) => (
+        icon={() => (
           <Ionicons name="home-outline" color={colors.color7_black} size={30} />
         )}
       />
@@ -150,7 +148,7 @@ const CustomDrawerContent = (props) => {
             label="Orders"
             onPress={() => navigation.navigate("orders")}
             style={{ borderBottomWidth: 2, borderColor: "black" }}
-            icon={({ color, size }) => (
+            icon={() => (
               <Ionicons name="receipt-outline" color={colors.color7_black} size={30} />
             )}
           />
@@ -160,7 +158,7 @@ const CustomDrawerContent = (props) => {
         label="Categories" 
         onPress={() => navigation.navigate("category")} 
         style={{ borderBottomWidth: 2, borderColor: "black" }}
-        icon={({ color, size }) => (
+        icon={() => (
           <Ionicons name="list-circle-outline" color={colors.color7_black} size={30} />
         )}
               
@@ -171,7 +169,7 @@ const CustomDrawerContent = (props) => {
           label="Sign Out" 
           onPress={logoutHandler} 
           
-      icon={({ color, size }) => (
+      icon={() => (
         <Ionicons name="log-out-outline" color={colors.color7_black} size={30} />
       )}  
         />
@@ -253,4 +251,7 @@ const Main = () => {
   );
 };
 
+CustomDrawerContent.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 export default Main;

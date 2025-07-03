@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
 import ConfirmOrderItem from '../components/ConfirmOrderItem'
 import { useSelector } from 'react-redux'
-
+import PropTypes from 'prop-types';
 const ConfirmOrder = () => {
 
   const navigate = useNavigation();
@@ -96,5 +96,8 @@ const PriceTag = ({ heading, value }) => (
     <Text>₱{value}</Text>
   </View>
 );
-
+PriceTag.propTypes = {
+  heading: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+};
 export default ConfirmOrder

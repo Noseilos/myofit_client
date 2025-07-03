@@ -13,7 +13,7 @@ import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../styles/styles";
 import { Headline, Searchbar } from "react-native-paper";
-
+import PropTypes from 'prop-types';
 const SearchModal = ({
   searchQuery,
   setActiveSearch,
@@ -84,7 +84,12 @@ const SearchModal = ({
     </View>
   );
 };
-
+SearchModal.propTypes = {
+  searchQuery: PropTypes.string.isRequired,
+  setActiveSearch: PropTypes.func.isRequired,
+  setSearchQuery: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
+}
 const SearchItem = ({ price, name, imgSrc, handler }) => (
   <TouchableOpacity onPress={handler}>
     <View
@@ -131,4 +136,10 @@ const SearchItem = ({ price, name, imgSrc, handler }) => (
   </TouchableOpacity>
 );
 
+SearchItem.propTypes = {
+  price: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  handler: PropTypes.func.isRequired,
+}
 export default SearchModal;

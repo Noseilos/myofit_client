@@ -4,7 +4,7 @@ import { Avatar } from "react-native-paper";
 import { colors } from "../styles/styles";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-
+import PropTypes from 'prop-types';
 const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
@@ -109,5 +109,9 @@ const Header = ({ back, emptyCart = false, emptyWishlist = false }) => {
     </>
   );
 };
-
+Header.propTypes = {
+  back: PropTypes.bool,
+  emptyCart: PropTypes.bool,
+  emptyWishlist: PropTypes.bool,
+}
 export default Header;

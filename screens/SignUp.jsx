@@ -14,7 +14,7 @@ import mime from "mime";
 import { useDispatch, useSelector } from "react-redux";
 import { useMessageAndErrorUser } from "../utils/hooks";
 import { register } from "../redux/actions/userActions";
-
+import PropTypes from "prop-types";
 const SignUp = ({ navigation, route }) => {
     const [avatar, setAvatar] = useState("");
     const [name, setName] = useState("");
@@ -188,5 +188,8 @@ const SignUp = ({ navigation, route }) => {
         </>
     );
 };
-
+SignUp.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
+};
 export default SignUp;

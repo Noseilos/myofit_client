@@ -23,12 +23,10 @@ import {
 import Carousel from "react-native-snap-carousel";
 import ImageCard from "../../components/ImageCard";
 import mime from "mime";
-
+import PropTypes from "prop-types";
 const UpdateCategory = ({ navigation, route }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
-
-  const [id] = useState(route.params.id);
   const [loading, setLoading] = useState(false);
   const [categoryId] = useState(route.params.id);
   const [selectedImages, setSelectedImages] = useState([]);
@@ -119,6 +117,13 @@ const UpdateCategory = ({ navigation, route }) => {
 
   const submitHandler = async () => {
     setLoading(true);
+    const fetchData = async () => {
+      try {
+        await dispatch(getCategoryDetails(route.params.id));
+      } catch (error) {
+        console.error("Error fetching category details:", error);
+      }
+    };
     try {
       await dispatch(updateCategory(route.params.id, category));
       if (selectedImages.length > 0) {
@@ -231,5 +236,8 @@ const UpdateCategory = ({ navigation, route }) => {
     </>
   );
 };
-
+UpdateCategory.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 export default UpdateCategory;

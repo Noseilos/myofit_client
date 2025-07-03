@@ -7,24 +7,19 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  ScrollView,
-  TextInput,
 } from "react-native";
 import { defaultStyle, colors, defaultImg } from "../styles/styles";
 import Header from "../components/Header";
-import Comment from "../components/Comment";
 import Carousel from "react-native-snap-carousel";
 import { Avatar, Button, Menu, IconButton } from "react-native-paper";
 import Toast from "react-native-toast-message";
 import { useDispatch, useSelector } from "react-redux";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { getProductDetails } from "../redux/actions/productActions";
-import { server } from "../redux/store";
 import { AirbnbRating } from "react-native-ratings";
 
 import {
   deleteComment,
-  addComment,
   getAllComments,
   getProductRatings,
   getCommentsByRating,
@@ -33,7 +28,7 @@ import { FontAwesome } from "react-native-vector-icons";
 
 const SLIDER_WIDTH = Dimensions.get("window").width;
 const ITEM_WIDTH = SLIDER_WIDTH;
-
+import PropTypes from "prop-types";
 const ProductDetails = ({ route: { params } }) => {
   const navigate = useNavigation();
   const dispatch = useDispatch();
@@ -41,10 +36,10 @@ const ProductDetails = ({ route: { params } }) => {
   const isFocused = useIsFocused();
   const { user } = useSelector((state) => state.user);
 
-  const [ratings, setRatings] = useState(average);
+  const [, setRatings] = useState(average);
   const { comments, count } = useSelector((state) => state.comment); // Fetch comments from Redux store
   const average = useSelector((state) => state.comment.averageRating); // Fetch comments from Redux store
-  const loading = useSelector((state) => state.comment.loading); // Fetch loading state from Redux store
+
 
   const {
     product: { name, price, stock, description, images },
@@ -415,13 +410,24 @@ const ProductDetails = ({ route: { params } }) => {
     </View>
   );
 };
-
+ProductDetails.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+}
 const CarouselCardItem = ({ item, index }) => (
   <View style={style.container} key={index}>
     <Image source={{ uri: item.url }} style={style.image} />
   </View>
 );
-
+CarouselCardItem.propTypes = {
+  item: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+}
 const style = StyleSheet.create({
   container: {
     backgroundColor: colors.color1,

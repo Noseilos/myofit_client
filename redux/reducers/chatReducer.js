@@ -25,19 +25,19 @@ export const chatReducer = createReducer(initialState, (builder) => {
     .addCase("fetchContactRequestPending", (state) => {
       state.loading = true;
     })
-    .addCase("acceptContactRequestPending", (state, action) => {
+    .addCase("acceptContactRequestPending", (state) => {
       state.loading = true;
     })
-    .addCase("fetchAcceptedContactsRequest", (state, action) => {
+    .addCase("fetchAcceptedContactsRequest", (state) => {
       state.loading = true;
     })
-    .addCase("sendMessagePending", (state, action) => {
+    .addCase("sendMessagePending", (state) => {
       state.loading = true;
     })
-    .addCase("fetchRecepientDataPending", (state, action) => {
+    .addCase("fetchRecepientDataPending", (state) => {
       state.loading = true;
     })
-    .addCase("fetchMessagesRequest", (state, action) => {
+    .addCase("fetchMessagesRequest", (state) => {
       state.loading = true;
     })
 

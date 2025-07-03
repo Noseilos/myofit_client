@@ -2,8 +2,7 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
-import { iconOptions } from "../screens/ProductDetails";
-
+import PropTypes from "prop-types";
 
 const CartItem = ({
   name,
@@ -105,6 +104,22 @@ const CartItem = ({
     </View>
   );
 };
+
+CartItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  qty: PropTypes.number.isRequired,
+  stock: PropTypes.number.isRequired,
+  index: PropTypes.number.isRequired,
+  imgSrc: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  decrementHandler: PropTypes.func.isRequired,
+  incrementhandler: PropTypes.func.isRequired,
+  addToWishlistHandler: PropTypes.func.isRequired,
+  navigate: PropTypes.object.isRequired,
+}
+
 
 const styles = StyleSheet.create({
   img: {

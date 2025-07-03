@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Dimensions } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { colors, defaultStyle, formHeading } from "../../styles/styles";
 import Header from "../../components/Header";
@@ -10,12 +10,12 @@ import UserSalesChart from "../../components/UserSalesChart";
 import { useAdminProducts, useMessageAndErrorOther, useChartData } from "../../utils/hooks";
 import { useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
-
+import PropTypes from "prop-types";
 const Analytics = ({ navigation }) => {
     const dispatch = useDispatch();
     const isFocused = useIsFocused();
 
-    const { chartData, chartData2, chartData3, loading, error } = useChartData(
+    const { chartData, chartData2, chartData3, loading } = useChartData(
         dispatch,
         isFocused
     );
@@ -96,7 +96,7 @@ const Analytics = ({ navigation }) => {
                                     borderRadius: 20,
                                     alignItems: "center",
                                     marginBottom: 10,
-                                    
+
                                 }}
                             >
                                 <UserSalesChart
@@ -104,7 +104,7 @@ const Analytics = ({ navigation }) => {
                                     outOfStock={outOfStock}
                                     loading={processAnalyticsLoading}
                                     data={chartData2}
-                                    
+
                                 />
                             </View>
                         </View>
@@ -135,5 +135,7 @@ const Analytics = ({ navigation }) => {
         </View>
     );
 };
-
+Analytics.propTypes = {
+    navigation: PropTypes.object.isRequired,
+};
 export default Analytics;

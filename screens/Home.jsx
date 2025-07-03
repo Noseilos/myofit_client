@@ -1,20 +1,17 @@
 import { View, Text, TouchableOpacity, ScrollView, FlatList } from "react-native";
 import React, { useEffect, useState } from "react";
 import { defaultStyle, colors } from "../styles/styles";
-import Header from "../components/Header";
-import { Avatar, Button, Searchbar } from "react-native-paper";
+import { Button, Searchbar } from "react-native-paper";
 import SearchModal from "../components/SearchModal";
 import ProductCard from "../components/ProductCard";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import Footer from "../components/Footer";
-import Heading from "../components/Heading";
-/* import { Toast } from "react-native-paper"; */
 import Toast from "react-native-toast-message";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../redux/actions/productActions";
 import { useSetCategories } from "../utils/hooks";
 import Banner from "../components/Banner";
-
+import PropTypes from "prop-types";
 const Home = ({ route }) => {
   const [category, setCategory] = useState("");
   
@@ -169,7 +166,7 @@ const Home = ({ route }) => {
             showsHorizontalScrollIndicator={false}
           >
 
-            {categories.map((item, index) => (
+            {categories.map((item) => (
               <Button
                 key={item._id}
                 style={{
@@ -232,5 +229,7 @@ const Home = ({ route }) => {
     </>
   );
 };
-
+Home.propTypes = {
+  route: PropTypes.object.isRequired,
+}
 export default Home;

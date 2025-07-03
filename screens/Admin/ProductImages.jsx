@@ -11,7 +11,7 @@ import {
   deleteProductImage,
   updateProductImage,
 } from "../../redux/actions/otherActions";
-
+import PropTypes from "prop-types";
 const ProductImages = ({ navigation, route }) => {
   const [images] = useState(route.params.images);
   const [productId] = useState(route.params.id);
@@ -140,5 +140,8 @@ const ProductImages = ({ navigation, route }) => {
     </View>
   );
 };
-
+ProductImages.propTypes ={
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+}
 export default ProductImages;

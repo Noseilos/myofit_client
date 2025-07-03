@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, StatusBar } from "react-native";
+import { StyleSheet, Platform, StatusBar, Dimensions } from "react-native";
 
 export const colors = {
   color1: "#2ecc71",
@@ -76,7 +76,7 @@ export const formStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     elevation: 10,
-    marginBottom:20
+    marginBottom: 20
   },
 
   forget: {
@@ -109,6 +109,10 @@ export const formStyles = StyleSheet.create({
     marginHorizontal: 20,
   },
 });
+
+
+
+
 
 export const defaultImg =
   "https://p.kindpng.com/picc/s/451-4517876_default-profile-hd-png-download.png";

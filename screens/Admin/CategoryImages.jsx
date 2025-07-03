@@ -12,6 +12,7 @@ import {
   updateCategoryImage,
 } from "../../redux/actions/otherActions";
 
+import PropTypes from "prop-types";
 const CategoryImages = ({ navigation, route }) => {
   const [images] = useState(route.params.images);
   const [categoryId] = useState(route.params.id);
@@ -140,5 +141,8 @@ const CategoryImages = ({ navigation, route }) => {
     </View>
   );
 };
-
+CategoryImages.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+}
 export default CategoryImages;

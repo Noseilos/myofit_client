@@ -1,5 +1,5 @@
 import { View, Text, ScrollView } from "react-native";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import { colors, defaultStyle, formHeading } from "../../styles/styles";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -10,7 +10,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { Button, Headline } from "react-native-paper";
 import { useDispatch } from "react-redux";
 import { processOrder } from "../../redux/actions/otherActions";
-
+import PropTypes from "prop-types";
 const AdminOrders = ({ navigation }) => {
   
   const isFocused = useIsFocused() ;
@@ -159,5 +159,7 @@ const AdminOrders = ({ navigation }) => {
     </View>
   );
 };
-
+AdminOrders.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 export default AdminOrders;

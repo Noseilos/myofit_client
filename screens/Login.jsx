@@ -7,29 +7,27 @@ import {
   inputOptions,
   formStyles as styles,
 } from "../styles/styles";
-import { LinearGradient } from "expo-linear-gradient";
 import {
   GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
+  GoogleSigninButton
 } from "@react-native-google-signin/google-signin";
 import { Button, TextInput } from "react-native-paper";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { login, verifyToken } from "../redux/actions/userActions";
-import Toast from "react-native-toast-message";
 
 import { useMessageAndErrorUser } from "../utils/hooks";
 import { CLIENT_ID_WEB, CLIENT_ID_ANDROID, CLIENT_ID_IOS } from "@env";
+import PropTypes from 'prop-types';
 const Login = ({ navigation }) => {
-  const [error, setError] = useState();
+  const [, setError] = useState();
 
   const { newUser, user } = useSelector((state) => state.user);
   const configureGoogleSignIn = () => {
     GoogleSignin.configure({
-      webClientId: CLIENT_ID_WEB,
-      androidClientId: CLIENT_ID_ANDROID,
-      iosClientId: CLIENT_ID_IOS,
+      webClientId: CLIENT_ID_WEB || process.env.CLIENT_ID_WEB,
+      androidClientId: CLIENT_ID_ANDROID || process.env.CLIENT_ID_ANDROID,
+      iosClientId: CLIENT_ID_IOS || process.env.CLIENT_ID_IOS,
     });
   };
   const navigateToHome = () => {
@@ -50,7 +48,7 @@ const Login = ({ navigation }) => {
     } else if (newUser) {
       console.log("verified yung token at di pa existing");
       navigation.navigate("signup");
-      // showToast("success", "Kindly complete your profile before continue");
+
     }
   }, [newUser, user, navigation]);
 
@@ -58,15 +56,6 @@ const Login = ({ navigation }) => {
     configureGoogleSignIn();
     GoogleSignin.signOut();
   });
-
-  const showToast = (type, text) => {
-    Toast.show({
-      type: type,
-      text1: text,
-      visibilityTime: 3000,
-      autoHide: true,
-    });
-  };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -184,6 +173,9 @@ const Login = ({ navigation }) => {
       <Footer activeRoute="profile" />
     </>
   );
+};
+Login.propTypes = {
+  navigation: PropTypes.object.isRequired,
 };
 const style = StyleSheet.create({
 

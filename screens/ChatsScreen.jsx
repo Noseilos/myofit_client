@@ -1,9 +1,7 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
+import { Text, View, ScrollView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 import {
-  colors,
-  defaultImg,
   defaultStyle,
   formHeading,
 } from "../styles/styles";
@@ -113,5 +111,3 @@ const ChatsScreen = () => {
 };
 
 export default ChatsScreen;
-
-const styles = StyleSheet.create({});

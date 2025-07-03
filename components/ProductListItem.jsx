@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import React, { useState } from "react";
 import { colors } from "../styles/styles";
 import MyModal from "../components/MyModal";
-
+import PropTypes from "prop-types";
 const ProductListItem = ({
     navigate,
     deleteHandler,
@@ -94,7 +94,17 @@ const ProductListItem = ({
         </>
     );
 };
-
+ProductListItem.propTypes = {
+    navigate: PropTypes.object.isRequired, // Assuming navigate is an object with a navigate method
+    deleteHandler: PropTypes.func.isRequired,
+    i: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    stock: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    imgSrc: PropTypes.string.isRequired,
+}
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",

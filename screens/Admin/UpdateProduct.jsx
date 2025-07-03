@@ -24,15 +24,13 @@ import Carousel from "react-native-snap-carousel";
 import * as ImagePicker from "expo-image-picker";
 import ImageCard from "../../components/ImageCard";
 import mime from "mime";
-
+import PropTypes from 'prop-types';
 const UpdateProduct = ({ navigation, route }) => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const [visible, setVisible] = useState(false);
 
   const { product } = useSelector((state) => state.product);
-
-  const [id] = useState(route.params.id);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -41,8 +39,6 @@ const UpdateProduct = ({ navigation, route }) => {
   const [categoryID, setCategoryID] = useState("");
   const [categories, setCategories] = useState([]);
   const [productId] = useState(route.params.id);
-  const [images] = useState(route.params.images || []);
-  const [imageChanged, setImageChanged] = useState(false);
   const [selectedImages, setSelectedImages] = useState([]);
   const [fetchedImages, setFetchedImages] = useState(route.params.images || []);
   const [loading, setLoading] = useState(false);
@@ -307,5 +303,8 @@ const UpdateProduct = ({ navigation, route }) => {
     </>
   );
 };
-
+UpdateProduct.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+};
 export default UpdateProduct;

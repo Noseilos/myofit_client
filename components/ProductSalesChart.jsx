@@ -1,10 +1,10 @@
 import { View, Dimensions, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { PieChart } from "react-native-chart-kit";
 import { colors } from "../styles/styles";
 
 const screenWidth = Dimensions.get("screen").width - 20 - 75;
-
+import PropTypes from "prop-types";
 const ProductSalesChart = ({ data }) => {
     
     if (!data || !data.productsCountByCategory || !Array.isArray(data.productsCountByCategory)) {
@@ -22,7 +22,7 @@ const ProductSalesChart = ({ data }) => {
         return `rgb(${red}, ${green}, ${blue})`;
       }
       
-      const chartData = data.productsCountByCategory.map((item, index) => ({
+      const chartData = data.productsCountByCategory.map((item) => ({
         name: item._id,
         population: item.count,
         color: getRandomColorComplimentaryToRedAndBlack(),
@@ -57,5 +57,7 @@ const ProductSalesChart = ({ data }) => {
         </View>
     );
 };
-
+ProductSalesChart.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 export default ProductSalesChart;

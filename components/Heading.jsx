@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-
+import PropTypes from "prop-types";
 const Heading = ({ text1 = "Our", text2 = "Products", containerStyle }) => {
   return (
     <View style={containerStyle}>
@@ -9,5 +9,9 @@ const Heading = ({ text1 = "Our", text2 = "Products", containerStyle }) => {
     </View>
   );
 };
-
+Heading.propTypes = {
+  text1: PropTypes.string,
+  text2: PropTypes.string,
+  containerStyle: PropTypes.object,
+}
 export default Heading;

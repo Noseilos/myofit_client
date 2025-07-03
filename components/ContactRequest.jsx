@@ -1,15 +1,12 @@
-import { StyleSheet, Text, View, Pressable, Image } from "react-native";
+import { Text, Pressable, Image } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
-  colors,
   defaultImg,
-  defaultStyle,
-  formHeading,
 } from "../styles/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { acceptContactRequest } from "../redux/actions/chatActions";
-
+import PropTypes from "prop-types";
 const ContactRequest = ({ item }) => {
   
   const { user } = useSelector((state) => state.user);
@@ -53,6 +50,7 @@ const ContactRequest = ({ item }) => {
   );
 };
 
+ContactRequest.propTypes = {
+  item: PropTypes.object
+}
 export default ContactRequest;
-
-const styles = StyleSheet.create({});

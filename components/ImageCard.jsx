@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
-
+import PropTypes from "prop-types";
 const ImageCard = ({ src, id, deleteHandler }) => {
     return (
         <View style={styles.container}>
@@ -30,6 +30,11 @@ const ImageCard = ({ src, id, deleteHandler }) => {
     );
 };
 
+ImageCard.propTypes = {
+    src: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    deleteHandler: PropTypes.func.isRequired,
+}
 export default ImageCard;
 
 const styles = StyleSheet.create({

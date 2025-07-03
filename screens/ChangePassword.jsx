@@ -17,7 +17,6 @@ const ChangePassword = () => {
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const dispatch = useDispatch();
-    const loading = useMessageAndErrorOther(dispatch);
 
     const submitHandler = () => {
         dispatch(updatePassword(oldPassword, newPassword));

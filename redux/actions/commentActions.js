@@ -52,6 +52,7 @@ export const addComment = (text, userId, productId, rating, navigation) => {
         navigation.navigate('profile')
         return response.data; // Return the new comment data if needed
       } catch (error) {
+        console.log(error)
         dispatch({
           type: "addCommentFail",
         });
@@ -74,6 +75,7 @@ export const addComment = (text, userId, productId, rating, navigation) => {
         });
         return response.data; // Optionally return data if needed
       } catch (error) {
+        console.log(error);
         dispatch({
           type: "deleteCommentFail",
         });

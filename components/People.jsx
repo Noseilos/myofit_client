@@ -1,15 +1,12 @@
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, Pressable, Text, View } from 'react-native'
 import React from 'react'
 import {
-  colors,
   defaultImg,
-  defaultStyle,
-  formHeading,
 } from "../styles/styles";
 import { sendContactRequest } from '../redux/actions/chatActions';
-import { UseDispatch, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-
+import PropTypes from 'prop-types';
 const People = ({ item }) => {
   const navigation = useNavigation()
   const { user } = useSelector((state) => state.user);
@@ -84,6 +81,7 @@ const People = ({ item }) => {
   )
 }
 
+People.propTypes = {
+  item: PropTypes.object.isRequired,
+}
 export default People
-
-const styles = StyleSheet.create({})

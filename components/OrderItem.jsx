@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { colors } from "../styles/styles";
 import { Button, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-
+import PropTypes from "prop-types";
 const OrderItem = ({
   id,
   price,
@@ -16,7 +16,6 @@ const OrderItem = ({
   admin = false,
   loading,
   name,
-  i = 0,
 }) => {
   const navigation = useNavigation("Comment");
   const [visible, setVisible] = useState(false);
@@ -30,16 +29,6 @@ const OrderItem = ({
       backgroundColor:status === "Preparing" ? "black" : status === "Shipped" ? "orange" : status === "Delivered" ? colors.color1 : "black",
     },
   }
-  const getProductIds = () => {
-    return orderItems.map((item) => item.product);
-  };
-  const orderDetails = [
-    { title: "Address", value: address },
-    { title: "Ordered On", value: orderedOn },
-    { title: "Price", value: price },
-    { title: "Status", value: status },
-    { title: "Payment Method", value: paymentMethod },
-  ];
   return (
     <View
       style={{
@@ -121,6 +110,19 @@ const OrderItem = ({
   );
 };
 
+OrderItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  address: PropTypes.string.isRequired,
+  orderedOn: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  orderItems: PropTypes.array.isRequired,
+  paymentMethod: PropTypes.string.isRequired,
+  updateHandler: PropTypes.func.isRequired,
+  admin: PropTypes.bool,
+  loading: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+}
 const TextBox = ({ title, value, status }) => (
   <Text
     style={{
@@ -133,7 +135,11 @@ const TextBox = ({ title, value, status }) => (
     {value}
   </Text>
 );
-
+TextBox.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  status: PropTypes.string,
+}
 const styles = StyleSheet.create({
   container: {
     padding: 20,

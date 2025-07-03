@@ -1,22 +1,16 @@
-import { StyleSheet, Text, View, Pressable, Image } from "react-native";
-import React, { useContext, useEffect, useState } from "react";
+import { Text, View, Pressable, Image } from "react-native";
+import React, { useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
-  colors,
   defaultImg,
-  defaultStyle,
-  formHeading,
 } from "../styles/styles";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 
 import { loadUser } from "../redux/actions/userActions";
-
+import PropTypes from 'prop-types';
 const UserChat = ({ item, lastMessage, newMessages, setNewMessages }) => {
   
   const navigation = useNavigation();
-  
-  // const [hasBeenPressed, setHasBeenPressed] = useState(false)
-  // const [lastSeenMessage, setLastSeenMessage] = useState({})
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,20 +18,6 @@ const UserChat = ({ item, lastMessage, newMessages, setNewMessages }) => {
   }, []);
  
   
-  // useEffect(() => {
-  //   const currentLastMessage = lastMessage[item._id]?.message;
-  //   const currentLastSeenMessage = lastSeenMessage[item._id]?.message;
-
-  //   if (currentLastMessage !== currentLastSeenMessage) {
-  //     setHasBeenPressed(false);
-
-  //     // Update lastSeenMessage for the current chatbox only
-  //     setLastSeenMessage(prevState => ({
-  //       ...prevState,
-  //       [item._id]: lastMessage[item._id],
-  //     }));
-  //   }
-  // }, [lastMessage]);
   const formatTime = (time) => {
     const options = { hour: "numeric", minute: "numeric" };
     return new Date(time).toLocaleString("en-US", options);
@@ -48,7 +28,6 @@ const UserChat = ({ item, lastMessage, newMessages, setNewMessages }) => {
         navigation.navigate("chatmessagescreen", {
           recepientId: item._id,
         })
-        // setHasBeenPressed(true);
         setNewMessages((prevNewMessages) => ({
           ...prevNewMessages,
           [item._id]: false,
@@ -103,7 +82,10 @@ const UserChat = ({ item, lastMessage, newMessages, setNewMessages }) => {
 
   );
 };
-
+UserChat.propTypes = {
+  item: PropTypes.object.isRequired,
+  lastMessage: PropTypes.object.isRequired,
+  newMessages: PropTypes.object.isRequired,
+  setNewMessages: PropTypes.func.isRequired,
+};
 export default UserChat;
-
-const styles = StyleSheet.create({});

@@ -8,7 +8,12 @@
       "distribution": "internal"
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "CLIENT_ID_WEB": "61586830295-12ignplrcs6ookl18ca512qqi9jg7ltp.apps.googleusercontent.com",
+        "CLIENT_ID_ANDROID": "61586830295-2vldhuhk22l9dksrkesibsn225kcup4s.apps.googleusercontent.com",
+        "CLIENT_ID_IOS": "61586830295-3nlrap6boc1pgqokvid8o54dhscd3m5e.apps.googleusercontent.com"
+      }
     },
     "production": {}
   },

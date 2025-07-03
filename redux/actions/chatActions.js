@@ -38,7 +38,7 @@ export const sendContactRequest =
         type: "contactRequestPending",
       });
 
-      const response = await fetch(`${server}/chat/contact-request`, {
+      await fetch(`${server}/chat/contact-request`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,39 +93,39 @@ export const fetchContactRequest = () => async (dispatch) => {
 };
 
 export const acceptContactRequest = (currentUserId, selectedUserId, navigation) => async (dispatch) => {
-    try {
-      dispatch({
-        type: "contactRequestPending",
-      });
+  try {
+    dispatch({
+      type: "contactRequestPending",
+    });
 
-      const response = await axios.post(
-        `${server}/chat/contact-request/accept`,
-        {
-          currentUserId,
-          selectedUserId,
+    await axios.post(
+      `${server}/chat/contact-request/accept`,
+      {
+        currentUserId,
+        selectedUserId,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      }
+    );
 
-      dispatch({
-        type: "contactRequestSuccess",
-        payload: selectedUserId,
-      });
+    dispatch({
+      type: "contactRequestSuccess",
+      payload: selectedUserId,
+    });
 
-      navigation.navigate("profile");
-    } catch (error) {
-      console.log("chat action error: ", error);
+    navigation.navigate("profile");
+  } catch (error) {
+    console.log("chat action error: ", error);
 
-      dispatch({
-        type: "contactRequestFail",
-        payload: error.response.data.message,
-      });
-    }
-  };
+    dispatch({
+      type: "contactRequestFail",
+      payload: error.response.data.message,
+    });
+  }
+};
 
 export const fetchAcceptedContacts = () => async (dispatch) => {
   try {
@@ -158,7 +158,7 @@ export const sendMessage =
         type: "sendMessagePending",
       });
 
-      const response = await axios.post(`${server}/chat/messages`, {
+      await axios.post(`${server}/chat/messages`, {
         message,
         messageType,
         imageUri,
@@ -201,7 +201,7 @@ export const fetchRecepientData = (recepientId) => async (dispatch) => {
     });
   }
 };
-export const fetchAllMessages = (userId) => async (dispatch) => { 
+export const fetchAllMessages = (userId) => async (dispatch) => {
   try {
     const response = await axios.get(
       `${server}/chat/getAllMessages/${userId}`
