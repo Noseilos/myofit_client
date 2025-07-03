@@ -33,7 +33,7 @@ const Comment = () => {
     setIsLoading(true);
 
     dispatch(addComment(text, user.user._id, product.product._id, rating))
-      .then((response) => {
+      .then(() => {
         setNewCommentText("");
         setRating(0);
         showToast('success', 'Comment added successfully');

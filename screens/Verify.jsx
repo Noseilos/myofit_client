@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 import { useMessageAndErrorOther } from "../utils/hooks";
 import { useDispatch } from "react-redux";
 import { resetPassword } from "../redux/actions/otherActions";
-
+import PropTypes from "prop-types";
 const Verify = ({ navigation }) => {
   const [otp, setOtp] = useState("");
   const [password, setPassword] = useState("");
@@ -74,5 +74,7 @@ const Verify = ({ navigation }) => {
     </>
   );
 };
-
+Verify.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
 export default Verify;

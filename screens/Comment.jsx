@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -8,15 +8,14 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  ScrollView
 } from "react-native";
 import StarRating from "react-native-star-rating"; // Import the star rating component
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../redux/actions/commentActions";
 import { colors, inputOptions } from "../styles/styles";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 
-
+import PropTypes from "prop-types";
 
 const Comment = ({ route }) => {
   const [toastVisible, setToastVisible] = useState(false);
@@ -109,7 +108,13 @@ const Comment = ({ route }) => {
     </View>
   );
 };
-
+Comment.propTypes = {
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      orderItems: PropTypes.object.isRequired, // Assuming orderItems is an object
+    }).isRequired,
+  }).isRequired,
+}
 const styles = StyleSheet.create({
   container: {
     paddingVertical: 20,

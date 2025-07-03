@@ -1,10 +1,7 @@
-import { View, Dimensions, Text } from "react-native";
+import { View, Text } from "react-native";
 import React from "react";
 import { LineChart } from "react-native-chart-kit";
-import { colors } from "../styles/styles";
-
-const screenWidth = Dimensions.get("screen").width - 20 - 75;
-
+import PropTypes from "prop-types";
 const getMonthName = (monthNumber) => {
   const date = new Date(0);
   date.setMonth(monthNumber);
@@ -57,5 +54,7 @@ const MonthlySalesChart = ({ data }) => {
     </View>
   );
 };
-
+MonthlySalesChart.propTypes = {
+  data: PropTypes.object
+}
 export default MonthlySalesChart;

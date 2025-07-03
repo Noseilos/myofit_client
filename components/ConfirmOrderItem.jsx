@@ -1,6 +1,6 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
-
+import PropTypes from "prop-types";
 const ConfirmOrderItem = ({ price, quantity, image, name }) => {
   return (
     <View
@@ -36,4 +36,10 @@ const ConfirmOrderItem = ({ price, quantity, image, name }) => {
   );
 };
 
+ConfirmOrderItem.propTypes = {
+  price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+}
 export default ConfirmOrderItem;

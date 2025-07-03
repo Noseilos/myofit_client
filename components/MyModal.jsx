@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { colors } from "../styles/styles";
 import { Avatar, Button } from "react-native-paper";
-
+import PropTypes from "prop-types";
 const MyModal = ({ id, deleteHandler, navigate, setOpenModal }) => {
     return (
         <View style={styles.container}>
@@ -36,7 +36,12 @@ const MyModal = ({ id, deleteHandler, navigate, setOpenModal }) => {
         </View>
     );
 };
-
+MyModal.propTypes = {
+    id: PropTypes.string.isRequired,
+    deleteHandler: PropTypes.func.isRequired,
+    navigate: PropTypes.object.isRequired,
+    setOpenModal: PropTypes.func.isRequired,
+}
 const styles = StyleSheet.create({
     container: {
         width: 200,

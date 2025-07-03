@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Avatar, Headline } from "react-native-paper";
 import { colors } from "../styles/styles";
-
+import PropTypes from "prop-types";
 const SelectComponent = ({
     visible,
     setVisible,
@@ -51,7 +51,18 @@ const SelectComponent = ({
         )
     );
 };
-
+SelectComponent.propTypes = {
+    visible: PropTypes.bool.isRequired,
+    setVisible: PropTypes.func.isRequired,
+    setCategory: PropTypes.func.isRequired,
+    setCategoryID: PropTypes.func.isRequired,
+    categories: PropTypes.arrayOf(
+        PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            category: PropTypes.string.isRequired,
+        })
+    ),
+}
 export default SelectComponent;
 
 const styles = StyleSheet.create({

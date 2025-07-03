@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 import { useDispatch } from "react-redux";
 import { forgetPassword } from "../redux/actions/otherActions";
 import { useMessageAndErrorOther } from "../utils/hooks";
-
+import PropTypes from 'prop-types';
 const ForgetPassword = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
@@ -64,5 +64,9 @@ const ForgetPassword = ({ navigation }) => {
     </>
   );
 };
-
+ForgetPassword.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 export default ForgetPassword;

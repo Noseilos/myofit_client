@@ -4,7 +4,6 @@ import {
     colors,
     defaultImg,
     defaultStyle,
-    formHeading,
     adminFormHeading
 } from "../styles/styles";
 import { Avatar, Button } from "react-native-paper";
@@ -22,27 +21,27 @@ import mime from "mime";
 import { updatePic } from "../redux/actions/otherActions";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
 import { CLIENT_ID_ANDROID, CLIENT_ID_IOS, CLIENT_ID_WEB } from "@env";
-
+import PropTypes from "prop-types";
 const Profile = ({ navigation, route }) => {
     const { user } = useSelector((state) => state.user);
     const [avatar, setAvatar] = useState(user?.avatar ? user.avatar.url : defaultImg);
 
     const dispatch = useDispatch();
     const isFocused = useIsFocused();
-    
+
     const loading = useMessageAndErrorUser(navigation, dispatch, "login");
     const configureGoogleSignIn = () => {
         GoogleSignin.configure({
-          webClientId: CLIENT_ID_WEB,
-          androidClientId: CLIENT_ID_ANDROID,
-          iosClientId: CLIENT_ID_IOS,
+            webClientId: CLIENT_ID_WEB,
+            androidClientId: CLIENT_ID_ANDROID,
+            iosClientId: CLIENT_ID_IOS,
         });
-      }
+    }
     useEffect(() => {
-        
+
         configureGoogleSignIn();
-        
-      });
+
+    });
     const logoutHandler = () => {
         if (user.signInMethod === "google") {
             signOut();
@@ -50,9 +49,9 @@ const Profile = ({ navigation, route }) => {
         dispatch(logout());
     };
     const signOut = async () => {
-        try{
+        try {
             await GoogleSignin.signOut();
-        }catch (error){
+        } catch (error) {
             console.log(error)
         }
     }
@@ -84,9 +83,7 @@ const Profile = ({ navigation, route }) => {
                 break;
 
             default:
-            case "Orders":
                 navigation.navigate("orders");
-                break;
         }
     };
 
@@ -113,7 +110,7 @@ const Profile = ({ navigation, route }) => {
             setAvatar(user.avatar.url);
         }
     }, [user]);
-    
+
     // useEffect(() => {
     //     if (route.params?.image) {
     //         setAvatar(route.params.image);
@@ -238,11 +235,14 @@ const Profile = ({ navigation, route }) => {
         </>
     );
 };
-
+Profile.propTypes = {
+    navigation: PropTypes.object.isRequired,
+    route: PropTypes.object.isRequired,
+};
 const styles = StyleSheet.create({
     container: {
         backgroundColor: colors.color9_lpgreen,
-        overflow: 'hidden', 
+        overflow: 'hidden',
         padding: 30,
         borderRadius: 10,
         alignItems: "center",

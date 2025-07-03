@@ -6,6 +6,7 @@ import { FontAwesome } from 'react-native-vector-icons';
 const { width, height } = Dimensions.get('window');
 const cardWidth = width * 0.4; // Adjust this value as needed
 const cardHeight = height * 0.35; // Adjust this value as needed
+import PropTypes from "prop-types";
 const ProductCard = ({
   stock,
   name,
@@ -14,7 +15,6 @@ const ProductCard = ({
   id,
   addToCardHandler,
   addToWishlistHandler,
-  i,
   navigate,
 }) => {
   const isOutOfStock = stock === 0;
@@ -122,4 +122,14 @@ const ProductCard = ({
   );
 };
 
+ProductCard.propTypes = {
+  stock: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  image: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  addToCardHandler: PropTypes.func.isRequired,
+  addToWishlistHandler: PropTypes.func.isRequired,
+  navigate: PropTypes.object.isRequired, // Assuming navigate is an object with a navigate method
+}
 export default ProductCard;

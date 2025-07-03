@@ -3,13 +3,9 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { colors } from "../styles/styles";
 import { Avatar } from "react-native-paper";
-import { useSelector } from "react-redux"
-import { FontAwesome } from 'react-native-vector-icons';
-
+import PropTypes from "prop-types";
 const Footer = ({ activeRoute = "home" }) => {
   const navigate = useNavigation();
-
-  const { loading, isAuthenticated } = useSelector((state) => state.user)
 
   const navigationHandler = (key) => {
     switch (key) {
@@ -48,8 +44,6 @@ const Footer = ({ activeRoute = "home" }) => {
     <View
       style={{
         backgroundColor: colors.color1,
-        // borderTopRightRadius: 120,
-        // borderTopLeftRadius: 120,
         position: "relative",
         width: "100%",
         bottom: 0,
@@ -179,41 +173,10 @@ const Footer = ({ activeRoute = "home" }) => {
           }}>Wishlist</Text>
         </TouchableOpacity>
       </View>
-
-      {/* <View
-        style={{
-          position: "absolute",
-          width: 80,
-          height: 80,
-          backgroundColor: colors.color2,
-          borderRadius: 100,
-          justifyContent: "center",
-          alignItems: "center",
-          top: -40,
-          alignSelf: "center",
-        }}
-      >
-        <View
-          style={{
-            borderRadius: 100,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <TouchableOpacity
-            activeOpacity={0.8}
-            onPress={() => navigationHandler(0)}
-          >
-            <Avatar.Icon
-              {...avatarOptions}
-              icon={activeRoute === "home" ? "home" : "home-outline"}
-            />
-            
-          </TouchableOpacity>
-        </View>
-      </View> */}
     </View>
   );
 };
-
+Footer.propTypes = {
+  activeRoute: PropTypes.string,
+}
 export default Footer;

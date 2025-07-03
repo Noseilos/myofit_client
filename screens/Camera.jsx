@@ -4,7 +4,7 @@ import { Camera, CameraType } from "expo-camera";
 import { Avatar } from "react-native-paper";
 import { colors, defaultStyle } from "../styles/styles";
 import * as ImagePicker from "expo-image-picker";
-
+import PropTypes from "prop-types";
 const CameraComponent = ({ navigation, route }) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [type, setType] = useState(CameraType.back);
@@ -135,7 +135,10 @@ const CameraComponent = ({ navigation, route }) => {
     </View>
   );
 };
-
+CameraComponent.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+}
 const MyIcon = ({ icon, handler }) => (
   <TouchableOpacity onPress={handler}>
     <Avatar.Icon
@@ -148,5 +151,8 @@ const MyIcon = ({ icon, handler }) => (
     />
   </TouchableOpacity>
 );
-
+MyIcon.propTypes = {
+  icon: PropTypes.string.isRequired,
+  handler: PropTypes.func.isRequired,
+};
 export default CameraComponent;

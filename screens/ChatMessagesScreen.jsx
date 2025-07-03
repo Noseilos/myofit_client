@@ -8,16 +8,9 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import {
-  colors,
-  defaultImg,
-  defaultStyle,
-  formHeading,
-} from "../styles/styles";
+
 import React, {
   useState,
-  useContext,
-  useLayoutEffect,
   useEffect,
   useRef,
 } from "react";
@@ -26,18 +19,11 @@ import Animated, {
   withTiming,
   withRepeat,
   useAnimatedStyle,
-  Easing,
 } from "react-native-reanimated";
 import { Avatar } from "react-native-paper";
-import { Feather } from "@expo/vector-icons";
-import { Ionicons } from "@expo/vector-icons";
-import { FontAwesome } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import { FontAwesome, Entypo } from "@expo/vector-icons";
 import EmojiSelector from "react-native-emoji-selector";
-import { useNavigation, useRoute } from "@react-navigation/native";
-import * as ImagePicker from "expo-image-picker";
-import Footer from "../components/Footer";
+import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchAllMessages,
@@ -50,13 +36,12 @@ import Voice from "@react-native-voice/voice";
 const ChatMessagesScreen = () => {
   const { user } = useSelector((state) => state.user);
   const { recepientData } = useSelector((state) => state.chat);
-  const { messages, loading } = useSelector((state) => state.chat);
+  const { messages } = useSelector((state) => state.chat);
   const userId = user._id;
 
   const [showEmojiSelector, setShowEmojiSelector] = useState(false);
   const [selectedMessages, setSelectedMessages] = useState([]);
-  const [currentMessages, setMessages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState("");
+  const [, setSelectedImage] = useState("");
   const route = useRoute();
   const { recepientId } = route.params;
   const [message, setMessage] = useState("");
@@ -65,9 +50,8 @@ const ChatMessagesScreen = () => {
 
   /// Voice codes
   let [started, setStarted] = useState(false);
-  let [results, setResults] = useState([]);
   const [isListening, setIsListening] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [, setIsAnimating] = useState(false);
   const translateY = useSharedValue(0);
 
   const toggleAnimation = () => {
@@ -172,19 +156,6 @@ const ChatMessagesScreen = () => {
   const formatTime = (time) => {
     const options = { hour: "numeric", minute: "numeric" };
     return new Date(time).toLocaleString("en-US", options);
-  };
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.canceled) {
-      handleSend("image", result.uri);
-    }
   };
 
   const handleSelectMessage = (message) => {

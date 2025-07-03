@@ -1,16 +1,14 @@
-import { StyleSheet, Text, View, Image, ScrollView, FlatList, ImageBackground, TouchableOpacity, Dimensions } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import React, { useState } from 'react';
 import { useSetCategories } from "../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
-import { defaultStyle, colors, defaultImg } from "../styles/styles";
+import {  colors } from "../styles/styles";
 import Swiper from "react-native-swiper";
-var { width, height } = Dimensions.get("window");
-
+var { width} = Dimensions.get("window");
+import PropTypes from 'prop-types';
 const CategoryScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
     const [categories, setCategories] = useState([]);
-    const [prevCategoryID, setPrevCategoryID] = useState(null);
-    const [categoryID, setCategoryID] = useState(null)
     useSetCategories(setCategories, isFocused);
 
     return (
@@ -74,7 +72,9 @@ const CategoryScreen = ({ navigation }) => {
     );
 };
 
-
+CategoryScreen.propTypes = {
+    navigation: PropTypes.object.isRequired,
+}
 const styles = StyleSheet.create({
     container: {
         padding: 20,

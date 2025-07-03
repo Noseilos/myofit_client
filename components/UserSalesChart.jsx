@@ -1,20 +1,10 @@
-import { View, Dimensions, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { BarChart } from "react-native-chart-kit";
-import { colors } from "../styles/styles";
-
-const screenWidth = Dimensions.get("screen").width - 20 - 75;
-
+import PropTypes from 'prop-types';
 const UserSalesChart = ({ data }) => {
-    const randomColor = () => {
-        const red = Math.floor(Math.random() * 256);
-        const green = Math.floor(Math.random() * 256);
-        const blue = Math.floor(Math.random() * 256);
-        return `rgba(${red}, ${green}, ${blue}, 1)`;
-    };
 
     const chartConfig = {
-        // backgroundColor: "#e26a00",
         backgroundGradientFrom: "#1E2923",
         backgroundGradientTo: "#08130D",
         color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
@@ -67,6 +57,17 @@ const UserSalesChart = ({ data }) => {
             </View>
         </ScrollView>
     );
+};
+
+UserSalesChart.propTypes = {
+    data: PropTypes.shape({
+        ordersCountByProduct: PropTypes.arrayOf(
+            PropTypes.shape({
+                _id: PropTypes.string.isRequired,
+                totalAmount: PropTypes.number.isRequired,
+            })
+        ).isRequired,
+    }).isRequired,
 };
 
 export default UserSalesChart;

@@ -9,7 +9,7 @@ import { deleteUser } from "../../redux/actions/otherActions";
 import { getAllUsers } from "../../redux/actions/chatActions";
 import UserList from "../../components/UserList";
 
-const UserLists = ({ navigation }) => {
+const UserLists = () => {
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.chat);

@@ -1,15 +1,11 @@
 import { View, Text, ScrollView } from "react-native";
 import React, { useEffect } from "react";
-import { colors, defaultStyle, formHeading, adminFormHeading } from "../../styles/styles";
+import { defaultStyle, adminFormHeading } from "../../styles/styles";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
 import AdminButtonBox from "../../components/AdminButtonBox";
 import ProductListHeading from "../../components/ProductListHeading";
 import ProductListItem from "../../components/ProductListItem";
-import Chart from "../../components/Chart";
-import ProductSalesChart from "../../components/ProductSalesChart";
-import MonthlySalesChart from "../../components/MonthlySalesChart";
-import UserSalesChart from "../../components/UserSalesChart";
 import {
   useAdminProducts,
   useMessageAndErrorOther,
@@ -19,12 +15,12 @@ import { useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
 import { deleteProduct } from "../../redux/actions/otherActions";
 import { getAdminProducts } from "../../redux/actions/productActions";
-
+import PropTypes from "prop-types";
 const AdminPanel = ({ navigation }) => {
   const dispatch = useDispatch();
   const isFocused = useIsFocused();
 
-  const { chartData, chartData2, chartData3, loading, error } = useChartData(
+  const { loading } = useChartData(
     dispatch,
     isFocused
   );
@@ -138,5 +134,7 @@ const AdminPanel = ({ navigation }) => {
     </View>
   );
 };
-
+AdminPanel.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 export default AdminPanel;

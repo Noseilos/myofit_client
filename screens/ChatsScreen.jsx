@@ -1,17 +1,14 @@
-import { StyleSheet, Text, View, ScrollView, Pressable } from "react-native";
+import { Text, View, ScrollView, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { useIsFocused } from "@react-navigation/native";
 import {
-  colors,
-  defaultImg,
   defaultStyle,
   formHeading,
 } from "../styles/styles";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAcceptedContacts } from "../redux/actions/chatActions";
+import { fetchAcceptedContacts, fetchAllMessages } from "../redux/actions/chatActions";
 import UserChat from "../components/UserChat";
-import { fetchAllMessages } from "../redux/actions/chatActions";
 import { loadUser } from "../redux/actions/userActions";
 const ChatsScreen = () => {
 
@@ -113,5 +110,3 @@ const ChatsScreen = () => {
 };
 
 export default ChatsScreen;
-
-const styles = StyleSheet.create({});

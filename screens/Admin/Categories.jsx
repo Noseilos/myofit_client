@@ -26,8 +26,8 @@ import {
 } from "../../redux/actions/otherActions";
 import Carousel from "react-native-snap-carousel";
 import * as ImagePicker from "expo-image-picker";
-
-const Categories = ({ navigation, route, navigate }) => {
+import PropTypes from "prop-types";
+const Categories = ({ navigation, route }) => {
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
   const [showAddForm, setShowAddForm] = useState(false);
@@ -188,12 +188,12 @@ const Categories = ({ navigation, route, navigate }) => {
             <Carousel
               layout="default"
               data={image}
-              renderItem={renderCarouselItem }
+              renderItem={renderCarouselItem}
               sliderWidth={300}
               itemWidth={300}
             />
           </View>
-          
+
         </View>
         <TextInput
           {...inputOptions}
@@ -219,14 +219,17 @@ const Categories = ({ navigation, route, navigate }) => {
             Add
           </Button>
         )}
-       
+
       </View>
       {/* add category form */}
     </View>
   );
 };
-
-const CategoryCard = ({ name, id, image, deleteHandler, navigate, navigation }) => (
+Categories.propTypes = {
+  navigation: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+}
+const CategoryCard = ({ name, id, deleteHandler, navigation }) => (
   <View style={styles.cardContainer}>
     <Text style={styles.cardText}>{name}</Text>
     <View style={styles.cardIcons}>
@@ -268,13 +271,12 @@ const CategoryCard = ({ name, id, image, deleteHandler, navigate, navigation }) 
     )} */}
   </View>
 );
-
-const CarouselCardItem = ({ item, index }) => (
-  <View key={index}>
-      <Image source={{ uri: item.url }} style={styles.categoryImage} />
-  </View>
-);
-
+CategoryCard.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  deleteHandler: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
+}
 export default Categories;
 
 const styles = StyleSheet.create({
