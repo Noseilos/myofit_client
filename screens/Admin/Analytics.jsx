@@ -47,90 +47,88 @@ const Analytics = ({ navigation }) => {
             {loading ? (
                 <Loader />
             ) : (
-                <>
-                    <ScrollView showsVerticalScrollIndicator={false}>
-                        <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Inventory</Text>
-                            <View
-                                style={{
-                                    backgroundColor: colors.color3,
-                                    borderRadius: 20,
-                                    alignItems: "center",
-                                    marginBottom: 10,
-                                }}
-                            >
+                <ScrollView showsVerticalScrollIndicator={false}>
+                    <View>
+                        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Inventory</Text>
+                        <View
+                            style={{
+                                backgroundColor: colors.color3,
+                                borderRadius: 20,
+                                alignItems: "center",
+                                marginBottom: 10,
+                            }}
+                        >
 
-                                <Chart
-                                    inStock={inStock}
-                                    outOfStock={outOfStock}
-                                    loading={processAnalyticsLoading}
-                                />
-                            </View>
+                            <Chart
+                                inStock={inStock}
+                                outOfStock={outOfStock}
+                                loading={processAnalyticsLoading}
+                            />
                         </View>
+                    </View>
 
-                        <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Sales by Category</Text>
-                            <View
-                                style={{
-                                    backgroundColor: colors.color3,
-                                    borderRadius: 20,
-                                    alignItems: "center",
-                                    marginBottom: 10,
-                                }}
-                            >
+                    <View>
+                        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Sales by Category</Text>
+                        <View
+                            style={{
+                                backgroundColor: colors.color3,
+                                borderRadius: 20,
+                                alignItems: "center",
+                                marginBottom: 10,
+                            }}
+                        >
 
-                                <ProductSalesChart
-                                    inStock={inStock}
-                                    outOfStock={outOfStock}
-                                    loading={processAnalyticsLoading}
-                                    data={chartData}
-                                />
-                            </View>
+                            <ProductSalesChart
+                                inStock={inStock}
+                                outOfStock={outOfStock}
+                                loading={processAnalyticsLoading}
+                                data={chartData}
+                            />
                         </View>
+                    </View>
 
-                        <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Units Sold</Text>
-                            <View
-                                style={{
-                                    backgroundColor: colors.color3,
-                                    borderRadius: 20,
-                                    alignItems: "center",
-                                    marginBottom: 10,
+                    <View>
+                        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Units Sold</Text>
+                        <View
+                            style={{
+                                backgroundColor: colors.color3,
+                                borderRadius: 20,
+                                alignItems: "center",
+                                marginBottom: 10,
 
-                                }}
-                            >
-                                <UserSalesChart
-                                    inStock={inStock}
-                                    outOfStock={outOfStock}
-                                    loading={processAnalyticsLoading}
-                                    data={chartData2}
+                            }}
+                        >
+                            <UserSalesChart
+                                inStock={inStock}
+                                outOfStock={outOfStock}
+                                loading={processAnalyticsLoading}
+                                data={chartData2}
 
-                                />
-                            </View>
+                            />
                         </View>
+                    </View>
 
-                        <View>
-                            <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Monthly Revenue</Text>
-                            <View
-                                style={{
-                                    backgroundColor: colors.color3,
-                                    borderRadius: 20,
-                                    alignItems: "center",
-                                    marginBottom: 10,
-                                }}
-                            >
+                    <View>
+                        <Text style={{ fontSize: 20, fontWeight: 600, marginBottom: 10 }}>Monthly Revenue</Text>
+                        <View
+                            style={{
+                                backgroundColor: colors.color3,
+                                borderRadius: 20,
+                                alignItems: "center",
+                                marginBottom: 10,
+                            }}
+                        >
 
-                                <MonthlySalesChart
-                                    inStock={inStock}
-                                    outOfStock={outOfStock}
-                                    loading={processAnalyticsLoading}
-                                    data={chartData3}
-                                />
-                            </View>
+                            <MonthlySalesChart
+                                inStock={inStock}
+                                outOfStock={outOfStock}
+                                loading={processAnalyticsLoading}
+                                data={chartData3}
+                            />
                         </View>
+                    </View>
 
-                    </ScrollView>
-                </>
+                </ScrollView>
             )}
         </View>
     );

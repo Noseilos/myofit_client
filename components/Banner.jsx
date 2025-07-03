@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Image, StyleSheet, Dimensions, View, ScrollView } from "react-native";
+import { Image, StyleSheet, Dimensions, View } from "react-native";
 import Swiper from "react-native-swiper";
-import {
-    colors
-} from "../styles/styles";
-var { width,height } = Dimensions.get("window");
+var { width } = Dimensions.get("window");
 
 const Banner = () => {
     const [bannerData, setBannerData] = useState([]);
@@ -22,57 +19,57 @@ const Banner = () => {
     }, []);
 
     return (
-        
-            <View style={styles.container}>
-                <View style={styles.swiper}>
-                    <Swiper
+
+        <View style={styles.container}>
+            <View style={styles.swiper}>
+                <Swiper
                     activeDotColor="white"
-                        paginationStyle={{
-                            bottom: 10,
-                            width: width - 40,
-                            
-                            justifyContent: "center",
-                            alignItems: "center",
-                        }}
-                        showButtons={false}
-                        autoplay={true}
-                        autoplayTimeout={3}
-                    >
-                        {bannerData.map((item) => {
-                            return (
-                                <Image
-                                    key={item}
-                                    style={styles.imageBanner}
-                                    resizeMode="cover"
-                                    source={{ uri: item }}
-                                />
-                            );
-                        })}
-                    </Swiper>
-                    
-                </View>
+                    paginationStyle={{
+                        bottom: 10,
+                        width: width - 40,
+
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                    showButtons={false}
+                    autoplay={true}
+                    autoplayTimeout={3}
+                >
+                    {bannerData.map((item) => {
+                        return (
+                            <Image
+                                key={item}
+                                style={styles.imageBanner}
+                                resizeMode="cover"
+                                source={{ uri: item }}
+                            />
+                        );
+                    })}
+                </Swiper>
+
             </View>
-        
+        </View>
+
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        
+
         backgroundColor: "gainsboro",
         borderRadius: 10,
     },
     swiper: {
         width: width,
-        height: width/3,
+        height: width / 3,
 
-        
+
     },
     imageBanner: {
         height: width / 3,
         width: width - 40,
         borderRadius: 10,
-        
+
     },
 });
 

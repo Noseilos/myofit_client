@@ -8,7 +8,7 @@ import {
   inputOptions,
   inputStyling,
 } from "../../styles/styles";
-import { Button, TextInput } from "react-native-paper";
+import { Button, TextInput, IconButton } from "react-native-paper";
 import SelectComponent from "../../components/SelectComponent";
 import { useSetCategories, useMessageAndErrorOther } from "../../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
@@ -18,7 +18,6 @@ import { getAdminProducts } from "../../redux/actions/productActions";
 import { createProduct } from "../../redux/actions/otherActions";
 import * as ImagePicker from "expo-image-picker";
 import Carousel from "react-native-snap-carousel";
-import { IconButton } from "react-native-paper";
 import PropTypes from "prop-types";
 const NewProduct = ({ navigation, route }) => {
   const isFocused = useIsFocused();
@@ -169,15 +168,17 @@ const NewProduct = ({ navigation, route }) => {
                 renderItem={renderCarouselItem}
                 sliderWidth={300}
                 itemWidth={300}
-                // loop={true}
+              // loop={true}
               />
             </View>
             <Button
               mode="contained"
               onPress={openImagePicker}
-              style={{ backgroundColor: colors.color9_lpgreen, marginHorizontal: 80,
+              style={{
+                backgroundColor: colors.color9_lpgreen, marginHorizontal: 80,
                 borderWidth: 3,
-                borderColor: colors.color8_dgreen }}
+                borderColor: colors.color8_dgreen
+              }}
               textColor={colors.color8_dgreen}
               icon="camera"
             >

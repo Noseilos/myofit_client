@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateCategory,
   getCategoryDetails,
+  deleteCategoryImage,
+  updateCategoryImage,
 } from "../../redux/actions/otherActions";
 import Header from "../../components/Header";
 import Loader from "../../components/Loader";
@@ -16,10 +18,6 @@ import {
   inputOptions,
 } from "../../styles/styles";
 import * as ImagePicker from "expo-image-picker";
-import {
-  deleteCategoryImage,
-  updateCategoryImage,
-} from "../../redux/actions/otherActions";
 import Carousel from "react-native-snap-carousel";
 import ImageCard from "../../components/ImageCard";
 import mime from "mime";
@@ -152,88 +150,86 @@ const UpdateCategory = ({ navigation, route }) => {
   };
 
   return (
-    <>
-      <View
-        style={{
-          ...defaultStyle,
-          backgroundColor: colors.color5,
-        }}
-      >
-        <Header back={true} />
+    <View
+      style={{
+        ...defaultStyle,
+        backgroundColor: colors.color5,
+      }}
+    >
+      <Header back={true} />
 
-        {/* Heading */}
-        <View style={{ marginBottom: 20, paddingTop: 70 }}>
-          <Text style={formHeading}>Update Category</Text>
-        </View>
+      {/* Heading */}
+      <View style={{ marginBottom: 20, paddingTop: 70 }}>
+        <Text style={formHeading}>Update Category</Text>
+      </View>
 
-        {loading ? (
-          <Loader />
-        ) : (
-          <ScrollView
+      {loading ? (
+        <Loader />
+      ) : (
+        <ScrollView
+          style={{
+            padding: 20,
+            elevation: 10,
+            borderRadius: 10,
+            backgroundColor: colors.color3,
+          }}
+        >
+          <View
             style={{
-              padding: 20,
-              elevation: 10,
-              borderRadius: 10,
-              backgroundColor: colors.color3,
+              justifyContent: "center",
+              height: 650,
             }}
           >
-            <View
-              style={{
-                justifyContent: "center",
-                height: 650,
-              }}
-            >
-              <ScrollView>
-                <Carousel
-                  data={[...(categoryDetails?.images || []), ...selectedImages]}
-                  renderItem={renderCarouselItem}
-                  sliderWidth={300}
-                  itemWidth={300}
-                  layout={"default"}
-                />
-              </ScrollView>
-              <Button
-                mode="contained"
-                onPress={openImagePicker}
-                style={{
-                  marginBottom: 20,
-                  marginTop: 20,
-                  marginHorizontal: 20,
-                  padding: 6,
-                  backgroundColor: colors.color9_lpgreen,
-                  borderWidth: 3,
-                  borderColor: colors.color8_dgreen
-                }}
-                textColor={colors.color8_dgreen}
-              >
-                Select Images
-              </Button>
-
-              <TextInput
-                {...inputOptions}
-                placeholder="Name"
-                value={category}
-                onChangeText={handleCategoryChange}
+            <ScrollView>
+              <Carousel
+                data={[...(categoryDetails?.images || []), ...selectedImages]}
+                renderItem={renderCarouselItem}
+                sliderWidth={300}
+                itemWidth={300}
+                layout={"default"}
               />
+            </ScrollView>
+            <Button
+              mode="contained"
+              onPress={openImagePicker}
+              style={{
+                marginBottom: 20,
+                marginTop: 20,
+                marginHorizontal: 20,
+                padding: 6,
+                backgroundColor: colors.color9_lpgreen,
+                borderWidth: 3,
+                borderColor: colors.color8_dgreen
+              }}
+              textColor={colors.color8_dgreen}
+            >
+              Select Images
+            </Button>
 
-              <Button
-                textColor={colors.color2}
-                style={{
-                  backgroundColor: colors.color1,
-                  margin: 20,
-                  padding: 6,
-                }}
-                onPress={submitHandler}
-                loading={loading}
-                disabled={loading}
-              >
-                Update
-              </Button>
-            </View>
-          </ScrollView>
-        )}
-      </View>
-    </>
+            <TextInput
+              {...inputOptions}
+              placeholder="Name"
+              value={category}
+              onChangeText={handleCategoryChange}
+            />
+
+            <Button
+              textColor={colors.color2}
+              style={{
+                backgroundColor: colors.color1,
+                margin: 20,
+                padding: 6,
+              }}
+              onPress={submitHandler}
+              loading={loading}
+              disabled={loading}
+            >
+              Update
+            </Button>
+          </View>
+        </ScrollView>
+      )}
+    </View>
   );
 };
 UpdateCategory.propTypes = {

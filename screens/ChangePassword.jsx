@@ -11,7 +11,6 @@ import { Button, TextInput } from "react-native-paper";
 import Header from "../components/Header";
 import { useDispatch } from "react-redux";
 import { updatePassword } from "../redux/actions/otherActions";
-import { useMessageAndErrorOther } from "../utils/hooks";
 
 const ChangePassword = () => {
     const [oldPassword, setOldPassword] = useState("");

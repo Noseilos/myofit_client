@@ -47,11 +47,13 @@ export default defineConfig([
       // React Native
       ...(pluginReactNative.configs.recommended?.rules ?? {}),
 
-      
+      // Extra Rules
+      "no-duplicate-imports": "error",
+      "react/jsx-no-useless-fragment": "warn",
 
       // Optional overrides
       "react/react-in-jsx-scope": "off", // for React 17+
-      "react-native/no-inline-styles": "warn",
+      "react-native/no-inline-styles": "off",
       "react-native/no-color-literals": "off",
     },
     settings: {
@@ -61,3 +63,4 @@ export default defineConfig([
     },
   },
 ]);
+

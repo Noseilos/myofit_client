@@ -1,4 +1,4 @@
-import { StyleSheet, Platform, StatusBar, Dimensions } from "react-native";
+import { StyleSheet } from "react-native";
 
 export const colors = {
   color1: "#2ecc71",

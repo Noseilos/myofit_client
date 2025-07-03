@@ -21,8 +21,7 @@ import Animated, {
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { Avatar } from "react-native-paper";
-import { FontAwesome } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
+import { FontAwesome, Entypo } from "@expo/vector-icons";
 import EmojiSelector from "react-native-emoji-selector";
 import { useRoute } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";

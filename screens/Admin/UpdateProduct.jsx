@@ -15,10 +15,10 @@ import { useMessageAndErrorOther, useSetCategories } from "../../utils/hooks";
 import { useIsFocused } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductDetails } from "../../redux/actions/productActions";
-import { updateProduct } from "../../redux/actions/otherActions";
 import {
   deleteProductImage,
   updateProductImage,
+  updateProduct
 } from "../../redux/actions/otherActions";
 import Carousel from "react-native-snap-carousel";
 import * as ImagePicker from "expo-image-picker";

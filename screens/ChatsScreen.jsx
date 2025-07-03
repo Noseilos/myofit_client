@@ -7,9 +7,8 @@ import {
 } from "../styles/styles";
 import Footer from "../components/Footer";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAcceptedContacts } from "../redux/actions/chatActions";
+import { fetchAcceptedContacts, fetchAllMessages } from "../redux/actions/chatActions";
 import UserChat from "../components/UserChat";
-import { fetchAllMessages } from "../redux/actions/chatActions";
 import { loadUser } from "../redux/actions/userActions";
 const ChatsScreen = () => {
 
